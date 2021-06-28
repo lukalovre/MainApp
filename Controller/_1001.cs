@@ -1,8 +1,6 @@
 ﻿using Controller.Properties;
 using CsvHelper;
-using CsvHelper.Configuration;
 using Model;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;

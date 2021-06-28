@@ -261,3 +261,7 @@ __pycache__/
 *.pyc
 /MainApp/Resources/Albums/_temp.png
 /Keys
+/Database/data
+/MainApp/Resources/Albums
+/MainApp/Resources/Posters
+/MainApp/Resources/Main Database Backup Task.xml

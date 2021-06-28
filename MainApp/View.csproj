@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C376268D-6D39-4CB2-98B8-CE33EEBC2C78}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MainApp</RootNamespace>
+    <AssemblyName>MainApp</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>TextTemplate.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.90\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Contrib.2.0.78\lib\net461\Dapper.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq, Version=3.3.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.3.3.2\lib\net451\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Z.Dapper.Plus, Version=4.0.6.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.Dapper.Plus.4.0.6\lib\net45\Z.Dapper.Plus.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChartColors.cs" />
+    <Compile Include="StatsControls\_1001Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\_1001Control.Designer.cs">
+      <DependentUpon>_1001Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backup.cs" />
+    <Compile Include="MainControls\BooksControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\BooksControl.Designer.cs">
+      <DependentUpon>BooksControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\BookInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\BookInfoControl.Designer.cs">
+      <DependentUpon>BookInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\BookInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\BookInfoControl.Designer.cs">
+      <DependentUpon>BookInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\BooksControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\BooksControl.Designer.cs">
+      <DependentUpon>BooksControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\AddComicCollectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\AddComicCollectionControl.Designer.cs">
+      <DependentUpon>AddComicCollectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\ComicsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\ComicsControl.Designer.cs">
+      <DependentUpon>ComicsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\Comics\Table.cs" />
+    <Compile Include="CollectionControls\AddGameCollectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\AddGameCollectionControl.Designer.cs">
+      <DependentUpon>AddGameCollectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\GamesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\GamesControl.Designer.cs">
+      <DependentUpon>GamesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\AddGameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\AddGameControl.Designer.cs">
+      <DependentUpon>AddGameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\Games\Table.cs" />
+    <Compile Include="CollectionControls\AddLibraryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\AddLibraryControl.Designer.cs">
+      <DependentUpon>AddLibraryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\LibraryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\LibraryControl.Designer.cs">
+      <DependentUpon>LibraryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\AddMusicCollectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\AddMusicCollectionControl.Designer.cs">
+      <DependentUpon>AddMusicCollectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\MusicControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\MusicControl.Designer.cs">
+      <DependentUpon>MusicControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\Music\Table.cs" />
+    <Compile Include="MainControls\ComicInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\ComicInfoControl.Designer.cs">
+      <DependentUpon>ComicInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\ComicsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\ComicsControl.Designer.cs">
+      <DependentUpon>ComicsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ChartExtensions.cs" />
+    <Compile Include="Following.cs" />
+    <Compile Include="MainControls\GameInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\GameInfoControl.Designer.cs">
+      <DependentUpon>GameInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\GridViewExtension.cs" />
+    <Compile Include="DataGridCustom.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FilterGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterGrid.Designer.cs">
+      <DependentUpon>FilterGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\GamesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\GamesControl.Designer.cs">
+      <DependentUpon>GamesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MissingInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MissingInfo.Designer.cs">
+      <DependentUpon>MissingInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\MovieInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\MovieInfoControl.Designer.cs">
+      <DependentUpon>MovieInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\MoviesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\MoviesControl.Designer.cs">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\MusicInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\MusicInfoControl.Designer.cs">
+      <DependentUpon>MusicInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\MusicControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\MusicControl.Designer.cs">
+      <DependentUpon>MusicControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatsControls\YearStatsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\YearStatsControl.Designer.cs">
+      <DependentUpon>YearStatsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StarRatingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StarRatingControl.Designer.cs">
+      <DependentUpon>StarRatingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="MainControls\AddMyWorkProgressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\AddMyWorkProgressControl.Designer.cs">
+      <DependentUpon>AddMyWorkProgressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\MyWorkProgressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\MyWorkProgressControl.Designer.cs">
+      <DependentUpon>MyWorkProgressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\UpdateMyWorkProgressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\UpdateMyWorkProgressControl.Designer.cs">
+      <DependentUpon>UpdateMyWorkProgressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\MyWorkInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\MyWorkInfoControl.Designer.cs">
+      <DependentUpon>MyWorkInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\MyWorkControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\MyWorkControl.Designer.cs">
+      <DependentUpon>MyWorkControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\StandupInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\StandupInfoControl.Designer.cs">
+      <DependentUpon>StandupInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatsControls\MontlyReportsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\MontlyReportsControl.Designer.cs">
+      <DependentUpon>MontlyReportsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatsControls\YearProgressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\YearProgressControl.Designer.cs">
+      <DependentUpon>YearProgressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\SqlConnectionExtension.cs" />
+    <Compile Include="SQLHelper.cs" />
+    <Compile Include="MainControls\StandupsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\StandupsControl.Designer.cs">
+      <DependentUpon>StandupsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\TVShowInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\TVShowInfoControl.Designer.cs">
+      <DependentUpon>TVShowInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\TVShowsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\TVShowsControl.Designer.cs">
+      <DependentUpon>TVShowsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YearFilterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="YearFilterControl.Designer.cs">
+      <DependentUpon>YearFilterControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="StatsControls\_1001Control.resx">
+      <DependentUpon>_1001Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\BooksControl.resx">
+      <DependentUpon>BooksControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\BookInfoControl.resx">
+      <DependentUpon>BookInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\BookInfoControl.resx">
+      <DependentUpon>BookInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\BooksControl.resx">
+      <DependentUpon>BooksControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\AddComicCollectionControl.resx">
+      <DependentUpon>AddComicCollectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\ComicsControl.resx">
+      <DependentUpon>ComicsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\AddGameCollectionControl.resx">
+      <DependentUpon>AddGameCollectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\GamesControl.resx">
+      <DependentUpon>GamesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\AddGameControl.resx">
+      <DependentUpon>AddGameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\AddLibraryControl.resx">
+      <DependentUpon>AddLibraryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\LibraryControl.resx">
+      <DependentUpon>LibraryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\AddMusicCollectionControl.resx">
+      <DependentUpon>AddMusicCollectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\MusicControl.resx">
+      <DependentUpon>MusicControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\ComicInfoControl.resx">
+      <DependentUpon>ComicInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\ComicsControl.resx">
+      <DependentUpon>ComicsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridCustom.resx">
+      <DependentUpon>DataGridCustom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterGrid.resx">
+      <DependentUpon>FilterGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\GameInfoControl.resx">
+      <DependentUpon>GameInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\GamesControl.resx">
+      <DependentUpon>GamesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MissingInfo.resx">
+      <DependentUpon>MissingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\MovieInfoControl.resx">
+      <DependentUpon>MovieInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\MoviesControl.resx">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\MusicInfoControl.resx">
+      <DependentUpon>MusicInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\MusicControl.resx">
+      <DependentUpon>MusicControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\AddMyWorkProgressControl.resx">
+      <DependentUpon>AddMyWorkProgressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\MyWorkProgressControl.resx">
+      <DependentUpon>MyWorkProgressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\UpdateMyWorkProgressControl.resx">
+      <DependentUpon>UpdateMyWorkProgressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\MyWorkInfoControl.resx">
+      <DependentUpon>MyWorkInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\MyWorkControl.resx">
+      <DependentUpon>MyWorkControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatsControls\YearStatsControl.resx">
+      <DependentUpon>YearStatsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\StandupInfoControl.resx">
+      <DependentUpon>StandupInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StarRatingControl.resx">
+      <DependentUpon>StarRatingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatsControls\MontlyReportsControl.resx">
+      <DependentUpon>MontlyReportsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatsControls\YearProgressControl.resx">
+      <DependentUpon>YearProgressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\StandupsControl.resx">
+      <DependentUpon>StandupsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\TVShowInfoControl.resx">
+      <DependentUpon>TVShowInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\TVShowsControl.resx">
+      <DependentUpon>TVShowsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YearFilterControl.resx">
+      <DependentUpon>YearFilterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{1ee3af52-6450-4fbf-8937-d4e1593f0f11}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{CF62965E-A6FC-4FD2-922F-C4AE07F82DAE}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main Database Backup Task.xml" />
+    <Content Include="TextTemplate.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

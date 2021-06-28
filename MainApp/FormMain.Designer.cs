@@ -35,11 +35,11 @@ namespace MainApp
 		private void InitializeComponent()
 		{
 			this.tabPageCollectionMusic = new System.Windows.Forms.TabPage();
-			this.music1 = new MainApp.Collection.Music.Music();
+			this.music1 = new MainApp.Collection.Music.MusicControl();
 			this.tabPageCollectionComics = new System.Windows.Forms.TabPage();
-			this.collectionComics1 = new MainApp.Collection.Comics.Comics();
+			this.collectionComics1 = new MainApp.Collection.Comics.ComicsControl();
 			this.tabPageCollectionGames = new System.Windows.Forms.TabPage();
-			this.collectionGamesControl1 = new MainApp.Collection.Games.Games();
+			this.collectionGamesControl1 = new MainApp.Collection.Games.GamesControl();
 			this.tabPageCollectionBooks = new System.Windows.Forms.TabPage();
 			this.collectionBooks1 = new MainApp.Collection.Books.BooksControl();
 			this.tabPageBooks = new System.Windows.Forms.TabPage();
@@ -58,23 +58,25 @@ namespace MainApp
 			this.tabPageStandup = new System.Windows.Forms.TabPage();
 			this.standup1 = new MainApp.Standups.StandupsControl();
 			this.tabPageMyWork = new System.Windows.Forms.TabPage();
-			this.myWork1 = new MainApp.My_work.MyWork();
+			this.myWork1 = new MainApp.My_work.MyWorkControl();
 			this.tabPageMyWorkProgress = new System.Windows.Forms.TabPage();
-			this.myWorkProgress1 = new MainApp.My_work_progress.MyWorkProgress();
+			this.myWorkProgress1 = new MainApp.My_work_progress.MyWorkProgressControl();
 			this.tabPageMonthyReports = new System.Windows.Forms.TabPage();
-			this.weeklyReports1 = new MainApp.Reports.MontlyReports();
+			this.weeklyReports1 = new MainApp.Reports.MontlyReportsControl();
 			this.tabPageYearProgress = new System.Windows.Forms.TabPage();
-			this.yearProgress1 = new MainApp.Reports.YearProgress();
+			this.yearProgress1 = new MainApp.Reports.YearProgressControl();
 			this.tabPage1001 = new System.Windows.Forms.TabPage();
-			this._10011 = new MainApp._1001._1001();
+			this._10011 = new MainApp._1001._1001Control();
 			this.tabPageLibrary = new System.Windows.Forms.TabPage();
-			this.library1 = new MainApp.Collection.Library.Library();
+			this.library1 = new MainApp.Collection.Library.LibraryControl();
 			this.tabControlAll = new System.Windows.Forms.TabControl();
 			this.tabPageMain = new System.Windows.Forms.TabPage();
 			this.tabPageCollection = new System.Windows.Forms.TabPage();
 			this.tabControlCollection = new System.Windows.Forms.TabControl();
 			this.Stats = new System.Windows.Forms.TabPage();
 			this.tabControlStats = new System.Windows.Forms.TabControl();
+			this.tabPageYearStats = new System.Windows.Forms.TabPage();
+			this.yearStatsControl1 = new MainApp.Reports.YearStatsControl();
 			this.tabPageCollectionMusic.SuspendLayout();
 			this.tabPageCollectionComics.SuspendLayout();
 			this.tabPageCollectionGames.SuspendLayout();
@@ -99,6 +101,7 @@ namespace MainApp
 			this.tabControlCollection.SuspendLayout();
 			this.Stats.SuspendLayout();
 			this.tabControlStats.SuspendLayout();
+			this.tabPageYearStats.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabPageCollectionMusic
@@ -421,7 +424,7 @@ namespace MainApp
 			this.tabPageYearProgress.Location = new System.Drawing.Point(4, 29);
 			this.tabPageYearProgress.Name = "tabPageYearProgress";
 			this.tabPageYearProgress.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageYearProgress.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPageYearProgress.Size = new System.Drawing.Size(178, 28);
 			this.tabPageYearProgress.TabIndex = 15;
 			this.tabPageYearProgress.Text = "Year progress";
 			this.tabPageYearProgress.UseVisualStyleBackColor = true;
@@ -431,7 +434,7 @@ namespace MainApp
 			this.yearProgress1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.yearProgress1.Location = new System.Drawing.Point(3, 3);
 			this.yearProgress1.Name = "yearProgress1";
-			this.yearProgress1.Size = new System.Drawing.Size(1388, 1462);
+			this.yearProgress1.Size = new System.Drawing.Size(172, 22);
 			this.yearProgress1.TabIndex = 0;
 			// 
 			// tabPage1001
@@ -440,7 +443,7 @@ namespace MainApp
 			this.tabPage1001.Location = new System.Drawing.Point(4, 29);
 			this.tabPage1001.Name = "tabPage1001";
 			this.tabPage1001.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1001.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPage1001.Size = new System.Drawing.Size(178, 28);
 			this.tabPage1001.TabIndex = 16;
 			this.tabPage1001.Text = "1001";
 			this.tabPage1001.UseVisualStyleBackColor = true;
@@ -450,7 +453,7 @@ namespace MainApp
 			this._10011.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._10011.Location = new System.Drawing.Point(3, 3);
 			this._10011.Name = "_10011";
-			this._10011.Size = new System.Drawing.Size(1388, 1462);
+			this._10011.Size = new System.Drawing.Size(172, 22);
 			this._10011.TabIndex = 0;
 			// 
 			// tabPageLibrary
@@ -537,12 +540,32 @@ namespace MainApp
 			this.tabControlStats.Controls.Add(this.tabPageMonthyReports);
 			this.tabControlStats.Controls.Add(this.tabPageYearProgress);
 			this.tabControlStats.Controls.Add(this.tabPage1001);
+			this.tabControlStats.Controls.Add(this.tabPageYearStats);
 			this.tabControlStats.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControlStats.Location = new System.Drawing.Point(3, 3);
 			this.tabControlStats.Name = "tabControlStats";
 			this.tabControlStats.SelectedIndex = 0;
 			this.tabControlStats.Size = new System.Drawing.Size(1402, 1501);
 			this.tabControlStats.TabIndex = 0;
+			// 
+			// tabPageYearStats
+			// 
+			this.tabPageYearStats.Controls.Add(this.yearStatsControl1);
+			this.tabPageYearStats.Location = new System.Drawing.Point(4, 29);
+			this.tabPageYearStats.Name = "tabPageYearStats";
+			this.tabPageYearStats.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageYearStats.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPageYearStats.TabIndex = 17;
+			this.tabPageYearStats.Text = "Year stats";
+			this.tabPageYearStats.UseVisualStyleBackColor = true;
+			// 
+			// yearStatsControl1
+			// 
+			this.yearStatsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.yearStatsControl1.Location = new System.Drawing.Point(3, 3);
+			this.yearStatsControl1.Name = "yearStatsControl1";
+			this.yearStatsControl1.Size = new System.Drawing.Size(1388, 1462);
+			this.yearStatsControl1.TabIndex = 0;
 			// 
 			// FormMain
 			// 
@@ -577,6 +600,7 @@ namespace MainApp
 			this.tabControlCollection.ResumeLayout(false);
 			this.Stats.ResumeLayout(false);
 			this.tabControlStats.ResumeLayout(false);
+			this.tabPageYearStats.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -584,11 +608,11 @@ namespace MainApp
         #endregion
 
         private TabPage tabPageCollectionMusic;
-        private Collection.Music.Music music1;
+        private Collection.Music.MusicControl music1;
         private TabPage tabPageCollectionComics;
-        private Collection.Comics.Comics collectionComics1;
+        private Collection.Comics.ComicsControl collectionComics1;
         private TabPage tabPageCollectionGames;
-        private Collection.Games.Games collectionGamesControl1;
+        private Collection.Games.GamesControl collectionGamesControl1;
         private TabPage tabPageCollectionBooks;
         private Collection.Books.BooksControl collectionBooks1;
         private TabPage tabPageBooks;
@@ -607,23 +631,25 @@ namespace MainApp
 		private TabPage tabPageStandup;
 		private Standups.StandupsControl standup1;
 		private TabPage tabPageMyWork;
-		private My_work.MyWork myWork1;
+		private My_work.MyWorkControl myWork1;
 		private TabPage tabPageMonthyReports;
-		private Reports.MontlyReports weeklyReports1;
+		private Reports.MontlyReportsControl weeklyReports1;
 		private TabPage tabPageMyWorkProgress;
-		private My_work_progress.MyWorkProgress myWorkProgress1;
+		private My_work_progress.MyWorkProgressControl myWorkProgress1;
 		private TabPage tabPageLibrary;
-		private Collection.Library.Library library1;
+		private Collection.Library.LibraryControl library1;
 		private TabPage tabPageYearProgress;
-		private Reports.YearProgress yearProgress1;
+		private Reports.YearProgressControl yearProgress1;
 		private TabPage tabPage1001;
-		private _1001._1001 _10011;
+		private _1001._1001Control _10011;
 		private TabControl tabControlAll;
 		private TabPage tabPageMain;
 		private TabPage tabPageCollection;
 		private TabPage Stats;
 		private TabControl tabControlCollection;
 		private TabControl tabControlStats;
+		private TabPage tabPageYearStats;
+		private Reports.YearStatsControl yearStatsControl1;
 	}
 }
 

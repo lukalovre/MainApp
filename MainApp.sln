@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp", "MainApp\MainApp.csproj", "{C376268D-6D39-4CB2-98B8-CE33EEBC2C78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "MainApp\View.csproj", "{C376268D-6D39-4CB2-98B8-CE33EEBC2C78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{CF62965E-A6FC-4FD2-922F-C4AE07F82DAE}"
 EndProject
