@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 
 using MainApp.Collection.Books;
-using MainApp.Collection.Comics;
+using MainApp.Collection;
 using MainApp.Collection.Games;
 
 namespace MainApp
@@ -35,40 +35,23 @@ namespace MainApp
 		private void InitializeComponent()
 		{
 			this.tabPageCollectionMusic = new System.Windows.Forms.TabPage();
-			this.music1 = new MainApp.Collection.Music.MusicControl();
 			this.tabPageCollectionComics = new System.Windows.Forms.TabPage();
-			this.collectionComics1 = new MainApp.Collection.Comics.ComicsControl();
 			this.tabPageCollectionGames = new System.Windows.Forms.TabPage();
-			this.collectionGamesControl1 = new MainApp.Collection.Games.GamesControl();
 			this.tabPageCollectionBooks = new System.Windows.Forms.TabPage();
-			this.collectionBooks1 = new MainApp.Collection.Books.BooksControl();
 			this.tabPageBooks = new System.Windows.Forms.TabPage();
-			this.booksControl1 = new MainApp.Books.BooksControl();
 			this.tabPageTVShows = new System.Windows.Forms.TabPage();
-			this.tvShowsControl1 = new MainApp.TV_Shows.TVShowsControl();
 			this.tabPageGames = new System.Windows.Forms.TabPage();
-			this.game1 = new MainApp.Games.GamesControl();
 			this.tabPageComics = new System.Windows.Forms.TabPage();
-			this.comicsControl1 = new MainApp.Comics.ComicsControl();
 			this.tabPageMovies = new System.Windows.Forms.TabPage();
-			this.moviesControl1 = new MainApp.Movies.MoviesControl();
 			this.tabPageMusic = new System.Windows.Forms.TabPage();
-			this.musicControl1 = new MainApp.Musics.MusicControl();
 			this.tabControlMain = new System.Windows.Forms.TabControl();
 			this.tabPageStandup = new System.Windows.Forms.TabPage();
-			this.standup1 = new MainApp.Standups.StandupsControl();
 			this.tabPageMyWork = new System.Windows.Forms.TabPage();
-			this.myWork1 = new MainApp.My_work.MyWorkControl();
 			this.tabPageMyWorkProgress = new System.Windows.Forms.TabPage();
-			this.myWorkProgress1 = new MainApp.My_work_progress.MyWorkProgressControl();
 			this.tabPageMonthyReports = new System.Windows.Forms.TabPage();
-			this.weeklyReports1 = new MainApp.Reports.MontlyReportsControl();
 			this.tabPageYearProgress = new System.Windows.Forms.TabPage();
-			this.yearProgress1 = new MainApp.Reports.YearProgressControl();
 			this.tabPage1001 = new System.Windows.Forms.TabPage();
-			this._10011 = new MainApp._1001._1001Control();
 			this.tabPageLibrary = new System.Windows.Forms.TabPage();
-			this.library1 = new MainApp.Collection.Library.LibraryControl();
 			this.tabControlAll = new System.Windows.Forms.TabControl();
 			this.tabPageMain = new System.Windows.Forms.TabPage();
 			this.tabPageCollection = new System.Windows.Forms.TabPage();
@@ -76,7 +59,26 @@ namespace MainApp
 			this.Stats = new System.Windows.Forms.TabPage();
 			this.tabControlStats = new System.Windows.Forms.TabControl();
 			this.tabPageYearStats = new System.Windows.Forms.TabPage();
+			this.tabPageTotal = new System.Windows.Forms.TabPage();
+			this.musicControl1 = new MainApp.Musics.MusicControl();
+			this.moviesControl1 = new MainApp.Movies.MoviesControl();
+			this.comicsControl1 = new MainApp.Comics.ComicsControl();
+			this.game1 = new MainApp.Games.GamesControl();
+			this.tvShowsControl1 = new MainApp.TV_Shows.TVShowsControl();
+			this.booksControl1 = new MainApp.Books.BooksControl();
+			this.standup1 = new MainApp.Standups.StandupsControl();
+			this.myWork1 = new MainApp.My_work.MyWorkControl();
+			this.myWorkProgress1 = new MainApp.My_work_progress.MyWorkProgressControl();
+			this.collectionBooks1 = new MainApp.Collection.Books.BooksControl();
+			this.collectionGamesControl1 = new MainApp.Collection.Games.GamesControl();
+			this.collectionComics1 = new MainApp.Collection.ComicsControl();
+			this.music1 = new MainApp.Collection.MusicControl();
+			this.library1 = new MainApp.Collection.LibraryControl();
+			this.weeklyReports1 = new MainApp.Reports.MontlyReportsControl();
+			this.yearProgress1 = new MainApp.Reports.YearProgressControl();
+			this._10011 = new MainApp._1001._1001Control();
 			this.yearStatsControl1 = new MainApp.Reports.YearStatsControl();
+			this.total1 = new MainApp.StatsControls.Total();
 			this.tabPageCollectionMusic.SuspendLayout();
 			this.tabPageCollectionComics.SuspendLayout();
 			this.tabPageCollectionGames.SuspendLayout();
@@ -102,6 +104,7 @@ namespace MainApp
 			this.Stats.SuspendLayout();
 			this.tabControlStats.SuspendLayout();
 			this.tabPageYearStats.SuspendLayout();
+			this.tabPageTotal.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabPageCollectionMusic
@@ -111,19 +114,10 @@ namespace MainApp
 			this.tabPageCollectionMusic.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tabPageCollectionMusic.Name = "tabPageCollectionMusic";
 			this.tabPageCollectionMusic.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPageCollectionMusic.Size = new System.Drawing.Size(178, 28);
+			this.tabPageCollectionMusic.Size = new System.Drawing.Size(1394, 1468);
 			this.tabPageCollectionMusic.TabIndex = 9;
-			this.tabPageCollectionMusic.Text = "Collection music";
+			this.tabPageCollectionMusic.Text = "Music";
 			this.tabPageCollectionMusic.UseVisualStyleBackColor = true;
-			// 
-			// music1
-			// 
-			this.music1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.music1.Location = new System.Drawing.Point(4, 5);
-			this.music1.Margin = new System.Windows.Forms.Padding(6);
-			this.music1.Name = "music1";
-			this.music1.Size = new System.Drawing.Size(170, 18);
-			this.music1.TabIndex = 0;
 			// 
 			// tabPageCollectionComics
 			// 
@@ -132,19 +126,10 @@ namespace MainApp
 			this.tabPageCollectionComics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tabPageCollectionComics.Name = "tabPageCollectionComics";
 			this.tabPageCollectionComics.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPageCollectionComics.Size = new System.Drawing.Size(178, 28);
+			this.tabPageCollectionComics.Size = new System.Drawing.Size(1394, 1468);
 			this.tabPageCollectionComics.TabIndex = 8;
-			this.tabPageCollectionComics.Text = "Collection comics";
+			this.tabPageCollectionComics.Text = "Comics";
 			this.tabPageCollectionComics.UseVisualStyleBackColor = true;
-			// 
-			// collectionComics1
-			// 
-			this.collectionComics1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.collectionComics1.Location = new System.Drawing.Point(4, 5);
-			this.collectionComics1.Margin = new System.Windows.Forms.Padding(6);
-			this.collectionComics1.Name = "collectionComics1";
-			this.collectionComics1.Size = new System.Drawing.Size(170, 18);
-			this.collectionComics1.TabIndex = 14;
 			// 
 			// tabPageCollectionGames
 			// 
@@ -153,19 +138,10 @@ namespace MainApp
 			this.tabPageCollectionGames.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tabPageCollectionGames.Name = "tabPageCollectionGames";
 			this.tabPageCollectionGames.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPageCollectionGames.Size = new System.Drawing.Size(178, 28);
+			this.tabPageCollectionGames.Size = new System.Drawing.Size(1394, 1468);
 			this.tabPageCollectionGames.TabIndex = 7;
-			this.tabPageCollectionGames.Text = "Collection games";
+			this.tabPageCollectionGames.Text = "Games";
 			this.tabPageCollectionGames.UseVisualStyleBackColor = true;
-			// 
-			// collectionGamesControl1
-			// 
-			this.collectionGamesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.collectionGamesControl1.Location = new System.Drawing.Point(4, 5);
-			this.collectionGamesControl1.Margin = new System.Windows.Forms.Padding(6);
-			this.collectionGamesControl1.Name = "collectionGamesControl1";
-			this.collectionGamesControl1.Size = new System.Drawing.Size(170, 18);
-			this.collectionGamesControl1.TabIndex = 12;
 			// 
 			// tabPageCollectionBooks
 			// 
@@ -176,17 +152,8 @@ namespace MainApp
 			this.tabPageCollectionBooks.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tabPageCollectionBooks.Size = new System.Drawing.Size(1394, 1468);
 			this.tabPageCollectionBooks.TabIndex = 6;
-			this.tabPageCollectionBooks.Text = "Collection books";
+			this.tabPageCollectionBooks.Text = "Books";
 			this.tabPageCollectionBooks.UseVisualStyleBackColor = true;
-			// 
-			// collectionBooks1
-			// 
-			this.collectionBooks1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.collectionBooks1.Location = new System.Drawing.Point(4, 5);
-			this.collectionBooks1.Margin = new System.Windows.Forms.Padding(6);
-			this.collectionBooks1.Name = "collectionBooks1";
-			this.collectionBooks1.Size = new System.Drawing.Size(1386, 1458);
-			this.collectionBooks1.TabIndex = 26;
 			// 
 			// tabPageBooks
 			// 
@@ -200,15 +167,6 @@ namespace MainApp
 			this.tabPageBooks.Text = "Books";
 			this.tabPageBooks.UseVisualStyleBackColor = true;
 			// 
-			// booksControl1
-			// 
-			this.booksControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.booksControl1.Location = new System.Drawing.Point(4, 5);
-			this.booksControl1.Margin = new System.Windows.Forms.Padding(6);
-			this.booksControl1.Name = "booksControl1";
-			this.booksControl1.Size = new System.Drawing.Size(1386, 1458);
-			this.booksControl1.TabIndex = 22;
-			// 
 			// tabPageTVShows
 			// 
 			this.tabPageTVShows.Controls.Add(this.tvShowsControl1);
@@ -220,15 +178,6 @@ namespace MainApp
 			this.tabPageTVShows.TabIndex = 3;
 			this.tabPageTVShows.Text = "TV Shows";
 			this.tabPageTVShows.UseVisualStyleBackColor = true;
-			// 
-			// tvShowsControl1
-			// 
-			this.tvShowsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tvShowsControl1.Location = new System.Drawing.Point(4, 5);
-			this.tvShowsControl1.Margin = new System.Windows.Forms.Padding(6);
-			this.tvShowsControl1.Name = "tvShowsControl1";
-			this.tvShowsControl1.Size = new System.Drawing.Size(1386, 1458);
-			this.tvShowsControl1.TabIndex = 16;
 			// 
 			// tabPageGames
 			// 
@@ -242,15 +191,6 @@ namespace MainApp
 			this.tabPageGames.Text = "Games";
 			this.tabPageGames.UseVisualStyleBackColor = true;
 			// 
-			// game1
-			// 
-			this.game1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.game1.Location = new System.Drawing.Point(4, 5);
-			this.game1.Margin = new System.Windows.Forms.Padding(6);
-			this.game1.Name = "game1";
-			this.game1.Size = new System.Drawing.Size(1386, 1458);
-			this.game1.TabIndex = 27;
-			// 
 			// tabPageComics
 			// 
 			this.tabPageComics.Controls.Add(this.comicsControl1);
@@ -262,15 +202,6 @@ namespace MainApp
 			this.tabPageComics.TabIndex = 1;
 			this.tabPageComics.Text = "Comics";
 			this.tabPageComics.UseVisualStyleBackColor = true;
-			// 
-			// comicsControl1
-			// 
-			this.comicsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.comicsControl1.Location = new System.Drawing.Point(4, 5);
-			this.comicsControl1.Margin = new System.Windows.Forms.Padding(6);
-			this.comicsControl1.Name = "comicsControl1";
-			this.comicsControl1.Size = new System.Drawing.Size(1386, 1458);
-			this.comicsControl1.TabIndex = 20;
 			// 
 			// tabPageMovies
 			// 
@@ -284,15 +215,6 @@ namespace MainApp
 			this.tabPageMovies.Text = "Movies";
 			this.tabPageMovies.UseVisualStyleBackColor = true;
 			// 
-			// moviesControl1
-			// 
-			this.moviesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.moviesControl1.Location = new System.Drawing.Point(4, 5);
-			this.moviesControl1.Margin = new System.Windows.Forms.Padding(6);
-			this.moviesControl1.Name = "moviesControl1";
-			this.moviesControl1.Size = new System.Drawing.Size(1386, 1458);
-			this.moviesControl1.TabIndex = 9;
-			// 
 			// tabPageMusic
 			// 
 			this.tabPageMusic.Controls.Add(this.musicControl1);
@@ -304,15 +226,6 @@ namespace MainApp
 			this.tabPageMusic.TabIndex = 4;
 			this.tabPageMusic.Text = "Music";
 			this.tabPageMusic.UseVisualStyleBackColor = true;
-			// 
-			// musicControl1
-			// 
-			this.musicControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.musicControl1.Location = new System.Drawing.Point(4, 5);
-			this.musicControl1.Margin = new System.Windows.Forms.Padding(6);
-			this.musicControl1.Name = "musicControl1";
-			this.musicControl1.Size = new System.Drawing.Size(1386, 1458);
-			this.musicControl1.TabIndex = 19;
 			// 
 			// tabControlMain
 			// 
@@ -346,15 +259,6 @@ namespace MainApp
 			this.tabPageStandup.Text = "Standup";
 			this.tabPageStandup.UseVisualStyleBackColor = true;
 			// 
-			// standup1
-			// 
-			this.standup1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.standup1.Location = new System.Drawing.Point(4, 5);
-			this.standup1.Margin = new System.Windows.Forms.Padding(6);
-			this.standup1.Name = "standup1";
-			this.standup1.Size = new System.Drawing.Size(1386, 1458);
-			this.standup1.TabIndex = 0;
-			// 
 			// tabPageMyWork
 			// 
 			this.tabPageMyWork.Controls.Add(this.myWork1);
@@ -366,15 +270,6 @@ namespace MainApp
 			this.tabPageMyWork.TabIndex = 11;
 			this.tabPageMyWork.Text = "My work";
 			this.tabPageMyWork.UseVisualStyleBackColor = true;
-			// 
-			// myWork1
-			// 
-			this.myWork1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.myWork1.Location = new System.Drawing.Point(4, 5);
-			this.myWork1.Margin = new System.Windows.Forms.Padding(6);
-			this.myWork1.Name = "myWork1";
-			this.myWork1.Size = new System.Drawing.Size(1386, 1458);
-			this.myWork1.TabIndex = 0;
 			// 
 			// tabPageMyWorkProgress
 			// 
@@ -388,15 +283,6 @@ namespace MainApp
 			this.tabPageMyWorkProgress.Text = "My work progress";
 			this.tabPageMyWorkProgress.UseVisualStyleBackColor = true;
 			// 
-			// myWorkProgress1
-			// 
-			this.myWorkProgress1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.myWorkProgress1.Location = new System.Drawing.Point(3, 4);
-			this.myWorkProgress1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-			this.myWorkProgress1.Name = "myWorkProgress1";
-			this.myWorkProgress1.Size = new System.Drawing.Size(1388, 1460);
-			this.myWorkProgress1.TabIndex = 0;
-			// 
 			// tabPageMonthyReports
 			// 
 			this.tabPageMonthyReports.Controls.Add(this.weeklyReports1);
@@ -409,33 +295,16 @@ namespace MainApp
 			this.tabPageMonthyReports.Text = "Monthly reports";
 			this.tabPageMonthyReports.UseVisualStyleBackColor = true;
 			// 
-			// weeklyReports1
-			// 
-			this.weeklyReports1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.weeklyReports1.Location = new System.Drawing.Point(3, 4);
-			this.weeklyReports1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-			this.weeklyReports1.Name = "weeklyReports1";
-			this.weeklyReports1.Size = new System.Drawing.Size(1388, 1460);
-			this.weeklyReports1.TabIndex = 0;
-			// 
 			// tabPageYearProgress
 			// 
 			this.tabPageYearProgress.Controls.Add(this.yearProgress1);
 			this.tabPageYearProgress.Location = new System.Drawing.Point(4, 29);
 			this.tabPageYearProgress.Name = "tabPageYearProgress";
 			this.tabPageYearProgress.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageYearProgress.Size = new System.Drawing.Size(178, 28);
+			this.tabPageYearProgress.Size = new System.Drawing.Size(1394, 1468);
 			this.tabPageYearProgress.TabIndex = 15;
 			this.tabPageYearProgress.Text = "Year progress";
 			this.tabPageYearProgress.UseVisualStyleBackColor = true;
-			// 
-			// yearProgress1
-			// 
-			this.yearProgress1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.yearProgress1.Location = new System.Drawing.Point(3, 3);
-			this.yearProgress1.Name = "yearProgress1";
-			this.yearProgress1.Size = new System.Drawing.Size(172, 22);
-			this.yearProgress1.TabIndex = 0;
 			// 
 			// tabPage1001
 			// 
@@ -443,18 +312,10 @@ namespace MainApp
 			this.tabPage1001.Location = new System.Drawing.Point(4, 29);
 			this.tabPage1001.Name = "tabPage1001";
 			this.tabPage1001.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1001.Size = new System.Drawing.Size(178, 28);
+			this.tabPage1001.Size = new System.Drawing.Size(1394, 1468);
 			this.tabPage1001.TabIndex = 16;
 			this.tabPage1001.Text = "1001";
 			this.tabPage1001.UseVisualStyleBackColor = true;
-			// 
-			// _10011
-			// 
-			this._10011.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._10011.Location = new System.Drawing.Point(3, 3);
-			this._10011.Name = "_10011";
-			this._10011.Size = new System.Drawing.Size(172, 22);
-			this._10011.TabIndex = 0;
 			// 
 			// tabPageLibrary
 			// 
@@ -463,18 +324,10 @@ namespace MainApp
 			this.tabPageLibrary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.tabPageLibrary.Name = "tabPageLibrary";
 			this.tabPageLibrary.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.tabPageLibrary.Size = new System.Drawing.Size(178, 28);
+			this.tabPageLibrary.Size = new System.Drawing.Size(1394, 1468);
 			this.tabPageLibrary.TabIndex = 14;
 			this.tabPageLibrary.Text = "Library";
 			this.tabPageLibrary.UseVisualStyleBackColor = true;
-			// 
-			// library1
-			// 
-			this.library1.Location = new System.Drawing.Point(4, 9);
-			this.library1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-			this.library1.Name = "library1";
-			this.library1.Size = new System.Drawing.Size(1068, 1488);
-			this.library1.TabIndex = 0;
 			// 
 			// tabControlAll
 			// 
@@ -541,6 +394,7 @@ namespace MainApp
 			this.tabControlStats.Controls.Add(this.tabPageYearProgress);
 			this.tabControlStats.Controls.Add(this.tabPage1001);
 			this.tabControlStats.Controls.Add(this.tabPageYearStats);
+			this.tabControlStats.Controls.Add(this.tabPageTotal);
 			this.tabControlStats.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControlStats.Location = new System.Drawing.Point(3, 3);
 			this.tabControlStats.Name = "tabControlStats";
@@ -559,6 +413,167 @@ namespace MainApp
 			this.tabPageYearStats.Text = "Year stats";
 			this.tabPageYearStats.UseVisualStyleBackColor = true;
 			// 
+			// tabPageTotal
+			// 
+			this.tabPageTotal.Controls.Add(this.total1);
+			this.tabPageTotal.Location = new System.Drawing.Point(4, 29);
+			this.tabPageTotal.Name = "tabPageTotal";
+			this.tabPageTotal.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageTotal.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPageTotal.TabIndex = 18;
+			this.tabPageTotal.Text = "Total";
+			this.tabPageTotal.UseVisualStyleBackColor = true;
+			// 
+			// musicControl1
+			// 
+			this.musicControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.musicControl1.Location = new System.Drawing.Point(4, 5);
+			this.musicControl1.Margin = new System.Windows.Forms.Padding(6);
+			this.musicControl1.Name = "musicControl1";
+			this.musicControl1.Size = new System.Drawing.Size(1386, 1458);
+			this.musicControl1.TabIndex = 19;
+			// 
+			// moviesControl1
+			// 
+			this.moviesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.moviesControl1.Location = new System.Drawing.Point(4, 5);
+			this.moviesControl1.Margin = new System.Windows.Forms.Padding(6);
+			this.moviesControl1.Name = "moviesControl1";
+			this.moviesControl1.Size = new System.Drawing.Size(1386, 1458);
+			this.moviesControl1.TabIndex = 9;
+			// 
+			// comicsControl1
+			// 
+			this.comicsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.comicsControl1.Location = new System.Drawing.Point(4, 5);
+			this.comicsControl1.Margin = new System.Windows.Forms.Padding(6);
+			this.comicsControl1.Name = "comicsControl1";
+			this.comicsControl1.Size = new System.Drawing.Size(1386, 1458);
+			this.comicsControl1.TabIndex = 20;
+			// 
+			// game1
+			// 
+			this.game1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.game1.Location = new System.Drawing.Point(4, 5);
+			this.game1.Margin = new System.Windows.Forms.Padding(6);
+			this.game1.Name = "game1";
+			this.game1.Size = new System.Drawing.Size(1386, 1458);
+			this.game1.TabIndex = 27;
+			// 
+			// tvShowsControl1
+			// 
+			this.tvShowsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tvShowsControl1.Location = new System.Drawing.Point(4, 5);
+			this.tvShowsControl1.Margin = new System.Windows.Forms.Padding(6);
+			this.tvShowsControl1.Name = "tvShowsControl1";
+			this.tvShowsControl1.Size = new System.Drawing.Size(1386, 1458);
+			this.tvShowsControl1.TabIndex = 16;
+			// 
+			// booksControl1
+			// 
+			this.booksControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.booksControl1.Location = new System.Drawing.Point(4, 5);
+			this.booksControl1.Margin = new System.Windows.Forms.Padding(6);
+			this.booksControl1.Name = "booksControl1";
+			this.booksControl1.Size = new System.Drawing.Size(1386, 1458);
+			this.booksControl1.TabIndex = 22;
+			// 
+			// standup1
+			// 
+			this.standup1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.standup1.Location = new System.Drawing.Point(4, 5);
+			this.standup1.Margin = new System.Windows.Forms.Padding(6);
+			this.standup1.Name = "standup1";
+			this.standup1.Size = new System.Drawing.Size(1386, 1458);
+			this.standup1.TabIndex = 0;
+			// 
+			// myWork1
+			// 
+			this.myWork1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myWork1.Location = new System.Drawing.Point(4, 5);
+			this.myWork1.Margin = new System.Windows.Forms.Padding(6);
+			this.myWork1.Name = "myWork1";
+			this.myWork1.Size = new System.Drawing.Size(1386, 1458);
+			this.myWork1.TabIndex = 0;
+			// 
+			// myWorkProgress1
+			// 
+			this.myWorkProgress1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myWorkProgress1.Location = new System.Drawing.Point(3, 4);
+			this.myWorkProgress1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+			this.myWorkProgress1.Name = "myWorkProgress1";
+			this.myWorkProgress1.Size = new System.Drawing.Size(1388, 1460);
+			this.myWorkProgress1.TabIndex = 0;
+			// 
+			// collectionBooks1
+			// 
+			this.collectionBooks1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collectionBooks1.Location = new System.Drawing.Point(4, 5);
+			this.collectionBooks1.Margin = new System.Windows.Forms.Padding(6);
+			this.collectionBooks1.Name = "collectionBooks1";
+			this.collectionBooks1.Size = new System.Drawing.Size(1386, 1458);
+			this.collectionBooks1.TabIndex = 26;
+			// 
+			// collectionGamesControl1
+			// 
+			this.collectionGamesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collectionGamesControl1.Location = new System.Drawing.Point(4, 5);
+			this.collectionGamesControl1.Margin = new System.Windows.Forms.Padding(6);
+			this.collectionGamesControl1.Name = "collectionGamesControl1";
+			this.collectionGamesControl1.Size = new System.Drawing.Size(1386, 1458);
+			this.collectionGamesControl1.TabIndex = 12;
+			// 
+			// collectionComics1
+			// 
+			this.collectionComics1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collectionComics1.Location = new System.Drawing.Point(4, 5);
+			this.collectionComics1.Margin = new System.Windows.Forms.Padding(6);
+			this.collectionComics1.Name = "collectionComics1";
+			this.collectionComics1.Size = new System.Drawing.Size(1386, 1458);
+			this.collectionComics1.TabIndex = 14;
+			// 
+			// music1
+			// 
+			this.music1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.music1.Location = new System.Drawing.Point(4, 5);
+			this.music1.Margin = new System.Windows.Forms.Padding(6);
+			this.music1.Name = "music1";
+			this.music1.Size = new System.Drawing.Size(1386, 1458);
+			this.music1.TabIndex = 0;
+			// 
+			// library1
+			// 
+			this.library1.Location = new System.Drawing.Point(4, 9);
+			this.library1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+			this.library1.Name = "library1";
+			this.library1.Size = new System.Drawing.Size(1068, 1488);
+			this.library1.TabIndex = 0;
+			// 
+			// weeklyReports1
+			// 
+			this.weeklyReports1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.weeklyReports1.Location = new System.Drawing.Point(3, 4);
+			this.weeklyReports1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+			this.weeklyReports1.Name = "weeklyReports1";
+			this.weeklyReports1.Size = new System.Drawing.Size(1388, 1460);
+			this.weeklyReports1.TabIndex = 0;
+			// 
+			// yearProgress1
+			// 
+			this.yearProgress1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.yearProgress1.Location = new System.Drawing.Point(3, 3);
+			this.yearProgress1.Name = "yearProgress1";
+			this.yearProgress1.Size = new System.Drawing.Size(1388, 1462);
+			this.yearProgress1.TabIndex = 0;
+			// 
+			// _10011
+			// 
+			this._10011.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._10011.Location = new System.Drawing.Point(3, 3);
+			this._10011.Name = "_10011";
+			this._10011.Size = new System.Drawing.Size(1388, 1462);
+			this._10011.TabIndex = 0;
+			// 
 			// yearStatsControl1
 			// 
 			this.yearStatsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -566,6 +581,13 @@ namespace MainApp
 			this.yearStatsControl1.Name = "yearStatsControl1";
 			this.yearStatsControl1.Size = new System.Drawing.Size(1388, 1462);
 			this.yearStatsControl1.TabIndex = 0;
+			// 
+			// total1
+			// 
+			this.total1.Location = new System.Drawing.Point(4, 7);
+			this.total1.Name = "total1";
+			this.total1.Size = new System.Drawing.Size(1209, 883);
+			this.total1.TabIndex = 0;
 			// 
 			// FormMain
 			// 
@@ -601,6 +623,7 @@ namespace MainApp
 			this.Stats.ResumeLayout(false);
 			this.tabControlStats.ResumeLayout(false);
 			this.tabPageYearStats.ResumeLayout(false);
+			this.tabPageTotal.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -608,9 +631,9 @@ namespace MainApp
         #endregion
 
         private TabPage tabPageCollectionMusic;
-        private Collection.Music.MusicControl music1;
+        private Collection.MusicControl music1;
         private TabPage tabPageCollectionComics;
-        private Collection.Comics.ComicsControl collectionComics1;
+        private Collection.ComicsControl collectionComics1;
         private TabPage tabPageCollectionGames;
         private Collection.Games.GamesControl collectionGamesControl1;
         private TabPage tabPageCollectionBooks;
@@ -637,7 +660,7 @@ namespace MainApp
 		private TabPage tabPageMyWorkProgress;
 		private My_work_progress.MyWorkProgressControl myWorkProgress1;
 		private TabPage tabPageLibrary;
-		private Collection.Library.LibraryControl library1;
+		private Collection.LibraryControl library1;
 		private TabPage tabPageYearProgress;
 		private Reports.YearProgressControl yearProgress1;
 		private TabPage tabPage1001;
@@ -650,6 +673,8 @@ namespace MainApp
 		private TabControl tabControlStats;
 		private TabPage tabPageYearStats;
 		private Reports.YearStatsControl yearStatsControl1;
+		private TabPage tabPageTotal;
+		private StatsControls.Total total1;
 	}
 }
 

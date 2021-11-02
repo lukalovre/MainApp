@@ -1,9 +1,8 @@
 ﻿using Controller;
 using Model.dbo;
-using Newtonsoft.Json;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -38,8 +37,18 @@ namespace MainApp.Comics
 			checkBoxRead.Checked = comicEvents.Any(o => o.Read);
 			starRatingControl1.SelectedStar = comicEvents.LastOrDefault().Rating.Value;
 
-			checkBoxReading.Checked = FormMain.Following.Comics.Contains(comic.GoodreadsID.ToString());
-			checkBoxOngoing.Checked = FormMain.Following.ComicsOngoing.Contains(comic.GoodreadsID.ToString());
+			checkBoxReading.Checked = Following.FollowingModel.Comics.Contains(comic.GoodreadsID.ToString());
+			checkBoxOngoing.Checked = Following.FollowingModel.ComicsOngoing.Contains(comic.GoodreadsID.ToString());
+
+			var chapters = comicEvents.DistinctBy(o => o.Chapter).OrderBy(o => o.Chapter);
+			listBoxChapters.Items.Clear();
+
+			foreach (var season in chapters)
+			{
+				listBoxChapters.Items.Add($"Chapter {season.Chapter}: {comicEvents.Where(o => o.Chapter == season.Chapter).Sum(i => i.Pages)}\n");
+			}
+
+			listBoxChapters.SelectedIndex = listBoxChapters.Items.Count - 1;
 		}
 
 		internal ComicEvent GetEvent()
@@ -69,45 +78,36 @@ namespace MainApp.Comics
 
 		private void CheckBoxOngoing_CheckedChanged(object sender, EventArgs e)
 		{
-			if(checkBoxOngoing.Checked)
-			{
-				if(!FormMain.Following.ComicsOngoing.Contains(m_comic.GoodreadsID.ToString()))
-				{
-					FormMain.Following.ComicsOngoing.Add(m_comic.GoodreadsID.ToString());
-				}
-			}
-			else
-			{
-				FormMain.Following.ComicsOngoing.Remove(m_comic.GoodreadsID.ToString());
-			}
-
-			string json = JsonConvert.SerializeObject(FormMain.Following, Formatting.Indented);
-			File.WriteAllText(Paths.Following, json);
+			Following.Update(checkBoxOngoing.Checked, Following.FollowingModel.ComicsOngoing, m_comic.GoodreadsID.ToString());
 		}
 
 		private void CheckBoxReading_CheckedChanged(object sender, EventArgs e)
 		{
-			if(checkBoxReading.Checked)
-			{
-				if(!FormMain.Following.Comics.Contains(m_comic.GoodreadsID.ToString()))
-				{
-					FormMain.Following.Comics.Add(m_comic.GoodreadsID.ToString());
-				}
-			}
-			else
-			{
-				FormMain.Following.Comics.Remove(m_comic.GoodreadsID.ToString());
-			}
+			Following.Update(checkBoxReading.Checked, Following.FollowingModel.Comics, m_comic.GoodreadsID.ToString());
+		}
 
-			string json = JsonConvert.SerializeObject(FormMain.Following, Formatting.Indented);
-			File.WriteAllText(Paths.Following, json);
+		private void NumericUpDownChapters_ValueChanged(object sender, EventArgs e)
+		{
+			UpdatePages();
 		}
 
 		private void NumericUpDownPages_ValueChanged(object sender, EventArgs e)
 		{
+			UpdatePages();
+		}
+
+		private void TextBoxGoodreadsID_TextChanged(object sender, EventArgs e)
+		{
+			UpdatePages(true);
+		}
+
+		private void UpdatePages(bool newID = false)
+		{
 			var chapter = (int)numericUpDownChapters.Value;
-			var beforePages = m_comicEvents.Where(o => o.Chapter == chapter).Sum(o => o.Pages);
-			var nowPages = (int)(sender as NumericUpDown).Value;
+			var beforePages = newID
+				? 0
+				: m_comicEvents.Where(o => o.Chapter == chapter).Sum(o => o.Pages);
+			var nowPages = (int)numericUpDownPages.Value;
 
 			m_addedPages = nowPages - beforePages;
 

@@ -45,6 +45,9 @@ namespace MainApp.Musics
 			this.yearFilter1 = new MainApp.YearFilterControl();
 			this.musicInfo1 = new MainApp.Musics.MusicInfoControl();
 			this.buttonListenAgain = new System.Windows.Forms.Button();
+			this.checkBoxNew = new System.Windows.Forms.CheckBox();
+			this.buttonLoad = new System.Windows.Forms.Button();
+			this.buttonSave = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tabPageAll.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
@@ -82,12 +85,12 @@ namespace MainApp.Musics
 			this.tabPageAll.Text = "All";
 			this.tabPageAll.UseVisualStyleBackColor = true;
 			// 
-			// dataGridCustomMusic
+			// dataGridViewAll
 			// 
 			this.dataGridViewAll.ColumnHeadersHeight = 34;
 			this.dataGridViewAll.Location = new System.Drawing.Point(4, 5);
 			this.dataGridViewAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.dataGridViewAll.Name = "dataGridCustomMusic";
+			this.dataGridViewAll.Name = "dataGridViewAll";
 			this.dataGridViewAll.RowHeadersWidth = 62;
 			this.dataGridViewAll.Size = new System.Drawing.Size(714, 926);
 			this.dataGridViewAll.TabIndex = 22;
@@ -105,12 +108,12 @@ namespace MainApp.Musics
 			this.tabPageToDo.Text = "To do";
 			this.tabPageToDo.UseVisualStyleBackColor = true;
 			// 
-			// dataGridCustomTodo
+			// dataGridViewTodo
 			// 
 			this.dataGridViewTodo.ColumnHeadersHeight = 34;
 			this.dataGridViewTodo.Location = new System.Drawing.Point(4, 5);
 			this.dataGridViewTodo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.dataGridViewTodo.Name = "dataGridCustomTodo";
+			this.dataGridViewTodo.Name = "dataGridViewTodo";
 			this.dataGridViewTodo.RowHeadersWidth = 62;
 			this.dataGridViewTodo.Size = new System.Drawing.Size(1014, 803);
 			this.dataGridViewTodo.TabIndex = 0;
@@ -128,12 +131,12 @@ namespace MainApp.Musics
 			this.tabPageYearList.Text = "Year list";
 			this.tabPageYearList.UseVisualStyleBackColor = true;
 			// 
-			// dataGridCustomYearList
+			// dataGridViewYearList
 			// 
 			this.dataGridViewYearList.ColumnHeadersHeight = 34;
 			this.dataGridViewYearList.Location = new System.Drawing.Point(4, 5);
 			this.dataGridViewYearList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.dataGridViewYearList.Name = "dataGridCustomYearList";
+			this.dataGridViewYearList.Name = "dataGridViewYearList";
 			this.dataGridViewYearList.RowHeadersWidth = 62;
 			this.dataGridViewYearList.Size = new System.Drawing.Size(1014, 803);
 			this.dataGridViewYearList.TabIndex = 0;
@@ -151,12 +154,12 @@ namespace MainApp.Musics
 			this.tabPageIn.Text = "In";
 			this.tabPageIn.UseVisualStyleBackColor = true;
 			// 
-			// dataGridCustomIn
+			// dataGridViewIn
 			// 
 			this.dataGridViewIn.ColumnHeadersHeight = 34;
 			this.dataGridViewIn.Location = new System.Drawing.Point(3, 4);
 			this.dataGridViewIn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.dataGridViewIn.Name = "dataGridCustomIn";
+			this.dataGridViewIn.Name = "dataGridViewIn";
 			this.dataGridViewIn.RowHeadersWidth = 62;
 			this.dataGridViewIn.Size = new System.Drawing.Size(786, 1052);
 			this.dataGridViewIn.TabIndex = 0;
@@ -165,7 +168,7 @@ namespace MainApp.Musics
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(948, 50);
+			this.label5.Location = new System.Drawing.Point(931, 63);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(57, 20);
 			this.label5.TabIndex = 32;
@@ -174,17 +177,18 @@ namespace MainApp.Musics
 			// textBoxAutofill
 			// 
 			this.textBoxAutofill.AllowDrop = true;
-			this.textBoxAutofill.Location = new System.Drawing.Point(830, 50);
+			this.textBoxAutofill.Location = new System.Drawing.Point(813, 60);
 			this.textBoxAutofill.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.textBoxAutofill.Name = "textBoxAutofill";
 			this.textBoxAutofill.Size = new System.Drawing.Size(112, 26);
 			this.textBoxAutofill.TabIndex = 31;
+			this.textBoxAutofill.TextChanged += new System.EventHandler(this.TextBoxAutofill_TextChanged);
 			this.textBoxAutofill.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextBoxAutofill_DragDrop);
 			this.textBoxAutofill.DragOver += new System.Windows.Forms.DragEventHandler(this.TextBoxAutofill_DragOver);
 			// 
 			// buttonAdd
 			// 
-			this.buttonAdd.Location = new System.Drawing.Point(1247, 9);
+			this.buttonAdd.Location = new System.Drawing.Point(817, 9);
 			this.buttonAdd.Name = "buttonAdd";
 			this.buttonAdd.Size = new System.Drawing.Size(86, 34);
 			this.buttonAdd.TabIndex = 33;
@@ -194,14 +198,14 @@ namespace MainApp.Musics
 			// 
 			// yearFilter1
 			// 
-			this.yearFilter1.Location = new System.Drawing.Point(817, 6);
+			this.yearFilter1.Location = new System.Drawing.Point(1369, 3);
 			this.yearFilter1.Name = "yearFilter1";
 			this.yearFilter1.Size = new System.Drawing.Size(125, 37);
 			this.yearFilter1.TabIndex = 30;
 			// 
 			// musicInfo1
 			// 
-			this.musicInfo1.Location = new System.Drawing.Point(816, 86);
+			this.musicInfo1.Location = new System.Drawing.Point(813, 103);
 			this.musicInfo1.Margin = new System.Windows.Forms.Padding(6);
 			this.musicInfo1.Name = "musicInfo1";
 			this.musicInfo1.Size = new System.Drawing.Size(764, 962);
@@ -209,7 +213,7 @@ namespace MainApp.Musics
 			// 
 			// buttonListenAgain
 			// 
-			this.buttonListenAgain.Location = new System.Drawing.Point(1029, 28);
+			this.buttonListenAgain.Location = new System.Drawing.Point(935, 5);
 			this.buttonListenAgain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonListenAgain.Name = "buttonListenAgain";
 			this.buttonListenAgain.Size = new System.Drawing.Size(112, 35);
@@ -218,10 +222,43 @@ namespace MainApp.Musics
 			this.buttonListenAgain.UseVisualStyleBackColor = true;
 			this.buttonListenAgain.Click += new System.EventHandler(this.ButtonListenAgain_Click);
 			// 
+			// checkBoxNew
+			// 
+			this.checkBoxNew.AutoSize = true;
+			this.checkBoxNew.Location = new System.Drawing.Point(1024, 58);
+			this.checkBoxNew.Name = "checkBoxNew";
+			this.checkBoxNew.Size = new System.Drawing.Size(66, 24);
+			this.checkBoxNew.TabIndex = 35;
+			this.checkBoxNew.Text = "New";
+			this.checkBoxNew.UseVisualStyleBackColor = true;
+			// 
+			// buttonLoad
+			// 
+			this.buttonLoad.Location = new System.Drawing.Point(1291, 53);
+			this.buttonLoad.Name = "buttonLoad";
+			this.buttonLoad.Size = new System.Drawing.Size(96, 41);
+			this.buttonLoad.TabIndex = 36;
+			this.buttonLoad.Text = "Load";
+			this.buttonLoad.UseVisualStyleBackColor = true;
+			this.buttonLoad.Click += new System.EventHandler(this.ButtonLoad_Click);
+			// 
+			// buttonSave
+			// 
+			this.buttonSave.Location = new System.Drawing.Point(1393, 54);
+			this.buttonSave.Name = "buttonSave";
+			this.buttonSave.Size = new System.Drawing.Size(101, 40);
+			this.buttonSave.TabIndex = 37;
+			this.buttonSave.Text = "Save";
+			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
+			// 
 			// MusicControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.buttonSave);
+			this.Controls.Add(this.buttonLoad);
+			this.Controls.Add(this.checkBoxNew);
 			this.Controls.Add(this.buttonListenAgain);
 			this.Controls.Add(this.buttonAdd);
 			this.Controls.Add(this.label5);
@@ -262,5 +299,8 @@ namespace MainApp.Musics
 		private TextBox textBoxAutofill;
 		private Button buttonAdd;
 		private Button buttonListenAgain;
+		private CheckBox checkBoxNew;
+		private Button buttonLoad;
+		private Button buttonSave;
 	}
 }

@@ -18,12 +18,12 @@ namespace Model
 		}
 
 		[Name("IMDb Rating")]
-		public float IMDbRating { get; set; }
+		public float? IMDbRating { get; set; }
 
 		public string Modified { get; set; }
 
 		[Name("Num Votes")]
-		public int NumVotes { get; set; }
+		public int? NumVotes { get; set; }
 
 		public int Position { get; set; }
 
@@ -31,7 +31,7 @@ namespace Model
 		public string ReleaseDate { get; set; }
 
 		[Name("Runtime (mins)")]
-		public int Runtime { get; set; }
+		public int? Runtime { get; set; }
 
 		public string Title { get; set; }
 
@@ -39,6 +39,6 @@ namespace Model
 		public string TitleType { get; set; }
 
 		public string URL { get; set; }
-		public int Year { get; set; }
+		public int? Year { get; set; }
 	}
 }

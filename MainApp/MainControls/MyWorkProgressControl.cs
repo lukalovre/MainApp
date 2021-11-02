@@ -1,65 +1,84 @@
-﻿using System;
+﻿using Controller;
+using Model.dbo;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
-using static MainApp.DataGridCustom;
 
 namespace MainApp.My_work_progress
 {
 	public partial class MyWorkProgressControl : UserControl
 	{
-		public static MyWorkProgressControl Instance;
+		private SortableBindingList<MyWorkProgres> m_progress;
+		private List<MyWorkProgressEvent> m_progressEvents;
 
 		public MyWorkProgressControl()
 		{
 			InitializeComponent();
-			Instance = this;
-		}
-
-		public void ShowDataInGrid()
-		{
-			var query = @"SELECT * FROM [Main].[dbo].[View My work progress]";
-
-			var gridColumnList = new List<GridColumn>
-			{
-			new GridColumn("ItemID"),
-			new GridColumn("Title"),
-			new GridColumn("Type"),
-			new GridColumn("Time"),
-			new GridColumn("Last", typeof(DateTime))
-			};
-
-			dataGridCustom1.FillGrid(query, gridColumnList);
-
-			if(dataGridCustom1.Columns["Date"] != null)
-			{
-				dataGridCustom1.Sort(dataGridCustom1.Columns["Date"], ListSortDirection.Ascending);
-			}
-
-			for(int i = 0; i < dataGridCustom1.Rows.Count; ++i)
-			{
-				dataGridCustom1.Rows[i].Cells["Time"].Value = GetTimeFormated(dataGridCustom1.Rows[i].Cells["Time"].Value.ToString());
-			}
 		}
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			if(DesignMode)
+			if (DesignMode)
 			{
 				return;
 			}
 
-			ShowDataInGrid();
+			m_progressEvents = Database.GetList<MyWorkProgressEvent>();
+			m_progress = new SortableBindingList<MyWorkProgres>(Database.GetList<MyWorkProgres>());
+
+			dataGridViewAll.DataSource = m_progress;
+			dataGridViewOngoing.DataSource = m_progress
+				.Where(o => Following.FollowingModel.MyWorkProgress.Contains(o.ItemID.ToString()))
+				.ToList();
+
+			SetGridAll(dataGridViewAll);
+			SetGridAll(dataGridViewOngoing);
 		}
 
-		private string GetTimeFormated(string minutes)
+		private void ButtonAddMinutes_Click(object sender, EventArgs e)
 		{
-			var hr = Convert.ToInt32(minutes) / 60;
-			var min = Convert.ToInt32(minutes) % 60;
+			var progress = myWorkProgressInfo.GetItem();
 
-			return $"{hr} hr {min} min";
+			var progressEvent = new MyWorkProgressEvent
+			{
+				Date = DateTime.Now,
+				ItemID = progress.ItemID,
+				Time = (int)numericUpDownAddTime.Value
+			};
+
+			Database.Add(progressEvent);
+
+			m_progressEvents.Add(progressEvent);
+
+			myWorkProgressInfo.Fill(progress, m_progressEvents.Where(o => o.ItemID == progress.ItemID).ToList());
+			numericUpDownAddTime.Value = 0;
+		}
+
+		private void DataGridView_SelectionChanged(object sender, EventArgs e)
+		{
+			var progress = (sender as DataGridView).GetRowObject<MyWorkProgres>();
+
+			if (progress == null)
+			{
+				return;
+			}
+
+			myWorkProgressInfo.Fill(progress, m_progressEvents.Where(o => o.ItemID == progress.ItemID).ToList());
+		}
+
+		private void SetGridAll(DataGridView dataGridView)
+		{
+			dataGridView.SetGrid();
+
+			dataGridView.SetColumns(new string[] {
+			nameof(MyWorkProgres.Title),
+			nameof(MyWorkProgres.Type)});
+
+			dataGridView.Columns[nameof(MyWorkProgres.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			dataGridView.Columns[nameof(MyWorkProgres.Type)].CenterColumn();
 		}
 	}
 }

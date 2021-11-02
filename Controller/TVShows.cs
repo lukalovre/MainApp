@@ -17,7 +17,7 @@ namespace Controller
 				Runtime = imdbData.Runtime == @"\N" || imdbData.Runtime == @"N/A" ? 0 : int.Parse(imdbData.Runtime.TrimEnd(" min".ToArray())),
 				Year = int.Parse(imdbData.Year.Split('–').FirstOrDefault()),
 				Imdb = imdbData.imdbID,
-				_1001 = _1001.Is1001TVShow(imdbData.imdbID),
+				_1001 = _1001.Is1001(imdbData.imdbID),
 				Actors = imdbData.Actors,
 				Country = imdbData.Country,
 				Director = imdbData.Director,

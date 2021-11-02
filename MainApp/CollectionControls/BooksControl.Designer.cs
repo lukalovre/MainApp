@@ -33,19 +33,23 @@ namespace MainApp.Collection.Books
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBoxTitle = new System.Windows.Forms.TextBox();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.tabPagePlanToRead = new System.Windows.Forms.TabPage();
 			this.dataGridViewPlanToRead = new System.Windows.Forms.DataGridView();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.tabPageAll = new System.Windows.Forms.TabPage();
 			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
 			this.labelHLTBtime = new System.Windows.Forms.Label();
 			this.buttonAdd = new System.Windows.Forms.Button();
 			this.buttonRead = new System.Windows.Forms.Button();
 			this.bookInfo1 = new MainApp.Collection.Books.BookInfoControl();
+			this.tabPagePlanToReadShort = new System.Windows.Forms.TabPage();
+			this.dataGridViewShort = new System.Windows.Forms.DataGridView();
 			this.tabControl1.SuspendLayout();
-			this.tabPage1.SuspendLayout();
+			this.tabPagePlanToRead.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanToRead)).BeginInit();
-			this.tabPage2.SuspendLayout();
+			this.tabPageAll.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
+			this.tabPagePlanToReadShort.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewShort)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -69,8 +73,9 @@ namespace MainApp.Collection.Books
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPagePlanToRead);
+			this.tabControl1.Controls.Add(this.tabPagePlanToReadShort);
+			this.tabControl1.Controls.Add(this.tabPageAll);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -79,17 +84,17 @@ namespace MainApp.Collection.Books
 			this.tabControl1.Size = new System.Drawing.Size(867, 966);
 			this.tabControl1.TabIndex = 4;
 			// 
-			// tabPage1
+			// tabPagePlanToRead
 			// 
-			this.tabPage1.Controls.Add(this.dataGridViewPlanToRead);
-			this.tabPage1.Location = new System.Drawing.Point(4, 29);
-			this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPage1.Size = new System.Drawing.Size(859, 933);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Plan to read";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.tabPagePlanToRead.Controls.Add(this.dataGridViewPlanToRead);
+			this.tabPagePlanToRead.Location = new System.Drawing.Point(4, 29);
+			this.tabPagePlanToRead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tabPagePlanToRead.Name = "tabPagePlanToRead";
+			this.tabPagePlanToRead.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tabPagePlanToRead.Size = new System.Drawing.Size(859, 933);
+			this.tabPagePlanToRead.TabIndex = 0;
+			this.tabPagePlanToRead.Text = "Plan to read";
+			this.tabPagePlanToRead.UseVisualStyleBackColor = true;
 			// 
 			// dataGridViewPlanToRead
 			// 
@@ -102,17 +107,17 @@ namespace MainApp.Collection.Books
 			this.dataGridViewPlanToRead.TabIndex = 0;
 			this.dataGridViewPlanToRead.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
-			// tabPage2
+			// tabPageAll
 			// 
-			this.tabPage2.Controls.Add(this.dataGridViewAll);
-			this.tabPage2.Location = new System.Drawing.Point(4, 29);
-			this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPage2.Size = new System.Drawing.Size(859, 933);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "All";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.tabPageAll.Controls.Add(this.dataGridViewAll);
+			this.tabPageAll.Location = new System.Drawing.Point(4, 29);
+			this.tabPageAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tabPageAll.Name = "tabPageAll";
+			this.tabPageAll.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tabPageAll.Size = new System.Drawing.Size(859, 933);
+			this.tabPageAll.TabIndex = 1;
+			this.tabPageAll.Text = "All";
+			this.tabPageAll.UseVisualStyleBackColor = true;
 			// 
 			// dataGridViewAll
 			// 
@@ -163,6 +168,25 @@ namespace MainApp.Collection.Books
 			this.bookInfo1.Size = new System.Drawing.Size(369, 368);
 			this.bookInfo1.TabIndex = 3;
 			// 
+			// tabPagePlanToReadShort
+			// 
+			this.tabPagePlanToReadShort.Controls.Add(this.dataGridViewShort);
+			this.tabPagePlanToReadShort.Location = new System.Drawing.Point(4, 29);
+			this.tabPagePlanToReadShort.Name = "tabPagePlanToReadShort";
+			this.tabPagePlanToReadShort.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPagePlanToReadShort.Size = new System.Drawing.Size(859, 933);
+			this.tabPagePlanToReadShort.TabIndex = 2;
+			this.tabPagePlanToReadShort.Text = "Short";
+			this.tabPagePlanToReadShort.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewShort
+			// 
+			this.dataGridViewShort.Location = new System.Drawing.Point(3, 6);
+			this.dataGridViewShort.Name = "dataGridViewShort";
+			this.dataGridViewShort.Size = new System.Drawing.Size(831, 921);
+			this.dataGridViewShort.TabIndex = 0;
+			this.dataGridViewShort.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			// 
 			// BooksControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -178,10 +202,12 @@ namespace MainApp.Collection.Books
 			this.Name = "BooksControl";
 			this.Size = new System.Drawing.Size(1239, 966);
 			this.tabControl1.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
+			this.tabPagePlanToRead.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanToRead)).EndInit();
-			this.tabPage2.ResumeLayout(false);
+			this.tabPageAll.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();
+			this.tabPagePlanToReadShort.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewShort)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -194,11 +220,13 @@ namespace MainApp.Collection.Books
         private System.Windows.Forms.TextBox textBoxTitle;
         private BookInfoControl bookInfo1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPagePlanToRead;
+        private System.Windows.Forms.TabPage tabPageAll;
         private DataGridView dataGridViewPlanToRead;
 		private System.Windows.Forms.Label labelHLTBtime;
 		private Button buttonAdd;
 		private Button buttonRead;
+		private TabPage tabPagePlanToReadShort;
+		private DataGridView dataGridViewShort;
 	}
 }

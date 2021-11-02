@@ -17,12 +17,26 @@ namespace MainApp.Musics
 			InitializeComponent();
 		}
 
+		public delegate void ArtistTextChangedDelegate(string artist);
+
+		public delegate void TitleTextChangedDelegate(string title);
+
+		public event ArtistTextChangedDelegate ArtistTextChanged;
+
+		public event TitleTextChangedDelegate TitleTextChanged;
+
 		public void Fill(Music music, List<MusicEvent> musicEvents)
 		{
 			m_music = music;
 
+			textBoxArtist.TextChanged -= new System.EventHandler(TextBoxArtist_TextChanged);
 			textBoxArtist.Text = music.Artist;
+			textBoxArtist.TextChanged += new System.EventHandler(TextBoxArtist_TextChanged);
+
+			textBoxTitle.TextChanged -= new System.EventHandler(TextBoxTitle_TextChanged);
 			textBoxTitle.Text = music.Title;
+			textBoxTitle.TextChanged += new System.EventHandler(TextBoxTitle_TextChanged);
+
 			numericUpDownYear.Value = music.Year;
 			numericUpDownRuntime.Value = music.Runtime;
 
@@ -30,10 +44,10 @@ namespace MainApp.Musics
 
 			string filePath;
 
-			if(music.ItemID == 0)
+			if (music.ItemID == 0)
 			{
 				checkBoxIsIn.Checked = false;
-				filePath = Path.Combine(Paths.Albums, "_temp.png");
+				filePath = Paths.TempAlbumCover;
 			}
 			else
 			{
@@ -41,7 +55,7 @@ namespace MainApp.Musics
 				filePath = Path.Combine(Paths.Albums, $"{music.ItemID}.png");
 			}
 
-			if(!File.Exists(filePath))
+			if (!File.Exists(filePath))
 			{
 				pictureBoxAlbum.Image = null;
 				return;
@@ -56,29 +70,25 @@ namespace MainApp.Musics
 			return new MusicEvent
 			{
 				In = checkBoxIsIn.Checked,
-				ItemID = m_music.ItemID,
 				Comment = null,
-				Rating = null
+				Rating = null,
+				ItemID = m_music.ItemID
 			};
 		}
 
 		internal Music GetInfo()
 		{
-			if(m_music.ItemID == 0)
-			{
-				m_music.ItemID = MusicControl.Instance.GetEvents().Max(o => o.ItemID) + 1;
-			}
-
 			pictureBoxAlbum.Image = null;
 
 			return new Music
 			{
 				Artist = textBoxArtist.Text,
-				ItemID = m_music.ItemID,
 				Runtime = (int)numericUpDownRuntime.Value,
 				Title = textBoxTitle.Text,
 				Year = (int)numericUpDownYear.Value,
-				_1001 = false
+				_1001 = false,
+				SpotifyID = m_music.SpotifyID,
+				ItemID = m_music.ItemID
 			};
 		}
 
@@ -91,10 +101,20 @@ namespace MainApp.Musics
 
 		private Image GetCopyImage(string path)
 		{
-			using(var image = Image.FromFile(path))
+			using (var image = Image.FromFile(path))
 			{
 				return new Bitmap(image);
 			}
+		}
+
+		private void TextBoxArtist_TextChanged(object sender, System.EventArgs e)
+		{
+			ArtistTextChanged((sender as TextBox).Text);
+		}
+
+		private void TextBoxTitle_TextChanged(object sender, System.EventArgs e)
+		{
+			TitleTextChanged((sender as TextBox).Text);
 		}
 	}
 }

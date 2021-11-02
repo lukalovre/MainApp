@@ -7,7 +7,6 @@ CREATE TABLE [dbo].[Movies] (
    [Year] [int] NULL,
    [Director] [nvarchar](max) NULL,
    [Writer] [nvarchar](max) NULL,
-   [_1001] [bit] NOT NULL,
    [Imdb] [nvarchar](255) NULL,
    [Actors] [nvarchar](max) NULL,
    [Country] [nvarchar](max) NULL,

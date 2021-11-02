@@ -28,7 +28,7 @@ namespace MainApp.Books
 			numericUpDownYear.Value = book.Year;
 			checkBox1001.Checked = book._1001;
 
-			if(bookEvents == null)
+			if (bookEvents == null)
 			{
 				numericUpDownPages.Value = 0;
 				starRating1.SelectedStar = 1;
@@ -38,7 +38,7 @@ namespace MainApp.Books
 
 			numericUpDownPages.Value = bookEvents.Sum(o => o.Pages);
 			starRating1.SelectedStar = bookEvents.MaxBy(o => o.Date).FirstOrDefault().Rating.Value;
-			checkBoxRead.Checked = bookEvents.Any(o => o.Read == 1);
+			checkBoxRead.Checked = bookEvents.Any(o => o.Read);
 		}
 
 		public Book GetItem()
@@ -61,7 +61,7 @@ namespace MainApp.Books
 				GoodreadsID = m_book.GoodreadsID,
 				Rating = starRating1.SelectedStar,
 				Pages = m_addedPages,
-				Read = checkBoxRead.Checked ? 1 : 0
+				Read = checkBoxRead.Checked
 			};
 		}
 

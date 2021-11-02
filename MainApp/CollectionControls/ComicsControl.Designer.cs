@@ -1,4 +1,6 @@
-﻿namespace MainApp.Collection.Comics
+﻿using System.Windows.Forms;
+
+namespace MainApp.Collection
 {
 	partial class ComicsControl
 	{
@@ -28,49 +30,60 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.dataGridView1 = new MainApp.DataGridCustom();
-            this.addComic = new MainApp.Collection.Comics.AddComicCollectionControl();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.CurrentRowIndex = 0;
-            this.dataGridView1.DataSourceCustom = null;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(693, 558);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // addComic
-            // 
-            this.addComic.Location = new System.Drawing.Point(699, 3);
-            this.addComic.Name = "addComic";
-            this.addComic.Size = new System.Drawing.Size(279, 312);
-            this.addComic.TabIndex = 2;
-            // 
-            // Comics
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.addComic);
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "Comics";
-            this.Size = new System.Drawing.Size(1121, 558);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.ResumeLayout(false);
+			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
+			this.comicInfo = new MainApp.Collection.ComicInfoControl();
+			this.buttonAdd = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// dataGridViewAll
+			// 
+			this.dataGridViewAll.ColumnHeadersHeight = 34;
+			this.dataGridViewAll.Location = new System.Drawing.Point(0, 0);
+			this.dataGridViewAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.dataGridViewAll.Name = "dataGridViewAll";
+			this.dataGridViewAll.RowHeadersWidth = 62;
+			this.dataGridViewAll.Size = new System.Drawing.Size(833, 858);
+			this.dataGridViewAll.TabIndex = 0;
+			this.dataGridViewAll.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			// 
+			// comicInfo
+			// 
+			this.comicInfo.Location = new System.Drawing.Point(860, 8);
+			this.comicInfo.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+			this.comicInfo.Name = "comicInfo";
+			this.comicInfo.Size = new System.Drawing.Size(315, 337);
+			this.comicInfo.TabIndex = 2;
+			// 
+			// buttonAdd
+			// 
+			this.buttonAdd.Location = new System.Drawing.Point(860, 371);
+			this.buttonAdd.Name = "buttonAdd";
+			this.buttonAdd.Size = new System.Drawing.Size(99, 42);
+			this.buttonAdd.TabIndex = 3;
+			this.buttonAdd.Text = "Add";
+			this.buttonAdd.UseVisualStyleBackColor = true;
+			this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
+			// 
+			// ComicsControl
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.buttonAdd);
+			this.Controls.Add(this.comicInfo);
+			this.Controls.Add(this.dataGridViewAll);
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.Name = "ComicsControl";
+			this.Size = new System.Drawing.Size(1682, 858);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();
+			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private DataGridCustom dataGridView1;
-		private AddComicCollectionControl addComic;
+		private DataGridView dataGridViewAll;
+		private ComicInfoControl comicInfo;
+		private Button buttonAdd;
 	}
 }

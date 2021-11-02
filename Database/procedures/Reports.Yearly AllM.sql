@@ -26,10 +26,10 @@ insert into @temp (timeHours)
 exec @result = [Reports].[Yearly Movies]  @Year
 
 insert into @temp (timeHours)
-exec @result = [Reports].[Yearly My work progress]  @Year
+exec @result = [Reports].[Yearly MyWorkProgress]  @Year
 
 insert into @temp (timeHours)
-exec @result = [Reports].[Yearly TV Shows]  @Year
+exec @result = [Reports].[Yearly TVShows]  @Year
 
 select sum(timeHours) 
 from  @temp

@@ -1,9 +1,11 @@
 ﻿using Controller;
+using Controller.Extensions;
+using Model;
 using Model.dbo;
+using Model.Grid;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,27 +14,21 @@ namespace MainApp.Musics
 {
 	public partial class MusicControl : UserControl
 	{
-		internal static MusicControl Instance;
-		private BindingList<Music> m_bindingList;
+		private SortableBindingList<MusicIn> m_bindingList;
 		private List<MusicEvent> m_musicEvents;
+		private SortableBindingList<MusicIn> m_musicIn;
 		private List<Music> m_musics;
 
 		public MusicControl()
 		{
 			InitializeComponent();
-			Instance = this;
-		}
-
-		internal List<MusicEvent> GetEvents()
-		{
-			return m_musicEvents;
 		}
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			if(DesignMode)
+			if (DesignMode)
 			{
 				return;
 			}
@@ -59,53 +55,74 @@ namespace MainApp.Musics
 
 			yearFilter1.SetValueChangedEvent(NumericUpDownYearFilter_ValueChanged);
 
-			var musicIn = m_musics.Where(o => m_musicEvents.Where(ev => ev.ItemID == o.ItemID).MaxBy(i => i.Date).FirstOrDefault().In);
+			m_musicIn = new SortableBindingList<MusicIn>(m_musics.Where(o => m_musicEvents.Where(ev => ev.ItemID == o.ItemID).MaxBy(i => i.Date).FirstOrDefault().In)
+					.Select(o => Controller.Musics.ConvertToMusicIn(o, m_musicEvents))
+					.ToList());
 
-			dataGridViewIn.DataSource = musicIn.ToList();
-			dataGridViewYearList.DataSource = musicIn.Where(o => o.Year == DateTime.Now.Year).ToList();
-			dataGridViewTodo.DataSource = musicIn.Where(o => m_musicEvents.Where(ev => ev.ItemID == o.ItemID).Max(i => i.Date).Value <= DateTime.Now.AddYears(-1)).ToList();
+			dataGridViewIn.DataSource = new SortableBindingList<MusicIn>(m_musicIn.ToList());
+			dataGridViewYearList.DataSource = new SortableBindingList<MusicIn>(m_musicIn.Where(o => o.Year == DateTime.Now.Year).ToList());
+			dataGridViewTodo.DataSource = new SortableBindingList<MusicIn>(m_musicIn.Where(o => m_musicEvents.Where(ev => ev.ItemID == o.ItemID).Max(i => i.Date).Value <= DateTime.Now.AddYears(-1)).ToList());
 
 			SetGrid(dataGridViewAll);
 			SetGrid(dataGridViewIn);
-			SetGrid(dataGridViewYearList);
 			SetGrid(dataGridViewTodo);
+			SetGrid(dataGridViewYearList);
 
-			dataGridViewIn.SelectLastRow();
-			dataGridViewYearList.SelectLastRow();
-			dataGridViewTodo.SelectLastRow();
 			dataGridViewAll.SelectLastRow();
+
+			musicInfo1.ArtistTextChanged += new MusicInfoControl.ArtistTextChangedDelegate(ArtistTextChanged);
+			musicInfo1.TitleTextChanged += new MusicInfoControl.TitleTextChangedDelegate(TitleTextChanged);
+		}
+
+		private void ArtistTextChanged(string artist)
+		{
+			dataGridViewAll.SelectionChanged -= DataGridView_SelectionChanged;
+			dataGridViewAll.DataSource = new SortableBindingList<MusicIn>(m_musics.Where(o => o.Artist.Contains(artist, StringComparison.OrdinalIgnoreCase))
+				.Select(o => Controller.Musics.ConvertToMusicIn(o, m_musicEvents))
+				.ToList());
+			dataGridViewAll.SelectionChanged += DataGridView_SelectionChanged;
+
+			checkBoxNew.Checked = true;
 		}
 
 		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
 			var music = musicInfo1.GetInfo();
 
-			if(!m_musicEvents.Any(o => o.ItemID == music.ItemID))
+			if (music.ItemID == 0 || checkBoxNew.Checked)
+			{
+				music.ItemID = m_musicEvents.Max(o => o.ItemID) + 1;
+			}
+
+			if (checkBoxNew.Checked)
+			{
+				music.SpotifyID = null;
+			}
+
+			if (!m_musicEvents.Any(o => o.ItemID == music.ItemID))
 			{
 				Database.Add(music);
 				m_musics.Add(music);
-				m_bindingList.Add(music);
 			}
 
 			var musicEvent = musicInfo1.GetEvent();
+			musicEvent.ItemID = music.ItemID;
 			musicEvent.Date = DateTime.Now;
 
-			m_musicEvents.Add(musicEvent);
 			Database.Add(musicEvent);
+			m_musicEvents.Add(musicEvent);
+			m_bindingList.Add(Controller.Musics.ConvertToMusicIn(music, m_musicEvents));
 
-			if(!string.IsNullOrWhiteSpace(music.SpotifyID))
+			if (!string.IsNullOrWhiteSpace(music.SpotifyID))
 			{
-				var sourceFile = Path.Combine(Paths.Albums, "_temp.png");
+				var sourceFile = Paths.TempAlbumCover;
 				var destinationFile = Path.Combine(Paths.Albums, $"{music.ItemID}.png");
 				File.Copy(sourceFile, destinationFile);
 				File.Delete(sourceFile);
 			}
 
-			dataGridViewAll.SelectionChanged -= DataGridView_SelectionChanged;
-			dataGridViewAll.DataSource = m_musics.Where(o => o.Artist.Contains(music.Artist, StringComparison.OrdinalIgnoreCase)).ToList();
-			dataGridViewAll.SelectionChanged += DataGridView_SelectionChanged;
-
-			dataGridViewAll.SelectLastRow();
+			musicInfo1.Fill(music, m_musicEvents.Where(o => o.ItemID == music.ItemID).ToList());
+			ArtistTextChanged(music.Artist);
 		}
 
 		private void ButtonListenAgain_Click(object sender, EventArgs e)
@@ -116,19 +133,52 @@ namespace MainApp.Musics
 			m_musicEvents.Add(musicEvent);
 			Database.Add(musicEvent);
 
-			dataGridViewAll.SelectLastRow();
+			var musicIn = m_musicIn.FirstOrDefault(o => o.ItemID == musicEvent.ItemID);
+
+			if (!musicEvent.In)
+			{
+				m_musicIn.Remove(musicIn);
+				(dataGridViewIn.DataSource as SortableBindingList<MusicIn>).Remove(musicIn);
+				(dataGridViewYearList.DataSource as SortableBindingList<MusicIn>).Remove(musicIn);
+				(dataGridViewTodo.DataSource as SortableBindingList<MusicIn>).Remove(musicIn);
+			}
+			else
+			{
+				m_musicIn.FirstOrDefault(o => o.ItemID == musicEvent.ItemID).Count++;
+				(dataGridViewIn.DataSource as SortableBindingList<MusicIn>).FirstOrDefault(o => o.ItemID == musicEvent.ItemID).Count++;
+				(dataGridViewYearList.DataSource as SortableBindingList<MusicIn>).FirstOrDefault(o => o.ItemID == musicEvent.ItemID).Count++;
+				//(dataGridViewTodo.DataSource as SortableBindingList<MusicIn>).FirstOrDefault(o => o.ItemID == musicEvent.ItemID).Count++;
+			}
+
+			musicInfo1.Fill(m_musics.FirstOrDefault(o => o.ItemID == musicEvent.ItemID), m_musicEvents.Where(o => o.ItemID == musicEvent.ItemID).ToList());
+		}
+
+		private void ButtonLoad_Click(object sender, EventArgs e)
+		{
+			var music = Controller.Musics.LoadLocal();
+
+			musicInfo1.Fill(music, m_musicEvents.Where(o => o.ItemID == music.ItemID).ToList());
+			ArtistTextChanged(music.Artist);
+		}
+
+		private void ButtonSave_Click(object sender, EventArgs e)
+		{
+			var music = musicInfo1.GetInfo();
+			Controller.Musics.SaveLocal(music);
 		}
 
 		private void DataGridView_SelectionChanged(object sender, EventArgs e)
 		{
-			var music = (sender as DataGridView).GetRowObject<Music>();
+			var item = (sender as DataGridView).GetRowObject<IItemID>();
 
-			if(music == null)
+			if (item == null)
 			{
 				return;
 			}
 
-			musicInfo1.Fill(music, m_musicEvents.Where(o => o.ItemID == music.ItemID).ToList());
+			musicInfo1.Fill(m_musics.FirstOrDefault(o => o.ItemID == item.ItemID), m_musicEvents.Where(o => o.ItemID == item.ItemID).ToList());
+
+			checkBoxNew.Checked = false;
 		}
 
 		private void NumericUpDownYearFilter_ValueChanged(object sender, EventArgs e)
@@ -137,49 +187,73 @@ namespace MainApp.Musics
 
 			var bind = new List<Music>();
 
-			foreach(var me in thisYear)
+			foreach (var me in thisYear)
 			{
 				var m = m_musics.FirstOrDefault(o => o.ItemID == me.ItemID);
 				bind.Add(m);
 			}
 
-			m_bindingList = new BindingList<Music>(bind.Distinct().ToList());
-
-			dataGridViewAll.DataSource = new BindingSource(m_bindingList, null);
+			dataGridViewAll.DataSource = m_bindingList = new SortableBindingList<MusicIn>(bind.Distinct()
+				.Select(o => Controller.Musics.ConvertToMusicIn(o, m_musicEvents))
+				.ToList());
 		}
 
 		private void SetGrid(DataGridView dataGridView)
 		{
 			dataGridView.SetGrid();
 
-			dataGridView.SetColumns(new string[]{
-			nameof(Music.Artist),
-			nameof(Music.Title),
-			nameof(Music.Year),
-			nameof(Music.Runtime)});
-
-			dataGridView.Columns[nameof(Music.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-			dataGridView.Columns[nameof(Music.Artist)].Width = 130;
-			dataGridView.Columns[nameof(Music.Year)].CenterColumn();
-			dataGridView.Columns[nameof(Music.Runtime)].CenterColumn();
+			dataGridView.Columns[nameof(MusicIn.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			dataGridView.Columns[nameof(MusicIn.Artist)].Width = 130;
+			dataGridView.Columns[nameof(MusicIn.Count)].Width = 30;
+			dataGridView.Columns[nameof(MusicIn.Count)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
+			dataGridView.Columns[nameof(MusicIn.Year)].CenterColumn();
+			dataGridView.Columns[nameof(MusicIn.Runtime)].CenterColumn();
+			dataGridView.Columns[nameof(MusicIn.In)].CenterColumn();
 		}
 
 		private void TextBoxAutofill_DragDrop(object sender, DragEventArgs e)
 		{
 			var dropedText = e.Data.GetData(DataFormats.Text).ToString();
 
-			var music = Controller.Musics.GetAlbumInfo(dropedText);
+			var music = Controller.Musics.GetAlbumInfoSpotify(dropedText);
 
 			musicInfo1.Fill(music, m_musicEvents.Where(o => o.ItemID == music.ItemID).ToList());
 
-			dataGridViewAll.SelectionChanged -= DataGridView_SelectionChanged;
-			dataGridViewAll.DataSource = m_musics.Where(o => o.Artist.Contains(music.Artist, StringComparison.OrdinalIgnoreCase)).ToList();
-			dataGridViewAll.SelectionChanged += DataGridView_SelectionChanged;
+			ArtistTextChanged(music.Artist);
+
+			checkBoxNew.Checked = false;
 		}
 
 		private void TextBoxAutofill_DragOver(object sender, DragEventArgs e)
 		{
 			e.Effect = DragDropEffects.Copy;
+		}
+
+		private void TextBoxAutofill_TextChanged(object sender, EventArgs e)
+		{
+			var text = Clipboard.GetText(TextDataFormat.UnicodeText);
+
+			if (string.IsNullOrWhiteSpace(text))
+			{
+				return;
+			}
+
+			var music = Controller.Musics.GetAlbumInfoBandcamp(text);
+
+			Controller.Musics.SaveLocal(music);
+
+			ArtistTextChanged(music.Artist);
+		}
+
+		private void TitleTextChanged(string title)
+		{
+			dataGridViewAll.SelectionChanged -= DataGridView_SelectionChanged;
+			dataGridViewAll.DataSource = new SortableBindingList<MusicIn>(m_musics.Where(o => o.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
+				.Select(o => Controller.Musics.ConvertToMusicIn(o, m_musicEvents))
+				.ToList());
+			dataGridViewAll.SelectionChanged += DataGridView_SelectionChanged;
+
+			checkBoxNew.Checked = true;
 		}
 	}
 }

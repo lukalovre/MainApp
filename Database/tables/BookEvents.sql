@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[BookEvents] (
    [Rating] [int] NULL,
    [Date] [datetime] NULL,
    [Pages] [int] NULL,
-   [Read] [int] NULL,
+   [Read] [bit] NULL,
    [Comment] [nvarchar](max) NULL
 
    ,CONSTRAINT [PK__BookEvents] PRIMARY KEY CLUSTERED ([ID])

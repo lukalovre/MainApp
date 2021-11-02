@@ -38,8 +38,8 @@ namespace MainApp.Comics
 			this.tabPageOngoing = new System.Windows.Forms.TabPage();
 			this.dataGridViewOngoing = new System.Windows.Forms.DataGridView();
 			this.numericUpDownYear = new System.Windows.Forms.NumericUpDown();
-			this.comicInfo1 = new MainApp.Comics.ComicInfoControl();
 			this.buttonUpdate = new System.Windows.Forms.Button();
+			this.comicInfo1 = new MainApp.Comics.ComicInfoControl();
 			this.tabControl1.SuspendLayout();
 			this.tabPageAll.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
@@ -144,23 +144,23 @@ namespace MainApp.Comics
 			this.numericUpDownYear.TabIndex = 20;
 			this.numericUpDownYear.ValueChanged += new System.EventHandler(this.NumericUpDownYear_ValueChanged);
 			// 
-			// comicInfo1
-			// 
-			this.comicInfo1.Location = new System.Drawing.Point(862, 64);
-			this.comicInfo1.Margin = new System.Windows.Forms.Padding(6);
-			this.comicInfo1.Name = "comicInfo1";
-			this.comicInfo1.Size = new System.Drawing.Size(266, 444);
-			this.comicInfo1.TabIndex = 16;
-			// 
 			// buttonUpdate
 			// 
-			this.buttonUpdate.Location = new System.Drawing.Point(863, 517);
+			this.buttonUpdate.Location = new System.Drawing.Point(863, 535);
 			this.buttonUpdate.Name = "buttonUpdate";
 			this.buttonUpdate.Size = new System.Drawing.Size(93, 32);
 			this.buttonUpdate.TabIndex = 21;
 			this.buttonUpdate.Text = "Update";
 			this.buttonUpdate.UseVisualStyleBackColor = true;
 			this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
+			// 
+			// comicInfo1
+			// 
+			this.comicInfo1.Location = new System.Drawing.Point(862, 64);
+			this.comicInfo1.Margin = new System.Windows.Forms.Padding(6);
+			this.comicInfo1.Name = "comicInfo1";
+			this.comicInfo1.Size = new System.Drawing.Size(564, 462);
+			this.comicInfo1.TabIndex = 16;
 			// 
 			// ComicsControl
 			// 
@@ -172,7 +172,7 @@ namespace MainApp.Comics
 			this.Controls.Add(this.comicInfo1);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "ComicsControl";
-			this.Size = new System.Drawing.Size(1346, 1369);
+			this.Size = new System.Drawing.Size(1483, 1369);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPageAll.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();

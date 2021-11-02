@@ -1,12 +1,10 @@
-﻿using Dapper;
+﻿using Controller;
 using MainApp.Extensions;
-using MainApp.Properties;
 using Model;
+using Model.dbo;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -34,25 +32,51 @@ namespace MainApp.Reports
 
 		private void LoadValues()
 		{
-			using(var db = new SqlConnection(Resources.MainConnectionString))
-			{
-				var movies = db.ExecuteScalar<int>(@"	select count(ID)
-														from MovieEvents
-														where year(Date) = year(getdate())");
+			var movieEvents = Database.GetList<MovieEvent>();
 
-				var movies1001 = db.ExecuteScalar<int>(@"	select count(me.ID)
-															from MovieEvents me
-															join Movies m on m.Imdb = me.Imdb
-															where year(
-                                                            (
-															select min([Date])
-															from MovieEvents
-															where Imdb = me.imdb
-															)
-                                                            ) = year(getdate())
-															and m._1001 = 1");
+			var movies = movieEvents.DistinctBy(o => o.Imdb)
+				.Count(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year);
 
-				var tvShows1001 = db.ExecuteScalar<int>(@"	select count(distinct e.Imdb)
+			var movies1001 = movieEvents.DistinctBy(o => o.Imdb)
+				.Where(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year)
+				.Count(o => Controller._1001.Is1001(o.Imdb));
+
+			var gameEvents = Database.GetList<GameEvent>();
+
+			var games = gameEvents.DistinctBy(o => o.Igdb)
+				.Count(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year);
+
+			var games1001 = gameEvents.DistinctBy(o => o.Igdb)
+				.Where(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year)
+				.Count(o => Igdb.Is1001(o.Igdb));
+
+			var comicsEvents = Database.GetList<ComicEvent>();
+			var comics = Database.GetList<Comic>();
+
+			var comics1001 = comicsEvents.DistinctBy(o => o.GoodreadsID)
+				.Where(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year)
+				.Count(o => comics.FirstOrDefault(c => c.GoodreadsID == o.GoodreadsID)._1001);
+
+			var bookEvents = Database.GetList<BookEvent>();
+			var booksDB = Database.GetList<Book>();
+
+			var books = bookEvents.Where(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year && o.Read)
+				.DistinctBy(o => o.GoodreadsID)
+				.Count();
+
+			var books1001 = bookEvents.Where(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year && o.Read)
+				.DistinctBy(o => o.GoodreadsID)
+				.Count(o => booksDB.FirstOrDefault(c => c.GoodreadsID == o.GoodreadsID)._1001);
+
+			var booksPages = bookEvents.Where(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year)
+				.Sum(o => o.Pages);
+
+			var myWorkProgressEvent = Database.GetList<MyWorkProgressEvent>();
+
+			var myWork = myWorkProgressEvent.Where(o => o.Date.HasValue && o.Date.Value.Year == DateTime.Now.Year)
+				.Sum(o => o.Time) / 60;
+
+			var tvShows1001 = Database.ExecuteScalar<int>(@"select count(distinct e.Imdb)
 															from TVShowEvents e
 															join TVShows m on m.Imdb = e.Imdb
 															where year(
@@ -64,96 +88,21 @@ namespace MainApp.Reports
 															) = year(getdate())
 															and m._1001 = 1");
 
-				var games = db.ExecuteScalar<int>($@"	select count(distinct e.ItemID)
-														from GameEvents e
-														join Games m on m.ItemID = e.ItemID
-														where year(
-														(
-														select min([Date])
-														from GameEvents
-														where ItemID = e.ItemID
-														)
-														) = year(getdate())");
+			chartYearProgress.Series.Clear();
 
-				var games1001 = db.ExecuteScalar<int>($@"	select count(distinct e.ItemID)
-															from GameEvents e
-															join Games m on m.ItemID = e.ItemID
-															where year(
-															(
-															select min([Date])
-															from GameEvents
-															where ItemID = e.ItemID
-															)
-															) = year(getdate())
-															and m._1001 = 1");
+			chartYearProgress.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
+			chartYearProgress.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
+			chartYearProgress.ChartAreas[0].AxisY.Maximum = 100;
 
-				var comics1001 = db.ExecuteScalar<int>($@"	select count(distinct e.GoodreadsID)
-															from ComicEvents e
-															join Comics m on m.GoodreadsID = e.GoodreadsID
-															where year(
-															(
-															select min([Date])
-															from ComicEvents
-															where GoodreadsID = e.GoodreadsID
-															)
-															) = year(getdate())
-															and m._1001 = 1");
+			var series = new Series
+			{
+				IsValueShownAsLabel = true,
+				LabelFormat = "0.0"
+			};
 
-				var books = db.ExecuteScalar<int>($@"	select count(distinct e.GoodreadsID)
-															from BookEvents e
-															join Books m on m.GoodreadsID = e.GoodreadsID
-															where year(
-															(
-															select min([Date])
-															from BookEvents
-															where GoodreadsID = e.GoodreadsID
-															)
-															) = year(getdate())
-															and e.[Read] = 1");
+			chartYearProgress.Series.Add(series);
 
-				var books1001 = db.ExecuteScalar<int>($@"select count(distinct e.GoodreadsID)
-															from BookEvents e
-															join Books m on m.GoodreadsID = e.GoodreadsID
-															where year(
-															(
-															select min([Date])
-															from BookEvents
-															where GoodreadsID = e.GoodreadsID
-															)
-															) = year(getdate())
-															and m._1001 = 1
-															and e.[Read] = 1");
-
-				var booksPages = db.ExecuteScalar<int>($@"	select sum( e.Pages)
-															from BookEvents e
-															join Books m on m.GoodreadsID = e.GoodreadsID
-															where year(
-															(
-															select min([Date])
-															from BookEvents
-															where GoodreadsID = e.GoodreadsID
-															)
-															) = year(getdate())");
-
-				var myWork = db.Query<float>($@"	select sum(Time)/ 60
-													from[My work progress]
-													where year(Date) = {DateTime.Now.Year}").FirstOrDefault();
-
-				chartYearProgress.Series.Clear();
-
-				chartYearProgress.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
-				chartYearProgress.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
-				chartYearProgress.ChartAreas[0].AxisY.Maximum = 100;
-
-				var series = new Series
-				{
-					IsValueShownAsLabel = true,
-					LabelFormat = "0.0"
-				};
-
-				chartYearProgress.Series.Add(series);
-
-				var chartData = new List<ChartData>
+			var chartData = new List<ChartData>
 				{
 				new ChartData{
 					Name = "Games (40)",
@@ -193,26 +142,25 @@ namespace MainApp.Reports
 					Value2 = comics1001},
 				new ChartData{
 					Name = "My work (200)",
-					Value = myWork / 200 * 100,
-					Value2 = (int)myWork },
+					Value = (float)myWork / 200 * 100,
+					Value2 = myWork },
 				new ChartData{
 					Name = "Year progress",
 					Value = (float)DateTime.Now.DayOfYear / 365 * 100}
 				};
 
-				chartData = chartData.SortByValue();
+			chartData = chartData.SortByValue();
 
-				for(int i = 0; i < chartData.Count; i++)
-				{
-					ChartData data = chartData[i];
-					var index = series.Points.AddXY(i, data.Value);
-					series.Points[index].AxisLabel = data.Name;
-					series.Points[index].Color = ChartColors.GetColor(data.Name);
-					series.Points[index].ToolTip = data.Value2.ToString();
-				}
-
-				chartYearProgress.ChartAreas.FirstOrDefault().RecalculateAxesScale();
+			for (int i = 0; i < chartData.Count; i++)
+			{
+				ChartData data = chartData[i];
+				var index = series.Points.AddXY(i, data.Value);
+				series.Points[index].AxisLabel = data.Name;
+				series.Points[index].Color = ChartColors.GetColor(data.Name);
+				series.Points[index].ToolTip = data.Value2.ToString();
 			}
+
+			chartYearProgress.ChartAreas.FirstOrDefault().RecalculateAxesScale();
 		}
 	}
 }

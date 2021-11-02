@@ -1,4 +1,6 @@
-﻿namespace MainApp.My_work_progress
+﻿using System.Windows.Forms;
+
+namespace MainApp.My_work_progress
 {
 	partial class MyWorkProgressControl
 	{
@@ -28,62 +30,131 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.updateMyWorkProgress1 = new MainApp.My_work_progress.UpdateMyWorkProgressControl();
-			this.addMyWorkProgress1 = new MainApp.My_work_progress.AddMyWorkProgressControl();
-			this.dataGridCustom1 = new MainApp.DataGridCustom();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridCustom1)).BeginInit();
+			this.dataGridViewOngoing = new System.Windows.Forms.DataGridView();
+			this.numericUpDownAddTime = new System.Windows.Forms.NumericUpDown();
+			this.buttonAddMinutes = new System.Windows.Forms.Button();
+			this.myWorkProgressInfo = new MainApp.My_work_progress.MyWorkProgressInfoControl();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPageOngoing = new System.Windows.Forms.TabPage();
+			this.tabPageAll = new System.Windows.Forms.TabPage();
+			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewOngoing)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownAddTime)).BeginInit();
+			this.tabControl1.SuspendLayout();
+			this.tabPageOngoing.SuspendLayout();
+			this.tabPageAll.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// updateMyWorkProgress1
+			// dataGridViewOngoing
 			// 
-			this.updateMyWorkProgress1.Location = new System.Drawing.Point(700, 220);
-			this.updateMyWorkProgress1.Name = "updateMyWorkProgress1";
-			this.updateMyWorkProgress1.Size = new System.Drawing.Size(216, 62);
-			this.updateMyWorkProgress1.TabIndex = 2;
+			this.dataGridViewOngoing.ColumnHeadersHeight = 34;
+			this.dataGridViewOngoing.Location = new System.Drawing.Point(6, 7);
+			this.dataGridViewOngoing.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.dataGridViewOngoing.Name = "dataGridViewOngoing";
+			this.dataGridViewOngoing.RowHeadersWidth = 62;
+			this.dataGridViewOngoing.Size = new System.Drawing.Size(758, 1073);
+			this.dataGridViewOngoing.TabIndex = 0;
+			this.dataGridViewOngoing.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
-			// addMyWorkProgress1
+			// numericUpDownAddTime
 			// 
-			this.addMyWorkProgress1.Location = new System.Drawing.Point(700, 4);
-			this.addMyWorkProgress1.Margin = new System.Windows.Forms.Padding(4);
-			this.addMyWorkProgress1.Name = "addMyWorkProgress1";
-			this.addMyWorkProgress1.Size = new System.Drawing.Size(194, 151);
-			this.addMyWorkProgress1.TabIndex = 1;
+			this.numericUpDownAddTime.Location = new System.Drawing.Point(788, 212);
+			this.numericUpDownAddTime.Name = "numericUpDownAddTime";
+			this.numericUpDownAddTime.Size = new System.Drawing.Size(87, 26);
+			this.numericUpDownAddTime.TabIndex = 2;
 			// 
-			// dataGridCustom1
+			// buttonAddMinutes
 			// 
-			this.dataGridCustom1.AllowUserToAddRows = false;
-			this.dataGridCustom1.AllowUserToDeleteRows = false;
-			this.dataGridCustom1.AllowUserToResizeRows = false;
-			this.dataGridCustom1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridCustom1.CurrentRowIndex = 0;
-			this.dataGridCustom1.DataSourceCustom = null;
-			this.dataGridCustom1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.dataGridCustom1.Location = new System.Drawing.Point(0, 0);
-			this.dataGridCustom1.Name = "dataGridCustom1";
-			this.dataGridCustom1.ReadOnly = true;
-			this.dataGridCustom1.RowHeadersWidth = 51;
-			this.dataGridCustom1.RowTemplate.Height = 24;
-			this.dataGridCustom1.Size = new System.Drawing.Size(693, 900);
-			this.dataGridCustom1.TabIndex = 0;
+			this.buttonAddMinutes.Location = new System.Drawing.Point(881, 204);
+			this.buttonAddMinutes.Name = "buttonAddMinutes";
+			this.buttonAddMinutes.Size = new System.Drawing.Size(117, 40);
+			this.buttonAddMinutes.TabIndex = 4;
+			this.buttonAddMinutes.Text = "Add minutes";
+			this.buttonAddMinutes.UseVisualStyleBackColor = true;
+			this.buttonAddMinutes.Click += new System.EventHandler(this.ButtonAddMinutes_Click);
 			// 
-			// MyWorkProgress
+			// myWorkProgressInfo
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.myWorkProgressInfo.Location = new System.Drawing.Point(788, 5);
+			this.myWorkProgressInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.myWorkProgressInfo.Name = "myWorkProgressInfo";
+			this.myWorkProgressInfo.Size = new System.Drawing.Size(218, 172);
+			this.myWorkProgressInfo.TabIndex = 1;
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPageOngoing);
+			this.tabControl1.Controls.Add(this.tabPageAll);
+			this.tabControl1.Location = new System.Drawing.Point(3, 5);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(778, 1117);
+			this.tabControl1.TabIndex = 5;
+			// 
+			// tabPageOngoing
+			// 
+			this.tabPageOngoing.Controls.Add(this.dataGridViewOngoing);
+			this.tabPageOngoing.Location = new System.Drawing.Point(4, 29);
+			this.tabPageOngoing.Name = "tabPageOngoing";
+			this.tabPageOngoing.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageOngoing.Size = new System.Drawing.Size(770, 1084);
+			this.tabPageOngoing.TabIndex = 0;
+			this.tabPageOngoing.Text = "Ongoing";
+			this.tabPageOngoing.UseVisualStyleBackColor = true;
+			// 
+			// tabPageAll
+			// 
+			this.tabPageAll.Controls.Add(this.dataGridViewAll);
+			this.tabPageAll.Location = new System.Drawing.Point(4, 29);
+			this.tabPageAll.Name = "tabPageAll";
+			this.tabPageAll.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageAll.Size = new System.Drawing.Size(770, 1084);
+			this.tabPageAll.TabIndex = 1;
+			this.tabPageAll.Text = "All";
+			this.tabPageAll.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewAll
+			// 
+			this.dataGridViewAll.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewAll.Location = new System.Drawing.Point(3, 6);
+			this.dataGridViewAll.Name = "dataGridViewAll";
+			this.dataGridViewAll.RowHeadersWidth = 62;
+			this.dataGridViewAll.RowTemplate.Height = 28;
+			this.dataGridViewAll.Size = new System.Drawing.Size(761, 1072);
+			this.dataGridViewAll.TabIndex = 0;
+			this.dataGridViewAll.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			// 
+			// MyWorkProgressControl
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.updateMyWorkProgress1);
-			this.Controls.Add(this.addMyWorkProgress1);
-			this.Controls.Add(this.dataGridCustom1);
-			this.Name = "MyWorkProgress";
-			this.Size = new System.Drawing.Size(1022, 900);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridCustom1)).EndInit();
+			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.buttonAddMinutes);
+			this.Controls.Add(this.numericUpDownAddTime);
+			this.Controls.Add(this.myWorkProgressInfo);
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.Name = "MyWorkProgressControl";
+			this.Size = new System.Drawing.Size(1150, 1125);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewOngoing)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownAddTime)).EndInit();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPageOngoing.ResumeLayout(false);
+			this.tabPageAll.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		internal DataGridCustom dataGridCustom1;
-		private AddMyWorkProgressControl addMyWorkProgress1;
-		private UpdateMyWorkProgressControl updateMyWorkProgress1;
+		private DataGridView dataGridViewOngoing;
+		private MyWorkProgressInfoControl myWorkProgressInfo;
+		private NumericUpDown numericUpDownAddTime;
+		private Button buttonAddMinutes;
+		private TabControl tabControl1;
+		private TabPage tabPageOngoing;
+		private TabPage tabPageAll;
+		private DataGridView dataGridViewAll;
 	}
 }

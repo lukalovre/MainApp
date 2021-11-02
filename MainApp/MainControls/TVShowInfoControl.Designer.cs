@@ -46,6 +46,7 @@ namespace MainApp.TVShows
 			this.listBoxSeasons = new System.Windows.Forms.ListBox();
 			this.starRatingControl1 = new MainApp.StarRatingControl();
 			this.checkBoxOngoing = new System.Windows.Forms.CheckBox();
+			this.checkBoxYouTube = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -189,7 +190,7 @@ namespace MainApp.TVShows
 			// 
 			this.starRatingControl1.Location = new System.Drawing.Point(13, 554);
 			this.starRatingControl1.Name = "starRatingControl1";
-			this.starRatingControl1.SelectedStar = 0;
+			this.starRatingControl1.SelectedStar = 1;
 			this.starRatingControl1.Size = new System.Drawing.Size(251, 98);
 			this.starRatingControl1.TabIndex = 14;
 			// 
@@ -202,12 +203,24 @@ namespace MainApp.TVShows
 			this.checkBoxOngoing.TabIndex = 17;
 			this.checkBoxOngoing.Text = "Ongoing";
 			this.checkBoxOngoing.UseVisualStyleBackColor = true;
-			this.checkBoxOngoing.CheckedChanged += new System.EventHandler(this.checkBoxOngoing_CheckedChanged);
+			this.checkBoxOngoing.CheckedChanged += new System.EventHandler(this.CheckBoxOngoing_CheckedChanged);
+			// 
+			// checkBoxYouTube
+			// 
+			this.checkBoxYouTube.AutoSize = true;
+			this.checkBoxYouTube.Location = new System.Drawing.Point(270, 630);
+			this.checkBoxYouTube.Name = "checkBoxYouTube";
+			this.checkBoxYouTube.Size = new System.Drawing.Size(100, 24);
+			this.checkBoxYouTube.TabIndex = 18;
+			this.checkBoxYouTube.Text = "YouTube";
+			this.checkBoxYouTube.UseVisualStyleBackColor = true;
+			this.checkBoxYouTube.CheckedChanged += new System.EventHandler(this.CheckBoxYouTube_CheckedChanged);
 			// 
 			// TVShowInfo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.checkBoxYouTube);
 			this.Controls.Add(this.checkBoxOngoing);
 			this.Controls.Add(this.listBoxSeasons);
 			this.Controls.Add(this.checkBoxWatching);
@@ -250,5 +263,6 @@ namespace MainApp.TVShows
 		private System.Windows.Forms.CheckBox checkBoxWatching;
 		private System.Windows.Forms.ListBox listBoxSeasons;
 		private System.Windows.Forms.CheckBox checkBoxOngoing;
+		private System.Windows.Forms.CheckBox checkBoxYouTube;
 	}
 }

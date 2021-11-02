@@ -29,13 +29,13 @@ namespace MainApp
 
 		public static void SelectLastRow(this DataGridView dataGridView)
 		{
-			if(dataGridView.RowCount > 0)
+			if (dataGridView.RowCount > 0)
 			{
 				DataGridViewCell firstVisibleCell = null;
 
-				foreach(DataGridViewCell cell in dataGridView.Rows[dataGridView.RowCount - 1].Cells)
+				foreach (DataGridViewCell cell in dataGridView.Rows[dataGridView.RowCount - 1].Cells)
 				{
-					if(cell.Visible)
+					if (cell.Visible)
 					{
 						firstVisibleCell = cell;
 						break;
@@ -52,7 +52,7 @@ namespace MainApp
 			{
 				var grid = sender as DataGridView;
 
-				if(e == null)
+				if (e == null)
 				{
 					return;
 				}
@@ -61,11 +61,11 @@ namespace MainApp
 					? grid.SelectedRows.Count
 					: grid.RowCount;
 
-				if(grid.SelectedRows.Count > 1)
+				if (grid.SelectedRows.Count > 1)
 				{
 				}
 
-				using(SolidBrush solidBrush = new SolidBrush(grid.RowHeadersDefaultCellStyle.ForeColor))
+				using (SolidBrush solidBrush = new SolidBrush(grid.RowHeadersDefaultCellStyle.ForeColor))
 				{
 					e.Graphics.DrawString(rows.ToString(), grid.Font, solidBrush, 3, 5);
 				}
@@ -85,7 +85,7 @@ namespace MainApp
 
 		internal static T GetRowObject<T>(this DataGridView dataGridView, DataGridViewCellEventArgs e)
 		{
-			if(e.RowIndex < 0)
+			if (e.RowIndex < 0)
 			{
 				return default;
 			}
@@ -95,7 +95,7 @@ namespace MainApp
 
 		internal static T GetRowObject<T>(this DataGridView dataGridView)
 		{
-			if(dataGridView.SelectedCells.Count == 0)
+			if (dataGridView.SelectedCells.Count == 0)
 			{
 				return default;
 			}
@@ -107,7 +107,7 @@ namespace MainApp
 		{
 			dataGridView.Columns.OfType<DataGridViewColumn>().ToList().ForEach(col => col.Visible = false);
 
-			for(int i = 0; i < columns.Length; i++)
+			for (int i = 0; i < columns.Length; i++)
 			{
 				dataGridView.Columns[columns[i]].Visible = true;
 				dataGridView.Columns[columns[i]].DisplayIndex = i;

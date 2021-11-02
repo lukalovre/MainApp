@@ -9,7 +9,7 @@ namespace Controller
 		{
 			string inputImdb = Imdb.GetImdbIDFromUrl(imdbText);
 
-			if(inputImdb == null)
+			if (inputImdb == null)
 			{
 				return null;
 			}
@@ -22,7 +22,6 @@ namespace Controller
 				Runtime = imdbData.Runtime == @"\N" ? 0 : int.Parse(imdbData.Runtime.TrimEnd(" min".ToArray())),
 				Year = int.Parse(imdbData.Year),
 				Imdb = imdbData.imdbID,
-				_1001 = _1001.Is1001Movie(imdbData.imdbID),
 				Actors = imdbData.Actors,
 				Country = imdbData.Country,
 				Director = imdbData.Director,

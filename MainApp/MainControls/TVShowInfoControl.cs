@@ -1,7 +1,6 @@
 ﻿using Controller;
 using Model.dbo;
 using MoreLinq;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -34,8 +33,9 @@ namespace MainApp.TVShows
 			var span = TimeSpan.FromMinutes(tvShow.Runtime);
 			labelRuntime.Text = $"{span.Hours}h {span.Minutes}min";
 
-			checkBoxWatching.Checked = FormMain.Following.TVShows.Contains(tvShow.Imdb);
-			checkBoxOngoing.Checked = FormMain.Following.TVShowsOngoing.Contains(tvShow.Imdb);
+			checkBoxWatching.Checked = Following.FollowingModel.TVShows.Contains(tvShow.Imdb);
+			checkBoxOngoing.Checked = Following.FollowingModel.TVShowsOngoing.Contains(tvShow.Imdb);
+			checkBoxYouTube.Checked = Following.FollowingModel.YouTube.Contains(tvShow.Imdb);
 
 			SetPoster(tvShow);
 
@@ -45,6 +45,7 @@ namespace MainApp.TVShows
 			}
 
 			starRatingControl1.SelectedStar = tvShowEvents.LastOrDefault().Rating.Value;
+
 			var seasons = tvShowEvents.DistinctBy(o => o.Season).OrderBy(o => o.Season);
 			listBoxSeasons.Items.Clear();
 
@@ -66,40 +67,19 @@ namespace MainApp.TVShows
 			return m_tvShow;
 		}
 
-		private void checkBoxOngoing_CheckedChanged(object sender, EventArgs e)
+		private void CheckBoxOngoing_CheckedChanged(object sender, EventArgs e)
 		{
-			if(checkBoxOngoing.Checked)
-			{
-				if(!FormMain.Following.TVShowsOngoing.Contains(m_tvShow.Imdb))
-				{
-					FormMain.Following.TVShowsOngoing.Add(m_tvShow.Imdb);
-				}
-			}
-			else
-			{
-				FormMain.Following.TVShowsOngoing.Remove(m_tvShow.Imdb);
-			}
-
-			string json = JsonConvert.SerializeObject(FormMain.Following, Formatting.Indented);
-			File.WriteAllText(Paths.Following, json);
+			Following.Update(checkBoxOngoing.Checked, Following.FollowingModel.TVShowsOngoing, m_tvShow.Imdb);
 		}
 
 		private void CheckBoxWatching_CheckedChanged(object sender, EventArgs e)
 		{
-			if(checkBoxWatching.Checked)
-			{
-				if(!FormMain.Following.TVShows.Contains(m_tvShow.Imdb))
-				{
-					FormMain.Following.TVShows.Add(m_tvShow.Imdb);
-				}
-			}
-			else
-			{
-				FormMain.Following.TVShows.Remove(m_tvShow.Imdb);
-			}
+			Following.Update(checkBoxWatching.Checked, Following.FollowingModel.TVShows, m_tvShow.Imdb);
+		}
 
-			string json = JsonConvert.SerializeObject(FormMain.Following, Formatting.Indented);
-			File.WriteAllText(Paths.Following, json);
+		private void CheckBoxYouTube_CheckedChanged(object sender, EventArgs e)
+		{
+			Following.Update(checkBoxYouTube.Checked, Following.FollowingModel.YouTube, m_tvShow.Imdb);
 		}
 
 		private void SetPoster(TVShow tvShow)

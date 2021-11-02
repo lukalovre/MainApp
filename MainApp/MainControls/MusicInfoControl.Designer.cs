@@ -47,7 +47,7 @@
 			// 
 			// numericUpDownRuntime
 			// 
-			this.numericUpDownRuntime.Location = new System.Drawing.Point(3, 154);
+			this.numericUpDownRuntime.Location = new System.Drawing.Point(3, 118);
 			this.numericUpDownRuntime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.numericUpDownRuntime.Maximum = new decimal(new int[] {
             1000,
@@ -60,7 +60,7 @@
 			// 
 			// numericUpDownYear
 			// 
-			this.numericUpDownYear.Location = new System.Drawing.Point(4, 116);
+			this.numericUpDownYear.Location = new System.Drawing.Point(4, 80);
 			this.numericUpDownYear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.numericUpDownYear.Maximum = new decimal(new int[] {
             3000,
@@ -78,24 +78,26 @@
 			// 
 			// textBoxTitle
 			// 
-			this.textBoxTitle.Location = new System.Drawing.Point(3, 79);
+			this.textBoxTitle.Location = new System.Drawing.Point(3, 43);
 			this.textBoxTitle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.textBoxTitle.Name = "textBoxTitle";
 			this.textBoxTitle.Size = new System.Drawing.Size(273, 26);
 			this.textBoxTitle.TabIndex = 22;
+			this.textBoxTitle.TextChanged += new System.EventHandler(this.TextBoxTitle_TextChanged);
 			// 
 			// textBoxArtist
 			// 
-			this.textBoxArtist.Location = new System.Drawing.Point(4, 41);
+			this.textBoxArtist.Location = new System.Drawing.Point(4, 5);
 			this.textBoxArtist.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.textBoxArtist.Name = "textBoxArtist";
 			this.textBoxArtist.Size = new System.Drawing.Size(272, 26);
 			this.textBoxArtist.TabIndex = 21;
+			this.textBoxArtist.TextChanged += new System.EventHandler(this.TextBoxArtist_TextChanged);
 			// 
 			// checkBoxIsIn
 			// 
 			this.checkBoxIsIn.AutoSize = true;
-			this.checkBoxIsIn.Location = new System.Drawing.Point(175, 119);
+			this.checkBoxIsIn.Location = new System.Drawing.Point(175, 83);
 			this.checkBoxIsIn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.checkBoxIsIn.Name = "checkBoxIsIn";
 			this.checkBoxIsIn.Size = new System.Drawing.Size(49, 24);
@@ -106,7 +108,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(79, 156);
+			this.label4.Location = new System.Drawing.Point(79, 120);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(69, 20);
@@ -116,7 +118,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(79, 119);
+			this.label3.Location = new System.Drawing.Point(79, 83);
 			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(43, 20);
@@ -126,7 +128,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(286, 82);
+			this.label2.Location = new System.Drawing.Point(286, 46);
 			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(38, 20);
@@ -136,7 +138,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(286, 45);
+			this.label1.Location = new System.Drawing.Point(286, 9);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(46, 20);
@@ -145,7 +147,7 @@
 			// 
 			// pictureBoxAlbum
 			// 
-			this.pictureBoxAlbum.Location = new System.Drawing.Point(3, 189);
+			this.pictureBoxAlbum.Location = new System.Drawing.Point(4, 152);
 			this.pictureBoxAlbum.Name = "pictureBoxAlbum";
 			this.pictureBoxAlbum.Size = new System.Drawing.Size(640, 640);
 			this.pictureBoxAlbum.TabIndex = 25;
@@ -153,9 +155,9 @@
 			// 
 			// buttonSpotify
 			// 
-			this.buttonSpotify.Location = new System.Drawing.Point(367, 78);
+			this.buttonSpotify.Location = new System.Drawing.Point(367, 42);
 			this.buttonSpotify.Name = "buttonSpotify";
-			this.buttonSpotify.Size = new System.Drawing.Size(96, 27);
+			this.buttonSpotify.Size = new System.Drawing.Size(103, 45);
 			this.buttonSpotify.TabIndex = 26;
 			this.buttonSpotify.Text = "Spotify";
 			this.buttonSpotify.UseVisualStyleBackColor = true;
@@ -164,13 +166,13 @@
 			// labelListenedTimes
 			// 
 			this.labelListenedTimes.AutoSize = true;
-			this.labelListenedTimes.Location = new System.Drawing.Point(175, 159);
+			this.labelListenedTimes.Location = new System.Drawing.Point(175, 123);
 			this.labelListenedTimes.Name = "labelListenedTimes";
 			this.labelListenedTimes.Size = new System.Drawing.Size(143, 20);
 			this.labelListenedTimes.TabIndex = 27;
 			this.labelListenedTimes.Text = "Listened to 5 times";
 			// 
-			// MusicInfo
+			// MusicInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -187,8 +189,8 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.Name = "MusicInfo";
-			this.Size = new System.Drawing.Size(718, 917);
+			this.Name = "MusicInfoControl";
+			this.Size = new System.Drawing.Size(661, 806);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRuntime)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbum)).EndInit();

@@ -109,19 +109,31 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Z.Dapper.Plus, Version=4.0.6.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.Dapper.Plus.4.0.6\lib\net45\Z.Dapper.Plus.dll</HintPath>
+    <Reference Include="Z.Dapper.Plus, Version=4.0.12.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.Dapper.Plus.4.0.12\lib\net45\Z.Dapper.Plus.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChartColors.cs" />
+    <Compile Include="Extensions\TabControlExtension.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="ImdbListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ImdbListControl.Designer.cs">
+      <DependentUpon>ImdbListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatsControls\Total.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\Total.Designer.cs">
+      <DependentUpon>Total.cs</DependentUpon>
+    </Compile>
     <Compile Include="StatsControls\_1001Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="StatsControls\_1001Control.Designer.cs">
       <DependentUpon>_1001Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="Backup.cs" />
     <Compile Include="MainControls\BooksControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,11 +158,11 @@
     <Compile Include="CollectionControls\BooksControl.Designer.cs">
       <DependentUpon>BooksControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CollectionControls\AddComicCollectionControl.cs">
+    <Compile Include="CollectionControls\ComicInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CollectionControls\AddComicCollectionControl.Designer.cs">
-      <DependentUpon>AddComicCollectionControl.cs</DependentUpon>
+    <Compile Include="CollectionControls\ComicInfoControl.Designer.cs">
+      <DependentUpon>ComicInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CollectionControls\ComicsControl.cs">
       <SubType>UserControl</SubType>
@@ -158,12 +170,11 @@
     <Compile Include="CollectionControls\ComicsControl.Designer.cs">
       <DependentUpon>ComicsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CollectionControls\Comics\Table.cs" />
-    <Compile Include="CollectionControls\AddGameCollectionControl.cs">
+    <Compile Include="CollectionControls\GameInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CollectionControls\AddGameCollectionControl.Designer.cs">
-      <DependentUpon>AddGameCollectionControl.cs</DependentUpon>
+    <Compile Include="CollectionControls\GameInfoControl.Designer.cs">
+      <DependentUpon>GameInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CollectionControls\GamesControl.cs">
       <SubType>UserControl</SubType>
@@ -171,18 +182,11 @@
     <Compile Include="CollectionControls\GamesControl.Designer.cs">
       <DependentUpon>GamesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CollectionControls\AddGameControl.cs">
+    <Compile Include="CollectionControls\LibraryInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CollectionControls\AddGameControl.Designer.cs">
-      <DependentUpon>AddGameControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CollectionControls\Games\Table.cs" />
-    <Compile Include="CollectionControls\AddLibraryControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CollectionControls\AddLibraryControl.Designer.cs">
-      <DependentUpon>AddLibraryControl.cs</DependentUpon>
+    <Compile Include="CollectionControls\LibraryInfoControl.Designer.cs">
+      <DependentUpon>LibraryInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CollectionControls\LibraryControl.cs">
       <SubType>UserControl</SubType>
@@ -190,11 +194,11 @@
     <Compile Include="CollectionControls\LibraryControl.Designer.cs">
       <DependentUpon>LibraryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CollectionControls\AddMusicCollectionControl.cs">
+    <Compile Include="CollectionControls\MusicInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CollectionControls\AddMusicCollectionControl.Designer.cs">
-      <DependentUpon>AddMusicCollectionControl.cs</DependentUpon>
+    <Compile Include="CollectionControls\MusicInfoControl.Designer.cs">
+      <DependentUpon>MusicInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CollectionControls\MusicControl.cs">
       <SubType>UserControl</SubType>
@@ -202,7 +206,6 @@
     <Compile Include="CollectionControls\MusicControl.Designer.cs">
       <DependentUpon>MusicControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CollectionControls\Music\Table.cs" />
     <Compile Include="MainControls\ComicInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -216,7 +219,6 @@
       <DependentUpon>ComicsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ChartExtensions.cs" />
-    <Compile Include="Following.cs" />
     <Compile Include="MainControls\GameInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -224,15 +226,6 @@
       <DependentUpon>GameInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\GridViewExtension.cs" />
-    <Compile Include="DataGridCustom.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FilterGrid.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FilterGrid.Designer.cs">
-      <DependentUpon>FilterGrid.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,12 +237,6 @@
     </Compile>
     <Compile Include="MainControls\GamesControl.Designer.cs">
       <DependentUpon>GamesControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MissingInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MissingInfo.Designer.cs">
-      <DependentUpon>MissingInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="MainControls\MovieInfoControl.cs">
       <SubType>UserControl</SubType>
@@ -287,24 +274,17 @@
     <Compile Include="StarRatingControl.Designer.cs">
       <DependentUpon>StarRatingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="MainControls\AddMyWorkProgressControl.cs">
+    <Compile Include="MainControls\MyWorkProgressInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\AddMyWorkProgressControl.Designer.cs">
-      <DependentUpon>AddMyWorkProgressControl.cs</DependentUpon>
+    <Compile Include="MainControls\MyWorkProgressInfoControl.Designer.cs">
+      <DependentUpon>MyWorkProgressInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainControls\MyWorkProgressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MainControls\MyWorkProgressControl.Designer.cs">
       <DependentUpon>MyWorkProgressControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainControls\UpdateMyWorkProgressControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MainControls\UpdateMyWorkProgressControl.Designer.cs">
-      <DependentUpon>UpdateMyWorkProgressControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainControls\MyWorkInfoControl.cs">
       <SubType>UserControl</SubType>
@@ -320,11 +300,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="MainControls\StandupInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -343,8 +318,6 @@
     <Compile Include="StatsControls\YearProgressControl.Designer.cs">
       <DependentUpon>YearProgressControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\SqlConnectionExtension.cs" />
-    <Compile Include="SQLHelper.cs" />
     <Compile Include="MainControls\StandupsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -369,6 +342,12 @@
     <Compile Include="YearFilterControl.Designer.cs">
       <DependentUpon>YearFilterControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ImdbListControl.resx">
+      <DependentUpon>ImdbListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatsControls\Total.resx">
+      <DependentUpon>Total.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StatsControls\_1001Control.resx">
       <DependentUpon>_1001Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -384,29 +363,26 @@
     <EmbeddedResource Include="CollectionControls\BooksControl.resx">
       <DependentUpon>BooksControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CollectionControls\AddComicCollectionControl.resx">
-      <DependentUpon>AddComicCollectionControl.cs</DependentUpon>
+    <EmbeddedResource Include="CollectionControls\ComicInfoControl.resx">
+      <DependentUpon>ComicInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CollectionControls\ComicsControl.resx">
       <DependentUpon>ComicsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CollectionControls\AddGameCollectionControl.resx">
-      <DependentUpon>AddGameCollectionControl.cs</DependentUpon>
+    <EmbeddedResource Include="CollectionControls\GameInfoControl.resx">
+      <DependentUpon>GameInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CollectionControls\GamesControl.resx">
       <DependentUpon>GamesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CollectionControls\AddGameControl.resx">
-      <DependentUpon>AddGameControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CollectionControls\AddLibraryControl.resx">
-      <DependentUpon>AddLibraryControl.cs</DependentUpon>
+    <EmbeddedResource Include="CollectionControls\LibraryInfoControl.resx">
+      <DependentUpon>LibraryInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CollectionControls\LibraryControl.resx">
       <DependentUpon>LibraryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CollectionControls\AddMusicCollectionControl.resx">
-      <DependentUpon>AddMusicCollectionControl.cs</DependentUpon>
+    <EmbeddedResource Include="CollectionControls\MusicInfoControl.resx">
+      <DependentUpon>MusicInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CollectionControls\MusicControl.resx">
       <DependentUpon>MusicControl.cs</DependentUpon>
@@ -417,12 +393,6 @@
     <EmbeddedResource Include="MainControls\ComicsControl.resx">
       <DependentUpon>ComicsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataGridCustom.resx">
-      <DependentUpon>DataGridCustom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FilterGrid.resx">
-      <DependentUpon>FilterGrid.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -432,9 +402,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainControls\GamesControl.resx">
       <DependentUpon>GamesControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MissingInfo.resx">
-      <DependentUpon>MissingInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainControls\MovieInfoControl.resx">
       <DependentUpon>MovieInfoControl.cs</DependentUpon>
@@ -448,25 +415,17 @@
     <EmbeddedResource Include="MainControls\MusicControl.resx">
       <DependentUpon>MusicControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\AddMyWorkProgressControl.resx">
-      <DependentUpon>AddMyWorkProgressControl.cs</DependentUpon>
+    <EmbeddedResource Include="MainControls\MyWorkProgressInfoControl.resx">
+      <DependentUpon>MyWorkProgressInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainControls\MyWorkProgressControl.resx">
       <DependentUpon>MyWorkProgressControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\UpdateMyWorkProgressControl.resx">
-      <DependentUpon>UpdateMyWorkProgressControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainControls\MyWorkInfoControl.resx">
       <DependentUpon>MyWorkInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainControls\MyWorkControl.resx">
       <DependentUpon>MyWorkControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StatsControls\YearStatsControl.resx">
       <DependentUpon>YearStatsControl.cs</DependentUpon>
@@ -514,7 +473,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Main Database Backup Task.xml" />
     <Content Include="TextTemplate.ico" />
   </ItemGroup>
   <ItemGroup />

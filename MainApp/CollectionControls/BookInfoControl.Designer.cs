@@ -202,6 +202,7 @@
 			this.checkBoxPlanToRead.TabIndex = 15;
 			this.checkBoxPlanToRead.Text = "Plan to read";
 			this.checkBoxPlanToRead.UseVisualStyleBackColor = true;
+			this.checkBoxPlanToRead.CheckedChanged += new System.EventHandler(this.CheckBoxPlanToRead_CheckedChanged);
 			// 
 			// numericUpDownPages
 			// 
@@ -226,7 +227,7 @@
 			this.label8.TabIndex = 18;
 			this.label8.Text = "Pages";
 			// 
-			// AddBookCollection
+			// BookInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -249,7 +250,7 @@
 			this.Controls.Add(this.textBoxTitle);
 			this.Controls.Add(this.label1);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.Name = "AddBookCollection";
+			this.Name = "BookInfoControl";
 			this.Size = new System.Drawing.Size(372, 354);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownPages)).EndInit();

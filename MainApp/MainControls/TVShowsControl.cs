@@ -1,9 +1,13 @@
-﻿using Model.dbo;
+﻿using Controller;
+using MainApp.Extensions;
+using Model;
+using Model.dbo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Following = Controller.Following;
 
 namespace MainApp.TV_Shows
 {
@@ -24,29 +28,44 @@ namespace MainApp.TV_Shows
 		{
 			base.OnLoad(e);
 
-			if(DesignMode)
+			if (DesignMode)
 			{
 				return;
 			}
 
-			m_tvShows = Controller.Database.GetList<TVShow>();
-			m_tvShowEvents = Controller.Database.GetList<TVShowEvent>();
+			m_tvShows = Database.GetList<TVShow>();
+			m_tvShowEvents = Database.GetList<TVShowEvent>();
 
 			numericUpDownYear.Value = DateTime.Now.Year;
 
 			dataGridViewWatching.DataSource =
-				new BindingSource(m_tvShows.Where(o => FormMain.Following.TVShows.Contains(o.Imdb)), null);
+				new BindingSource(m_tvShows
+				.Where(o => Following.FollowingModel.TVShows.Contains(o.Imdb)
+				&& !Following.FollowingModel.TVShowsOngoing.Contains(o.Imdb)
+				&& !Following.FollowingModel.YouTube.Contains(o.Imdb)), null);
 
 			dataGridViewOngoing.DataSource =
-				new BindingSource(m_tvShows.Where(o => FormMain.Following.TVShowsOngoing.Contains(o.Imdb)), null);
+				new BindingSource(m_tvShows
+				.Where(o => Following.FollowingModel.TVShowsOngoing.Contains(o.Imdb)
+				&& !Following.FollowingModel.YouTube.Contains(o.Imdb)), null);
+
+			dataGridViewYouTube.DataSource =
+				new BindingSource(m_tvShows
+				.Where(o => Following.FollowingModel.TVShowsOngoing.Contains(o.Imdb)
+				&& Following.FollowingModel.YouTube.Contains(o.Imdb)), null);
 
 			SetGrid(dataGridViewTVShows);
 			SetGrid(dataGridViewWatching);
 			SetGrid(dataGridViewOngoing);
+			SetGrid(dataGridViewYouTube);
 
 			dataGridViewTVShows.SelectLastRow();
-			dataGridViewWatching.SelectLastRow();
-			dataGridViewOngoing.SelectLastRow();
+
+			var filter = m_tvShows.Select(o => o.Imdb);
+
+			tabControl1.AddControlToNewTab(ImdbListControl.Init("1001 TV Shows You Must Watch Before you Die", filter), "1001");
+			tabControl1.AddControlToNewTab(ImdbListControl.Init("1001 TV Shows You Must Watch Before you Die", filter), "1001 short");
+			//dataGridView.DataSource = new SortableBindingList<ImdbListItem>((dataGridView.DataSource as IList<ImdbListItem>).Where(o => o.Runtime <= 30).ToList());
 		}
 
 		private void ButtonUpdate_Click(object sender, EventArgs e)
@@ -55,9 +74,9 @@ namespace MainApp.TV_Shows
 
 			var events = m_tvShowEvents.Where(i => i.Imdb == tvShow.Imdb);
 
-			if(!events.Any())
+			if (!events.Any())
 			{
-				Controller.Database.Add(tvShow);
+				Database.Add(tvShow);
 			}
 
 			var maxSeason = events.Any()
@@ -77,7 +96,7 @@ namespace MainApp.TV_Shows
 				Season = season
 			};
 
-			Controller.Database.Add(tvShowEvent);
+			Database.Add(tvShowEvent);
 			m_tvShowEvents.Add(tvShowEvent);
 
 			checkBoxUpdateSeason.Checked = false;
@@ -88,7 +107,7 @@ namespace MainApp.TV_Shows
 		{
 			var tvShow = (sender as DataGridView).GetRowObject<TVShow>();
 
-			if(tvShow == null)
+			if (tvShow == null)
 			{
 				return;
 			}
@@ -102,7 +121,7 @@ namespace MainApp.TV_Shows
 
 			var bind = new List<TVShow>();
 
-			foreach(var me in thisYear)
+			foreach (var me in thisYear)
 			{
 				var m = m_tvShows.FirstOrDefault(o => o.Imdb == me.Imdb);
 				bind.Add(m);

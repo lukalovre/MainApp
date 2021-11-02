@@ -1,11 +1,8 @@
-﻿using Dapper;
+﻿using Controller;
 using MainApp.Extensions;
-using MainApp.Properties;
 using Model;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -49,14 +46,11 @@ namespace MainApp.Reports
 			chart.Series.Add(series);
 			var monthlyReport = new List<MonthlyReport>();
 
-			using(IDbConnection db = new SqlConnection(Resources.MainConnectionString))
-			{
-				monthlyReport = db.Query<MonthlyReport>($"EXEC Reports.[Monthly {category}] @Year = {numericUpDownYear.Value}").ToList();
-			}
+			monthlyReport = Database.Query<MonthlyReport>($"EXEC Reports.[Monthly {category}] @Year = {numericUpDownYear.Value}").ToList();
 
 			List<int> monthNumbers = Enumerable.Range(1, 12).ToList();
 
-			foreach(var monthNumber in monthNumbers)
+			foreach (var monthNumber in monthNumbers)
 			{
 				var time = monthlyReport.FirstOrDefault(o => o.Month == monthNumber) == null ? 0 : monthlyReport.FirstOrDefault(o => o.Month == monthNumber).Time;
 				var index = series.Points.AddXY(monthNumber, time);
@@ -109,7 +103,7 @@ namespace MainApp.Reports
 					Value = chartMyWorkProgress.GetLastValue()}
 			};
 
-			for(int i = 0; i < chartData.Count; i++)
+			for (int i = 0; i < chartData.Count; i++)
 			{
 				ChartData data = chartData[i];
 				var time = data.Value;
@@ -128,9 +122,9 @@ namespace MainApp.Reports
 			FillData("Music", chartMusic, Color.HotPink);
 			FillData("Books", chartBooks, Color.IndianRed);
 			FillData("Movies", chartMovies, Color.Silver);
-			FillData("TV Shows", chartTVShows, Color.MediumTurquoise);
+			FillData("TVShows", chartTVShows, Color.MediumTurquoise);
 			FillData("Comics", chartComics, Color.SteelBlue);
-			FillData("My work progress", chartMyWorkProgress, Color.DarkKhaki);
+			FillData("MyWorkProgress", chartMyWorkProgress, Color.DarkKhaki);
 			FillDataAll();
 		}
 

@@ -5,8 +5,6 @@
 		public int Albums;
 		public int Books;
 		public int Comics;
-		public int Games;
-		public int Movies;
 		public int Paintings;
 		public int Photographs;
 		public int Songs;

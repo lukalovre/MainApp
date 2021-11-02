@@ -1,40 +1,70 @@
-﻿using System;
+﻿using Controller;
+using Model.Collection;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using static MainApp.DataGridCustom;
 
-namespace MainApp.Collection.Comics
+namespace MainApp.Collection
 {
 	public partial class ComicsControl : UserControl
 	{
-		internal static ComicsControl Instance;
+		private List<Comic> m_comics;
 
 		public ComicsControl()
 		{
 			InitializeComponent();
-			Instance = this;
-			ShowComicsCollectionInGrid();
 		}
 
-		public void ShowComicsCollectionInGrid()
+		protected override void OnLoad(EventArgs e)
 		{
-			var query = @"SELECT * FROM [Main].[Collection].[Comics]";
+			base.OnLoad(e);
 
-			var gridColumnList = new List<GridColumn>
+			if(DesignMode)
 			{
-			new GridColumn("Owner"),
-			new GridColumn("Title"),
-			new GridColumn("Chapter"),
-			new GridColumn("Writer"),
-			new GridColumn("Illustrator"),
-			new GridColumn("Language"),
-			new GridColumn("Price",typeof(float)),
-			new GridColumn("Price in RSD",typeof(float)),
-			new GridColumn("Date buy",typeof(DateTime)),
-			new GridColumn("GoodreadsID")
-			};
+				return;
+			}
 
-			dataGridView1.FillGrid(query, gridColumnList);
+			m_comics = Database.GetList<Comic>();
+
+			dataGridViewAll.DataSource = m_comics;
+
+			SetGridAll(dataGridViewAll);
+
+			dataGridViewAll.SelectLastRow();
+		}
+
+		private void ButtonAdd_Click(object sender, EventArgs e)
+		{
+			var comic = comicInfo.GetItem();
+
+			comic.Date = DateTime.Now;
+
+			Database.Add(comic);
+		}
+
+		private void DataGridView_SelectionChanged(object sender, EventArgs e)
+		{
+			var comic = (sender as DataGridView).GetRowObject<Comic>();
+
+			if(comic == null)
+			{
+				return;
+			}
+
+			comicInfo.Fill(comic);
+		}
+
+		private void SetGridAll(DataGridView dataGridView)
+		{
+			dataGridView.SetGrid();
+
+			dataGridView.SetColumns(new string[]{
+			nameof(Comic.Title),
+			nameof(Comic.Writer),
+			nameof(Comic.Chapter)});
+
+			dataGridView.Columns[nameof(Comic.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			dataGridView.Columns[nameof(Comic.Chapter)].CenterColumn();
 		}
 	}
 }

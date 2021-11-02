@@ -1,8 +1,4 @@
-﻿using Dapper;
-using MainApp.Properties;
-using System;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -30,9 +26,9 @@ namespace MainApp.Reports
 			CreateChart("Music", Color.HotPink);
 			CreateChart("Books", Color.IndianRed);
 			CreateChart("Movies", Color.Silver);
-			CreateChart("TV Shows", Color.MediumTurquoise);
+			CreateChart("TVShows", Color.MediumTurquoise);
 			CreateChart("Comics", Color.SteelBlue);
-			CreateChart("My work progress", Color.DarkKhaki);
+			CreateChart("MyWorkProgress", Color.DarkKhaki);
 			CreateChart("All", Color.DarkBlue);
 			CreateChart("AllM", Color.DarkGreen);
 		}
@@ -89,13 +85,7 @@ namespace MainApp.Reports
 
 			foreach(var year in Enumerable.Range(recordsStart, DateTime.Now.Year - recordsStart + 1))
 			{
-				var yearTime = 0f;
-
-				using(IDbConnection db = new SqlConnection(Resources.MainConnectionString))
-				{
-					yearTime = db.Query<float>($"EXEC Reports.[Yearly {category}] @Year = {year}").FirstOrDefault();
-				}
-
+				var yearTime = Controller.Database.Query<float>($"EXEC Reports.[Yearly {category}] @Year = {year}").FirstOrDefault();
 				var index = series.Points.AddXY(year, yearTime);
 
 				if(yearTime > chart.ChartAreas[0].AxisY.Maximum)

@@ -1,4 +1,5 @@
-﻿using Model.Collection;
+﻿using Controller;
+using Model.Collection;
 using System;
 using System.Windows.Forms;
 
@@ -13,6 +14,10 @@ namespace MainApp.Collection.Books
 			InitializeComponent();
 		}
 
+		public delegate void RefreshGridDelegate();
+
+		public event RefreshGridDelegate RefreshGrid;
+
 		internal void Fill(Book book)
 		{
 			m_book = book;
@@ -26,14 +31,16 @@ namespace MainApp.Collection.Books
 			textBoxGoodreadsID.Text = book.GoodreadsID.ToString();
 			textBoxPrice.Text = book.Price.ToString();
 			textBoxPriceInRSD.Text = book.PriceInRSD.ToString();
-			checkBoxPlanToRead.Checked = book.PlanToRead;
+
+			checkBoxPlanToRead.CheckedChanged -= new EventHandler(CheckBoxPlanToRead_CheckedChanged);
+			checkBoxPlanToRead.Checked = Following.FollowingModel.BooksCollection.Contains(book.GoodreadsID.ToString());
+			checkBoxPlanToRead.CheckedChanged += new EventHandler(CheckBoxPlanToRead_CheckedChanged);
 		}
 
 		internal Book GetItem()
 		{
 			return new Book
 			{
-				PlanToRead = checkBoxPlanToRead.Checked,
 				Author = textBoxAuthor.Text.Trim(),
 				Date = DateTime.Now,
 				EminaRating = 0,
@@ -57,6 +64,12 @@ namespace MainApp.Collection.Books
 	: (int?)numericUpDownYear.Value,
 				_1001 = checkBox1001.Checked
 			};
+		}
+
+		private void CheckBoxPlanToRead_CheckedChanged(object sender, EventArgs e)
+		{
+			Following.Update(checkBoxPlanToRead.Checked, Following.FollowingModel.BooksCollection, m_book.GoodreadsID.ToString());
+			RefreshGrid();
 		}
 	}
 }

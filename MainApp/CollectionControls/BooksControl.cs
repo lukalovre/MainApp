@@ -1,8 +1,8 @@
-﻿using MainApp.Properties;
+﻿using Controller;
 using Model.Collection;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,41 +10,58 @@ namespace MainApp.Collection.Books
 {
 	public partial class BooksControl : UserControl
 	{
-		public static BooksControl Instance;
 		private List<Book> m_books;
 
 		public BooksControl()
 		{
 			InitializeComponent();
-			Instance = this;
 		}
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			if(DesignMode)
+			if (DesignMode)
 			{
 				return;
 			}
 
-			m_books = Controller.Database.GetList<Book>();
+			m_books = Database.GetList<Book>();
 
 			dataGridViewAll.DataSource = m_books;
-			dataGridViewPlanToRead.DataSource = m_books.Where(o => o.PlanToRead).ToList();
+			LoadData();
 
 			SetGridAll(dataGridViewAll);
 			SetGridPlanToRead(dataGridViewPlanToRead);
+			SetGridPlanToRead(dataGridViewShort);
 
 			dataGridViewAll.SelectLastRow();
+
+			bookInfo1.RefreshGrid += new BookInfoControl.RefreshGridDelegate(RefreshGrid);
+		}
+
+		private static void SetZeroValuesToEmpty(DataGridView dataGridView)
+		{
+			var targetColumn = dataGridView.Columns.Cast<DataGridViewColumn>().ToList().FirstOrDefault(c => c.HeaderText == nameof(Book.EminaRating));
+			var index = dataGridView.Columns.IndexOf(targetColumn);
+
+			foreach (DataGridViewRow rw in dataGridView.Rows)
+			{
+				var value = Convert.ToString(rw.Cells[index].Value);
+
+				if (value == "0")
+				{
+					rw.Cells[index].Value = string.Empty;
+				}
+			}
 		}
 
 		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
 			var book = bookInfo1.GetItem();
-			Controller.Database.Add(book);
+			Database.Add(book);
 
-			m_books = Controller.Database.GetList<Book>();
+			m_books = Database.GetList<Book>();
 			dataGridViewAll.DataSource = m_books;
 		}
 
@@ -60,7 +77,7 @@ namespace MainApp.Collection.Books
 		{
 			var book = (sender as DataGridView).GetRowObject<Book>();
 
-			if(book == null)
+			if (book == null)
 			{
 				return;
 			}
@@ -68,52 +85,51 @@ namespace MainApp.Collection.Books
 			bookInfo1.Fill(book);
 		}
 
-		private void DataGridView1CellDoubleClick(object sender, DataGridViewCellEventArgs dataGridViewCellEventArgs)
+		//private int GetAveragePerYearValue()
+		//{
+		//			SqlConnection sqlConnection1 = new SqlConnection(Resources.MainConnectionString);
+		//			SqlCommand cmd = new SqlCommand();
+
+		//			cmd.CommandText = @"select
+		//cast(sum([Hours read])/3 as int) Hours
+		//from [View Books]
+		//where Last >= getdate()-(3*365)  -- Last 3 years";
+
+		//			cmd.Connection = sqlConnection1;
+
+		//			sqlConnection1.Open();
+
+		//			using(SqlDataReader reader = cmd.ExecuteReader())
+		//			{
+		//				while(reader.Read())
+		//				{
+		//					return int.Parse(reader["Hours"].ToString());
+		//				}
+		//			}
+
+		//			sqlConnection1.Close();
+
+		//			return 0;
+		//}
+
+		private void LoadData()
 		{
-			//var dataGrid = sender as DataGridCustom;
+			var toRead = m_books
+				.Where(o => Following.FollowingModel.BooksCollection.Contains(o.GoodreadsID.ToString()))
+				.DistinctBy(o => o.GoodreadsID)
+				.OrderBy(o => o.Pages)
+				.ToList();
 
-			//string goodreadsID = dataGrid.Rows[dataGridViewCellEventArgs.RowIndex].Cells[Table.GoodreadsID].Value.ToString();
+			dataGridViewPlanToRead.DataSource = new SortableBindingList<Book>(toRead);
 
-			//if(dataGridViewCellEventArgs.ColumnIndex == -1)
-			//{
-			//	var hyperlink = $@"https://www.goodreads.com/book/show/{goodreadsID}";
-			//	System.Diagnostics.Process.Start(hyperlink);
-			//	return;
-			//}
-
-			//string title = dataGrid.Rows[dataGridViewCellEventArgs.RowIndex].Cells[Table.Title].Value.ToString();
-			//string author = dataGrid.Rows[dataGridViewCellEventArgs.RowIndex].Cells[Table.Author].Value.ToString();
-			//int year = (int)dataGrid.Rows[dataGridViewCellEventArgs.RowIndex].Cells[Table.Year].Value;
-			//var _1001 = (bool)dataGrid.Rows[dataGridViewCellEventArgs.RowIndex].Cells[Table._1001].Value;
-
-			//addBook2.SetBookData(title, author, year, _1001, goodreadsID);
+			dataGridViewShort.DataSource = toRead
+				.Where(o => o.Pages < 300)
+				.ToList();
 		}
 
-		private int GetAveragePerYearValue()
+		private void RefreshGrid()
 		{
-			SqlConnection sqlConnection1 = new SqlConnection(Resources.MainConnectionString);
-			SqlCommand cmd = new SqlCommand();
-
-			cmd.CommandText = @"select
-cast(sum([Hours read])/3 as int) Hours
-from [View Books]
-where Last >= getdate()-(3*365)  -- Last 3 years";
-
-			cmd.Connection = sqlConnection1;
-
-			sqlConnection1.Open();
-
-			using(SqlDataReader reader = cmd.ExecuteReader())
-			{
-				while(reader.Read())
-				{
-					return int.Parse(reader["Hours"].ToString());
-				}
-			}
-
-			sqlConnection1.Close();
-
-			return 0;
+			LoadData();
 		}
 
 		private void SetGridAll(DataGridView dataGridView)
@@ -125,8 +141,7 @@ where Last >= getdate()-(3*365)  -- Last 3 years";
 			nameof(Book.Author),
 			nameof(Book.Year),
 			nameof(Book._1001),
-			nameof(Book.Type),
-			nameof(Book.PriceInRSD)});
+			nameof(Book.Type)});
 
 			dataGridView.Columns[nameof(Book._1001)].HeaderText = "1001";
 			dataGridView.Columns[nameof(Book._1001)].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -134,8 +149,6 @@ where Last >= getdate()-(3*365)  -- Last 3 years";
 			dataGridView.Columns[nameof(Book.Author)].Width = 130;
 			dataGridView.Columns[nameof(Book.Year)].CenterColumn();
 			dataGridView.Columns[nameof(Book.Type)].CenterColumn();
-			dataGridView.Columns[nameof(Book.PriceInRSD)].HeaderText = "Price";
-			dataGridView.Columns[nameof(Book.PriceInRSD)].Width = 50;
 		}
 
 		private void SetGridPlanToRead(DataGridView dataGridView)
@@ -155,6 +168,8 @@ where Last >= getdate()-(3*365)  -- Last 3 years";
 			dataGridView.Columns[nameof(Book.Author)].Width = 130;
 			dataGridView.Columns[nameof(Book.EminaRating)].Width = 30;
 			dataGridView.Columns[nameof(Book.Year)].CenterColumn();
+
+			SetZeroValuesToEmpty(dataGridView);
 		}
 
 		private void SetHLTBSum()

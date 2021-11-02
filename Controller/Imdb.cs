@@ -9,7 +9,16 @@ namespace Controller
 {
 	public class Imdb
 	{
-		public static ImdbData GetDataFromAPI(string imdb)
+		public static float Get1001MoviesCount()
+		{
+			var allMovies = Database.GetList<Model.dbo.Movie>();
+			return allMovies
+				.Select(o => o.Imdb)
+				.Count(o => _1001.Is1001(o))
+				+ 2; // Riget, Dekalog
+		}
+
+		public static ImdbData GetDataFromAPI(string imdb, bool savePoster = true)
 		{
 			HttpClient client = new HttpClient
 			{
@@ -26,7 +35,10 @@ namespace Controller
 
 			client.Dispose();
 
-			SavePoster(imdbData);
+			if (savePoster)
+			{
+				SavePoster(imdbData);
+			}
 
 			return imdbData;
 		}

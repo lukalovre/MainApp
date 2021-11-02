@@ -13,8 +13,7 @@ CREATE TABLE [Collection].[Books] (
    [GoodreadsID] [int] NULL,
    [Price] [float] NULL,
    [PriceInRSD] [float] NULL,
-   [Date] [datetime] NULL,
-   [PlanToRead] [bit] NULL
+   [Date] [datetime] NULL
 
    ,CONSTRAINT [PK__Collecti__3BD018483F5388E4] PRIMARY KEY CLUSTERED ([ID])
 )

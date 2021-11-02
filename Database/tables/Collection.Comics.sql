@@ -8,9 +8,9 @@ CREATE TABLE [Collection].[Comics] (
    [Illustrator] [nvarchar](255) NULL,
    [Language] [nvarchar](255) NULL,
    [GoodreadsID] [int] NOT NULL,
-   [Date buy] [datetime] NULL,
+   [Date] [datetime] NULL,
    [Price] [float] NULL,
-   [Price in RSD] [float] NULL
+   [PriceInRSD] [float] NULL
 
    ,CONSTRAINT [PK_Comics_1] PRIMARY KEY CLUSTERED ([ID])
 )

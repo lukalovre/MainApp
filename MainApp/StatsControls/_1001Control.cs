@@ -1,12 +1,8 @@
-﻿using Dapper;
+﻿using Controller;
 using MainApp.Extensions;
-using MainApp.Properties;
 using Model;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -47,27 +43,19 @@ namespace MainApp._1001
 
 			chart1001.Series.Add(series);
 
-			var _1001Data = new _1001Data();
-
-			using(IDbConnection db = new SqlConnection(Resources.MainConnectionString))
-			{
-				_1001Data = db.Query<_1001Data>($@"	SELECT [Photographs]
-															,[Books]
+			var _1001Data = Database.Query<_1001Data>($@"	SELECT
+															 [Books]
 															,[TVShows]
-															,[Games]
 															,[Comics]
-															,[Movies]
-															,[Paintings]
 															,[Albums]
 															,[Songs]
-															FROM[Main].[1001].[All Progress]").ToList().FirstOrDefault();
-			}
+															FROM [Main].[1001].[All Progress]").ToList().FirstOrDefault();
 
 			var chartData = new List<ChartData>
 			{
 				new ChartData{
 					Name = "Games",
-					Value = _1001Data.Games},
+					Value = Igdb.Get1001Count()},
 				new ChartData{
 					Name = "Albums",
 					Value = _1001Data.Albums},
@@ -79,7 +67,7 @@ namespace MainApp._1001
 					Value = _1001Data.Books},
 				new ChartData{
 					Name = "Movies",
-					Value = _1001Data.Movies},
+					Value = Imdb.Get1001MoviesCount()},
 				new ChartData{
 					Name = "TV Shows",
 					Value = _1001Data.TVShows},
@@ -88,15 +76,15 @@ namespace MainApp._1001
 					Value = _1001Data.Comics},
 				new ChartData{
 					Name = "Paintings",
-					Value = _1001Data.Paintings},
+					Value = 1001},
 				new ChartData{
 					Name = "Photographs",
-					Value = _1001Data.Photographs}
+					Value = 1001}
 			};
 
 			chartData = chartData.SortByValue();
 
-			for(int i = 0; i < chartData.Count; i++)
+			for (int i = 0; i < chartData.Count; i++)
 			{
 				ChartData data = chartData[i];
 				var time = data.Value;

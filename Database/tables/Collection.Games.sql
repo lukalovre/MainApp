@@ -8,16 +8,14 @@ CREATE TABLE [Collection].[Games] (
    [Platform] [nvarchar](25) NOT NULL,
    [Client] [nvarchar](25) NULL,
    [New] [bit] NULL,
-   [Got free] [bit] NULL,
-   [Date buy] [datetime] NULL,
+   [GotFree] [bit] NULL,
+   [Date] [datetime] NULL,
    [Price] [float] NULL,
-   [Price in RSD] [float] NULL,
-   [Physical copy] [bit] NULL,
-   [HLTB time] [int] NULL,
-   [Plan to play] [bit] NULL,
-   [Played] [bit] NULL,
+   [PriceInRSD] [float] NULL,
+   [PhysicalCopy] [bit] NULL,
+   [HLTB] [int] NULL,
    [Owner] [nvarchar](25) NULL,
-   [1001] [bit] NULL
+   [Igdb] [int] NOT NULL
 
    ,CONSTRAINT [PK_Collection Games] PRIMARY KEY CLUSTERED ([ID])
 )

@@ -1,11 +1,7 @@
-﻿using Dapper.Contrib.Extensions;
-
-namespace Model.dbo
+﻿namespace Model.dbo
 {
-	public class Movie : IImdb
+	public class Movie : Item, IImdb
 	{
-		public bool _1001 { get; set; }
-
 		public string Actors { get; set; }
 
 		public string Country { get; set; }
@@ -13,9 +9,6 @@ namespace Model.dbo
 		public string Director { get; set; }
 
 		public string Ganre { get; set; }
-
-		[Key]
-		public int ID { get; set; }
 
 		public string Imdb { get; set; }
 
@@ -27,12 +20,8 @@ namespace Model.dbo
 
 		public int Runtime { get; set; }
 
-		public string Title { get; set; }
-
 		public string Type { get; set; }
 
 		public string Writer { get; set; }
-
-		public int Year { get; set; }
 	}
 }

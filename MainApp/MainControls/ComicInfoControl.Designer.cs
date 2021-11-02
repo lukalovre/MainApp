@@ -46,8 +46,9 @@
 			this.textBoxIllustrator = new System.Windows.Forms.TextBox();
 			this.checkBoxReading = new System.Windows.Forms.CheckBox();
 			this.checkBoxOngoing = new System.Windows.Forms.CheckBox();
-			this.starRatingControl1 = new MainApp.StarRatingControl();
 			this.labelAddingPages = new System.Windows.Forms.Label();
+			this.starRatingControl1 = new MainApp.StarRatingControl();
+			this.listBoxChapters = new System.Windows.Forms.ListBox();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownChapters)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownPages)).BeginInit();
@@ -93,6 +94,7 @@
 			this.numericUpDownChapters.Name = "numericUpDownChapters";
 			this.numericUpDownChapters.Size = new System.Drawing.Size(73, 26);
 			this.numericUpDownChapters.TabIndex = 21;
+			this.numericUpDownChapters.ValueChanged += new System.EventHandler(this.NumericUpDownChapters_ValueChanged);
 			// 
 			// label3
 			// 
@@ -205,6 +207,7 @@
 			this.textBoxGoodreadsID.Name = "textBoxGoodreadsID";
 			this.textBoxGoodreadsID.Size = new System.Drawing.Size(148, 26);
 			this.textBoxGoodreadsID.TabIndex = 30;
+			this.textBoxGoodreadsID.TextChanged += new System.EventHandler(this.TextBoxGoodreadsID_TextChanged);
 			// 
 			// label8
 			// 
@@ -246,14 +249,6 @@
 			this.checkBoxOngoing.UseVisualStyleBackColor = true;
 			this.checkBoxOngoing.CheckedChanged += new System.EventHandler(this.CheckBoxOngoing_CheckedChanged);
 			// 
-			// starRatingControl1
-			// 
-			this.starRatingControl1.Location = new System.Drawing.Point(4, 337);
-			this.starRatingControl1.Name = "starRatingControl1";
-			this.starRatingControl1.SelectedStar = 0;
-			this.starRatingControl1.Size = new System.Drawing.Size(169, 101);
-			this.starRatingControl1.TabIndex = 35;
-			// 
 			// labelAddingPages
 			// 
 			this.labelAddingPages.AutoSize = true;
@@ -263,10 +258,28 @@
 			this.labelAddingPages.TabIndex = 36;
 			this.labelAddingPages.Text = "Adding 15 pages";
 			// 
-			// ComicInfo
+			// starRatingControl1
+			// 
+			this.starRatingControl1.Location = new System.Drawing.Point(4, 337);
+			this.starRatingControl1.Name = "starRatingControl1";
+			this.starRatingControl1.SelectedStar = 1;
+			this.starRatingControl1.Size = new System.Drawing.Size(223, 101);
+			this.starRatingControl1.TabIndex = 35;
+			// 
+			// listBoxChapters
+			// 
+			this.listBoxChapters.FormattingEnabled = true;
+			this.listBoxChapters.ItemHeight = 20;
+			this.listBoxChapters.Location = new System.Drawing.Point(322, 5);
+			this.listBoxChapters.Name = "listBoxChapters";
+			this.listBoxChapters.Size = new System.Drawing.Size(201, 444);
+			this.listBoxChapters.TabIndex = 37;
+			// 
+			// ComicInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.listBoxChapters);
 			this.Controls.Add(this.labelAddingPages);
 			this.Controls.Add(this.starRatingControl1);
 			this.Controls.Add(this.checkBoxOngoing);
@@ -288,8 +301,8 @@
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.checkBox1001);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.Name = "ComicInfo";
-			this.Size = new System.Drawing.Size(295, 470);
+			this.Name = "ComicInfoControl";
+			this.Size = new System.Drawing.Size(526, 470);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownChapters)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownPages)).EndInit();
@@ -319,5 +332,6 @@
 		private System.Windows.Forms.CheckBox checkBoxOngoing;
 		private StarRatingControl starRatingControl1;
 		private System.Windows.Forms.Label labelAddingPages;
+		private System.Windows.Forms.ListBox listBoxChapters;
 	}
 }

@@ -42,6 +42,8 @@ namespace MainApp.TV_Shows
 			this.checkBoxUpdateSeason = new System.Windows.Forms.CheckBox();
 			this.tvShowInfo1 = new MainApp.TVShows.TVShowInfo();
 			this.textBoxImdb = new System.Windows.Forms.TextBox();
+			this.tabPageYouTube = new System.Windows.Forms.TabPage();
+			this.dataGridViewYouTube = new System.Windows.Forms.DataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTVShows)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPageAll.SuspendLayout();
@@ -50,6 +52,8 @@ namespace MainApp.TV_Shows
 			this.tabPageOngoing.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewOngoing)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).BeginInit();
+			this.tabPageYouTube.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewYouTube)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// dataGridViewTVShows
@@ -73,6 +77,7 @@ namespace MainApp.TV_Shows
 			this.tabControl1.Controls.Add(this.tabPageAll);
 			this.tabControl1.Controls.Add(this.tabPageWatching);
 			this.tabControl1.Controls.Add(this.tabPageOngoing);
+			this.tabControl1.Controls.Add(this.tabPageYouTube);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -193,6 +198,25 @@ namespace MainApp.TV_Shows
 			this.textBoxImdb.TabIndex = 23;
 			this.textBoxImdb.TextChanged += new System.EventHandler(this.TextBoxImdb_TextChanged);
 			// 
+			// tabPageYouTube
+			// 
+			this.tabPageYouTube.Controls.Add(this.dataGridViewYouTube);
+			this.tabPageYouTube.Location = new System.Drawing.Point(4, 29);
+			this.tabPageYouTube.Name = "tabPageYouTube";
+			this.tabPageYouTube.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageYouTube.Size = new System.Drawing.Size(792, 1276);
+			this.tabPageYouTube.TabIndex = 3;
+			this.tabPageYouTube.Text = "YouTube";
+			this.tabPageYouTube.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewYouTube
+			// 
+			this.dataGridViewYouTube.Location = new System.Drawing.Point(7, 7);
+			this.dataGridViewYouTube.Name = "dataGridViewYouTube";
+			this.dataGridViewYouTube.Size = new System.Drawing.Size(760, 1215);
+			this.dataGridViewYouTube.TabIndex = 0;
+			this.dataGridViewYouTube.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			// 
 			// TVShowsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -214,6 +238,8 @@ namespace MainApp.TV_Shows
 			this.tabPageOngoing.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewOngoing)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).EndInit();
+			this.tabPageYouTube.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewYouTube)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -233,5 +259,7 @@ namespace MainApp.TV_Shows
 		private TabPage tabPageOngoing;
 		private DataGridView dataGridViewOngoing;
 		private TextBox textBoxImdb;
+		private TabPage tabPageYouTube;
+		private DataGridView dataGridViewYouTube;
 	}
 }

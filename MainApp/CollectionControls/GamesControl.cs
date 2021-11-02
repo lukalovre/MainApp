@@ -1,143 +1,61 @@
-﻿using Dapper;
-using MainApp.Properties;
+﻿using Controller;
+using Model.Collection;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
-using static MainApp.DataGridCustom;
 
 namespace MainApp.Collection.Games
 {
 	public partial class GamesControl : UserControl
 	{
-		public static GamesControl Instance;
+		private SortableBindingList<Game> m_bindable;
+		private List<Game> m_games;
 
 		public GamesControl()
 		{
 			InitializeComponent();
-			Instance = this;
-		}
-
-		public void ShowGamesInGrid1001ToPlay()
-		{
-			var query = @"	SELECT *
-							FROM [Main].[Games].[Plan to play games]
-							WHERE [1001] = 1
-							order by [HLTB time]";
-
-			var gridColumnList = new List<GridColumn>
-			{
-				new GridColumn(Table.Title),
-				new GridColumn(Table.Platform),
-				new GridColumn(Table.Client),
-				new GridColumn(Table.Year, typeof(int)),
-				new GridColumn(Table.HLTBTime, typeof(int)),
-				new GridColumn(Table.DateBuy),
-				new GridColumn(Table.ID, typeof(int))
-			};
-
-			dataGridCustom1001ToPlay.FillGrid(query, gridColumnList);
-
-			SetHLTBSum();
-
-			dataGridCustom1001ToPlay.Columns[Table.Platform].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-			dataGridCustom1001ToPlay.Columns[Table.Platform].Width = 40;
-
-			dataGridCustom1001ToPlay.Columns[Table.Client].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-			dataGridCustom1001ToPlay.Columns[Table.Client].Width = 50;
-
-			dataGridCustom1001ToPlay.Columns[Table.HLTBTime].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-			dataGridCustom1001ToPlay.Sort(dataGridCustom1001ToPlay.Columns[Table.HLTBTime], ListSortDirection.Ascending);
-
-			dataGridCustom1001ToPlay.Columns[Table.DateBuy].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-			dataGridCustom1001ToPlay.Columns[Table.DateBuy].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
-
-			dataGridCustom1001ToPlay.RowHeadersWidth = 50;
-
-			for(int i = 0; i < dataGridCustom1001ToPlay.Rows.Count; ++i)
-			{
-				dataGridCustom1001ToPlay.Rows[i].Cells[Table.DateBuy].Value = GetFreshMeter(dataGridCustom1001ToPlay.Rows[i].Cells[Table.DateBuy].Value.ToString());
-			}
-		}
-
-		public void ShowGamesInGridAll()
-		{
-			var query = @"SELECT *  FROM [Main].[Collection].[Games]";
-
-			var gridColumnList = new List<GridColumn>
-			{
-				new GridColumn(Table.Title),
-				new GridColumn(Table.Platform),
-				new GridColumn(Table.Client),
-				new GridColumn(Table.Year, typeof(int)),
-				new GridColumn(Table.DateBuy, typeof(DateTime)),
-				new GridColumn(Table.GotFree, typeof(bool))
-			};
-
-			dgAll.FillGrid(query, gridColumnList);
-		}
-
-		public void ShowGamesInGridToPlay()
-		{
-			var query = @"	SELECT *
-							FROM [Main].[Games].[Plan to play games]
-							WHERE [1001] = 0
-							order by [HLTB time]";
-
-			var gridColumnList = new List<GridColumn>
-			{
-				new GridColumn(Table.Title),
-				new GridColumn(Table.Platform),
-				new GridColumn(Table.Client),
-				new GridColumn(Table.Year, typeof(int)),
-				new GridColumn(Table.HLTBTime, typeof(int)),
-				new GridColumn(Table.DateBuy),
-				new GridColumn(Table.ID, typeof(int))
-			};
-
-			dataGridCustomToPlay.FillGrid(query, gridColumnList);
-
-			SetHLTBSum();
-
-			dataGridCustomToPlay.Columns[Table.Platform].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-			dataGridCustomToPlay.Columns[Table.Platform].Width = 40;
-
-			dataGridCustomToPlay.Columns[Table.Client].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-			dataGridCustomToPlay.Columns[Table.Client].Width = 50;
-
-			dataGridCustomToPlay.Columns[Table.HLTBTime].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-			dataGridCustomToPlay.Sort(dataGridCustomToPlay.Columns[Table.HLTBTime], ListSortDirection.Ascending);
-
-			dataGridCustomToPlay.Columns[Table.DateBuy].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-			dataGridCustomToPlay.Columns[Table.DateBuy].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
-
-			dataGridCustomToPlay.RowHeadersWidth = 50;
-
-			for(int i = 0; i < dataGridCustomToPlay.Rows.Count; ++i)
-			{
-				dataGridCustomToPlay.Rows[i].Cells[Table.DateBuy].Value = GetFreshMeter(dataGridCustomToPlay.Rows[i].Cells[Table.DateBuy].Value.ToString());
-			}
 		}
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			dataGridCustomToPlay.CellFormatting += DataGridCustomToPlayOnCellFormatting;
-			dataGridCustom1001ToPlay.CellFormatting += DataGridCustomToPlayOnCellFormatting;
+			if (DesignMode)
+			{
+				return;
+			}
 
-			ShowGamesInGridAll();
-			ShowGamesInGridToPlay();
-			ShowGamesInGrid1001ToPlay();
+			dataGridViewToPlay.CellFormatting += DataGridCustomToPlayOnCellFormatting;
+			dataGridView1001ToPlay.CellFormatting += DataGridCustomToPlayOnCellFormatting;
+
+			m_games = Database.GetList<Game>();
+
+			m_bindable = new SortableBindingList<Game>(m_games);
+			dataGridViewAll.DataSource = m_bindable;
+
+			dataGridViewToPlay.DataSource = new SortableBindingList<Game>(m_games
+				.Where(o => Following.FollowingModel.GamesCollection.Contains(o.ID.ToString())
+				&& !Igdb.Is1001(o.Igdb))
+				.OrderBy(o => o.HLTB)
+				.ToList());
+
+			dataGridView1001ToPlay.DataSource = new SortableBindingList<Game>(m_games
+				.Where(o => Following.FollowingModel.GamesCollection.Contains(o.ID.ToString())
+				&& Igdb.Is1001(o.Igdb))
+				.OrderBy(o => o.HLTB)
+				.ToList());
+
+			SetGridAll(dataGridViewAll);
+			SetGridToPlay(dataGridViewToPlay);
+			SetGridToPlay(dataGridView1001ToPlay);
 		}
 
 		private static string GetFreshMeter(string dateBuy)
 		{
 			string freshMeter;
 
-			if(dateBuy == string.Empty)
+			if (dateBuy == string.Empty)
 			{
 				freshMeter = "∞";
 			}
@@ -148,7 +66,7 @@ namespace MainApp.Collection.Games
 				DateTime now = DateTime.Today;
 				int age = now.Year - date.Year;
 
-				if(date > now.AddYears(-age) && age != 0)
+				if (date > now.AddYears(-age) && age != 0)
 				{
 					age--;
 				}
@@ -156,7 +74,7 @@ namespace MainApp.Collection.Games
 				freshMeter = age.ToString();
 			}
 
-			if(freshMeter == "0")
+			if (freshMeter == "0")
 			{
 				freshMeter = "*Fresh*";
 			}
@@ -164,57 +82,105 @@ namespace MainApp.Collection.Games
 			return freshMeter;
 		}
 
-		private void DataGridCustomToPlayCellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
-			var dataGrid = tabControl1.SelectedTab.Controls.Cast<Control>().FirstOrDefault(x => x is DataGridCustom) as DataGridCustom;
+			var item = gameInfo.GetItem();
+			item.Date = DateTime.Now;
 
-			completedGame1.Visible = true;
+			Database.Add(item);
+			m_bindable.Add(item);
+			dataGridViewAll.SelectLastRow();
 
-			var title = dataGrid.Rows[e.RowIndex].Cells[Table.Title].Value.ToString();
-			var platform = dataGrid.Rows[e.RowIndex].Cells[Table.Platform].Value.ToString();
-			var year = (int)dataGrid.Rows[e.RowIndex].Cells[Table.Year].Value;
-
-			var _1001 = dataGrid == dataGridCustom1001ToPlay;
-
-			completedGame1.SetGameData(title, _1001, platform, year);
+			textBoxIgdbUrl.TextChanged -= TextBoxIgdbUrl_TextChanged;
+			textBoxIgdbUrl.Clear();
+			textBoxIgdbUrl.TextChanged += TextBoxIgdbUrl_TextChanged;
 		}
 
 		private void DataGridCustomToPlayOnCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-			(sender as DataGridCustom).Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();
+			(sender as DataGridView).Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();
 		}
 
-		private void DataGridCustomToPlaySelectionChanged(object sender, EventArgs e)
+		private void DataGridView_SelectionChanged(object sender, EventArgs e)
 		{
-			completedGame1.Visible = false;
+			var game = (sender as DataGridView).GetRowObject<Game>();
+
+			if (game == null)
+			{
+				return;
+			}
+
+			gameInfo.Fill(game);
 		}
 
 		private int GetAveragePerYearValue()
 		{
-			using(var db = new SqlConnection(Resources.MainConnectionString))
-			{
-				return db.ExecuteScalar<int>(@"	select
+			return Database.ExecuteScalar<int>(@"	select
 												cast(sum(Time)/3 as int) Hours
 												from GameEvents
 												where Date >= getdate()-(3*365)  -- Last 3 years");
-			}
+		}
+
+		private void SetGridAll(DataGridView dataGridView)
+		{
+			dataGridView.SetGrid();
+
+			dataGridView.SetColumns(new string[]{
+			nameof(Game.Title),
+			nameof(Game.Year)});
+
+			dataGridView.Columns[nameof(Game.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			dataGridView.Columns[nameof(Game.Year)].CenterColumn();
+		}
+
+		private void SetGridToPlay(DataGridView dataGridView)
+		{
+			dataGridView.SetGrid();
+
+			dataGridView.SetColumns(new string[]{
+			nameof(Game.Title),
+			nameof(Game.Year),
+			nameof(Game.Platform),
+			nameof(Game.HLTB)});
+
+			dataGridView.Columns[nameof(Game.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			dataGridView.Columns[nameof(Game.Year)].CenterColumn();
+			dataGridView.Columns[nameof(Game.Platform)].CenterColumn();
+			dataGridView.Columns[nameof(Game.HLTB)].CenterColumn();
 		}
 
 		private void SetHLTBSum()
 		{
-			int hltbTimeSum = 0;
+			//int hltbTimeSum = 0;
 
-			for(int i = 0; i < dataGridCustomToPlay.Rows.Count; ++i)
+			//for(int i = 0; i < dataGridCustomToPlay.Rows.Count; ++i)
+			//{
+			//	hltbTimeSum += Convert.ToInt32(dataGridCustomToPlay.Rows[i].Cells[Table.HLTBTime].Value);
+			//}
+
+			//var averagePerYear = GetAveragePerYearValue();
+			//float yearsToCompletion = hltbTimeSum / (float)averagePerYear;
+
+			//labelHLTBtime.Text = $@"HLTB: {hltbTimeSum}h / {hltbTimeSum / 24} days
+			//						Average per year: {averagePerYear}h
+			//						Years to completion: {yearsToCompletion.ToString("0.00")}";
+		}
+
+		private async void TextBoxIgdbUrl_TextChanged(object sender, EventArgs e)
+		{
+			var url = textBoxIgdbUrl.Text;
+
+			var igdbData = await Igdb.GetDataFromAPIAsync(url);
+
+			var game = new Game
 			{
-				hltbTimeSum += Convert.ToInt32(dataGridCustomToPlay.Rows[i].Cells[Table.HLTBTime].Value);
-			}
+				Platform = "PC",
+				Igdb = igdbData.Igdb,
+				Title = igdbData.Title,
+				Year = igdbData.Year
+			};
 
-			var averagePerYear = GetAveragePerYearValue();
-			float yearsToCompletion = hltbTimeSum / (float)averagePerYear;
-
-			labelHLTBtime.Text = $@"HLTB: {hltbTimeSum}h / {hltbTimeSum / 24} days
-									Average per year: {averagePerYear}h
-									Years to compeltion: {yearsToCompletion.ToString("0.00")}";
+			gameInfo.Fill(game);
 		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MainApp
@@ -12,10 +11,13 @@ namespace MainApp
 		[STAThread]
 		private static void Main(string[] args)
 		{
-			if(args.Any() && args[0] == "backup")
+			try
 			{
-				Backup.MakeBackup();
-				return;
+				Controller.Backup.MakeBackup();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
 			}
 
 			Application.EnableVisualStyles();

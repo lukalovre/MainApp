@@ -37,11 +37,11 @@ namespace MainApp
 
 		private List<string> m_ratingDescription = new List<string>
 		{
-			"did not like it",
-			"it was ok",
-			"liked it",
-			"really liked it",
-			"it was amazing"
+			"don't like it",
+			"it's ok",
+			"like it",
+			"really like it",
+			"it's amazing"
 		};
 
 		private int m_starAreaHeight;

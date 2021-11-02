@@ -1,4 +1,6 @@
-﻿namespace MainApp.Collection.Music
+﻿using System.Windows.Forms;
+
+namespace MainApp.Collection
 {
 	partial class MusicControl
 	{
@@ -28,48 +30,60 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.dataGridCustom1 = new MainApp.DataGridCustom();
-            this.addMusicCollection1 = new MainApp.Collection.Music.AddMusicCollectionControl();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridCustom1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // dataGridCustom1
-            // 
-            this.dataGridCustom1.AllowUserToAddRows = false;
-            this.dataGridCustom1.AllowUserToDeleteRows = false;
-            this.dataGridCustom1.AllowUserToResizeRows = false;
-            this.dataGridCustom1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridCustom1.DataSourceCustom = null;
-            this.dataGridCustom1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridCustom1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridCustom1.Name = "dataGridCustom1";
-            this.dataGridCustom1.ReadOnly = true;
-            this.dataGridCustom1.Size = new System.Drawing.Size(693, 577);
-            this.dataGridCustom1.TabIndex = 0;
-            // 
-            // addMusicCollection1
-            // 
-            this.addMusicCollection1.Location = new System.Drawing.Point(699, 3);
-            this.addMusicCollection1.Name = "addMusicCollection1";
-            this.addMusicCollection1.Size = new System.Drawing.Size(162, 453);
-            this.addMusicCollection1.TabIndex = 1;
-            // 
-            // Music
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.addMusicCollection1);
-            this.Controls.Add(this.dataGridCustom1);
-            this.Name = "Music";
-            this.Size = new System.Drawing.Size(890, 577);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridCustom1)).EndInit();
-            this.ResumeLayout(false);
+			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
+			this.musicInfo = new MainApp.Collection.MusicInfoControl();
+			this.buttonAdd = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// dataGridViewAll
+			// 
+			this.dataGridViewAll.ColumnHeadersHeight = 34;
+			this.dataGridViewAll.Location = new System.Drawing.Point(0, 0);
+			this.dataGridViewAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.dataGridViewAll.Name = "dataGridViewAll";
+			this.dataGridViewAll.RowHeadersWidth = 62;
+			this.dataGridViewAll.Size = new System.Drawing.Size(1040, 888);
+			this.dataGridViewAll.TabIndex = 0;
+			this.dataGridViewAll.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			// 
+			// musicInfo
+			// 
+			this.musicInfo.Location = new System.Drawing.Point(1048, 5);
+			this.musicInfo.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+			this.musicInfo.Name = "musicInfo";
+			this.musicInfo.Size = new System.Drawing.Size(243, 275);
+			this.musicInfo.TabIndex = 1;
+			// 
+			// buttonAdd
+			// 
+			this.buttonAdd.Location = new System.Drawing.Point(1048, 292);
+			this.buttonAdd.Name = "buttonAdd";
+			this.buttonAdd.Size = new System.Drawing.Size(92, 43);
+			this.buttonAdd.TabIndex = 2;
+			this.buttonAdd.Text = "Add";
+			this.buttonAdd.UseVisualStyleBackColor = true;
+			this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
+			// 
+			// MusicControl
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.buttonAdd);
+			this.Controls.Add(this.musicInfo);
+			this.Controls.Add(this.dataGridViewAll);
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.Name = "MusicControl";
+			this.Size = new System.Drawing.Size(1335, 888);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();
+			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private DataGridCustom dataGridCustom1;
-		private AddMusicCollectionControl addMusicCollection1;
+		private DataGridView dataGridViewAll;
+		private MusicInfoControl musicInfo;
+		private Button buttonAdd;
 	}
 }
