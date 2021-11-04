@@ -1,6 +1,15 @@
 # MainApp
 
-![Alt text](Readme/GameTab.png?raw=true "Title")
-![Alt text](Readme/MoviesTab.png?raw=true "Title")
-![Alt text](Readme/MusicTab.png?raw=true "Title")
-![Alt text](Readme/StatsTab.png?raw=true "Title")
+The app made and use to store all my data.
+
+### Tracking of games played data.
+![GameTab](Readme/GameTab.png?raw=true "GameTab")
+
+### Tracking movies watched.
+![MoviesTab](Readme/MoviesTab.png?raw=true "MoviesTab")
+
+### Albums I listen to.
+![MusicTab](Readme/MusicTab.png?raw=true "MusicTab")
+
+### All kinds of stats I visualise form the data, like how many hours per month I spend at a certain activity.
+![StatsTab](Readme/StatsTab.png?raw=true "StatsTab")
