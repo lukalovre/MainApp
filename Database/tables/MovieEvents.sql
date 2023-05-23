@@ -5,8 +5,8 @@ CREATE TABLE [dbo].[MovieEvents] (
    [Date] [datetime] NULL,
    [Rating] [int] NULL,
    [Comment] [nvarchar](max) NULL,
-   [WatchedInCinema] [bit] NOT NULL,
-   [EminaWatched] [bit] NULL
+   [People] [nvarchar](max) NULL,
+   [Platform] [nvarchar](25) NULL
 
    ,CONSTRAINT [PK_MovieEvents] PRIMARY KEY CLUSTERED ([ID])
 )

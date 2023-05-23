@@ -2,6 +2,7 @@
 using Controller.Extensions;
 using Model.Collection;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MainApp.Collection.Games
@@ -32,7 +33,6 @@ namespace MainApp.Collection.Games
 			textBoxEdition.Text = game.Edition;
 			checkBoxExpansion.Checked = game.Expansion;
 			checkBoxNew.Checked = game.New;
-			checkBoxPlanToPlay.Checked = Following.FollowingModel.GamesCollection.Contains(m_game.ID.ToString());
 		}
 
 		internal Game GetItem()
@@ -60,16 +60,16 @@ namespace MainApp.Collection.Games
 		{
 			base.OnLoad(e);
 
+			if (DesignMode)
+			{
+				return;
+			}
+
 			numericUpDownYear.Value = DateTime.Today.Year;
 
-			comboBoxPlatform.Items.AddRange(Database.GetDropdownValues(@"SELECT DISTINCT Platform FROM [Main].[Collection].[Games]"));
-			comboBoxClient.Items.AddRange(Database.GetDropdownValues(@"SELECT DISTINCT Client FROM [Main].[Collection].[Games]"));
-			comboBoxOwner.Items.AddRange(Database.GetDropdownValues(@"SELECT DISTINCT Owner FROM [Main].[Collection].[Games]"));
-		}
-
-		private void CheckBoxPlanToPlay_CheckedChanged(object sender, EventArgs e)
-		{
-			Following.Update(checkBoxPlanToPlay.Checked, Following.FollowingModel.GamesCollection, m_game.ID.ToString());
+			comboBoxPlatform.Items.AddRange(Controller.Games.GetPlatforms());
+			comboBoxClient.Items.AddRange(Controller.Games.GetClients());
+			comboBoxOwner.Items.AddRange(Datasource.GetList<Game>().Where(o => o.Owner != null).Select(o => o.Owner).Distinct().ToArray());
 		}
 	}
 }

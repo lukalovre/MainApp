@@ -1,18 +1,30 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace Controller
 {
 	public static class CsvHelper
 	{
-		public static List<T> GetFromList<T>(string listFolderPath, string listName)
+		public static string Create(List<int> people)
 		{
-			var result = new List<T>();
+			return string.Join(",", people);
+		}
 
+		public static List<string> Get(string csv)
+		{
+			return csv.Split(',').ToList();
+		}
+
+		public static List<T> GetFromList<T>(string listFolderPath, string listName, out DateTime updatedDate)
+		{
 			var listPath = Path.Combine(listFolderPath, $"{listName}.csv");
+			updatedDate = File.GetLastWriteTime(listPath);
+
 			var text = File.ReadAllText(listPath);
 			var reader = new StringReader(text);
 
@@ -24,10 +36,8 @@ namespace Controller
 
 			using (var csv = new CsvReader(reader, config))
 			{
-				result.AddRange(csv.GetRecords<T>());
+				return csv.GetRecords<T>().ToList();
 			}
-
-			return result;
 		}
 	}
 }

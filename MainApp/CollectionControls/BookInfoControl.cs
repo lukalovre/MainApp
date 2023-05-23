@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Model.Collection;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MainApp.Collection.Books
@@ -12,6 +13,18 @@ namespace MainApp.Collection.Books
 		public BookInfoControl()
 		{
 			InitializeComponent();
+		}
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			if (DesignMode)
+			{
+				return;
+			}
+
+			comboBoxType.Items.AddRange(Datasource.GetList<Book>().Where(o => o.Type != null).Select(o => o.Type).Distinct().ToArray());
 		}
 
 		public delegate void RefreshGridDelegate();
@@ -27,7 +40,7 @@ namespace MainApp.Collection.Books
 			numericUpDownYear.Value = book.Year == null ? 0 : book.Year.Value;
 			checkBox1001.Checked = book._1001;
 			numericUpDownPages.Value = book.Pages == null ? 0 : book.Pages.Value;
-			textBoxType.Text = book.Type;
+			comboBoxType.Text = book.Type;
 			textBoxGoodreadsID.Text = book.GoodreadsID.ToString();
 			textBoxPrice.Text = book.Price.ToString();
 			textBoxPriceInRSD.Text = book.PriceInRSD.ToString();
@@ -58,7 +71,7 @@ namespace MainApp.Collection.Books
 	? null
 	: (float?)float.Parse(textBoxPriceInRSD.Text),
 				Title = textBoxTitle.Text,
-				Type = textBoxType.Text,
+				Type = comboBoxType.Text,
 				Year = numericUpDownYear.Value == 0
 	? null
 	: (int?)numericUpDownYear.Value,

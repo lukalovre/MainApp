@@ -1,5 +1,8 @@
-﻿namespace Model.dbo
+﻿using Dapper.Contrib.Extensions;
+
+namespace Model.dbo
 {
+	[Table("dbo.ComicEvents")]
 	public class ComicEvent : Event, IGoodreads
 	{
 		public int Chapter { get; set; }

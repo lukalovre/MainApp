@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Controller;
+using Model;
+using Model.dbo;
+using MoreLinq;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,28 +22,90 @@ namespace MainApp.Reports
 		{
 			base.OnLoad(e);
 
-			if(DesignMode)
+			if (DesignMode)
 			{
 				return;
 			}
 
-			CreateChart("Games", Color.LimeGreen);
-			CreateChart("Music", Color.HotPink);
-			CreateChart("Books", Color.IndianRed);
-			CreateChart("Movies", Color.Silver);
-			CreateChart("TVShows", Color.MediumTurquoise);
-			CreateChart("Comics", Color.SteelBlue);
-			CreateChart("MyWorkProgress", Color.DarkKhaki);
-			CreateChart("All", Color.DarkBlue);
-			CreateChart("AllM", Color.DarkGreen);
+			var games = Datasource.GetList<GameEvent>()
+				.Where(o => o.Date.HasValue)
+				.Select(o => new MonthlyReport
+				{
+					Month = o.Date.Value.Year,
+					Time = o.Time
+				}).ToList();
+
+			var musics = Datasource.GetList<Music>();
+			var music = Datasource.GetList<MusicEvent>()
+				.Where(o => o.Date.HasValue)
+				.Select(o => new MonthlyReport
+				{
+					Month = o.Date.Value.Year,
+					Time = musics.FirstOrDefault(m => m.ItemID == o.ItemID).Runtime
+				}).ToList();
+
+			var minuterPerPageBooks = 2;
+			var book = Datasource.GetList<BookEvent>()
+				.Where(o => o.Date.HasValue)
+				.Select(o => new MonthlyReport
+				{
+					Month = o.Date.Value.Year,
+					Time = o.Pages * minuterPerPageBooks
+				}).ToList();
+
+			var movies = Datasource.GetList<Movie>();
+			var movie = Datasource.GetList<MovieEvent>()
+				.Where(o => o.Date.HasValue)
+				.Select(o => new MonthlyReport
+				{
+					Month = o.Date.Value.Year,
+					Time = movies.FirstOrDefault(m => m.Imdb == o.Imdb).Runtime
+				}).ToList();
+
+			var tvShows = Datasource.GetList<TVShowEvent>()
+			  .Where(o => o.Date.HasValue)
+			  .Select(o => new MonthlyReport
+			  {
+				  Month = o.Date.Value.Year,
+				  Time = o.Runtime
+			  }).ToList();
+
+			var minuterPerPageComics = 0.3f;
+			var comics = Datasource.GetList<ComicEvent>()
+				.Where(o => o.Date.HasValue)
+				.Select(o => new MonthlyReport
+				{
+					Month = o.Date.Value.Year,
+					Time = o.Pages * minuterPerPageComics
+				}).ToList();
+
+			var myWorkProgress = Datasource.GetList<MyWorkProgressEvent>()
+				.Where(o => o.Date.HasValue)
+				.Select(o => new MonthlyReport
+				{
+					Month = o.Date.Value.Year,
+					Time = o.Time
+				}).ToList();
+
+			var allWithoutMusic = games.Concat(book).Concat(movie).Concat(tvShows).Concat(comics).Concat(myWorkProgress).ToList();
+			var all = allWithoutMusic.Concat(music).ToList();
+
+			CreateChart("Games", games);
+			CreateChart("Music", music);
+			CreateChart("Books", book);
+			CreateChart("Movies", movie);
+			CreateChart("TV Shows", tvShows);
+			CreateChart("Comics", comics);
+			CreateChart("My work progress", myWorkProgress);
+			//CreateChart("All", all);
+			CreateChart("All (-musik)", allWithoutMusic);
 		}
 
-		private void CreateChart(string category, Color color)
+		private void CreateChart(string category, List<MonthlyReport> monthlyReports)
 		{
 			var series = new Series
 			{
 				ChartArea = "ChartArea",
-				Name = category,
 				IsValueShownAsLabel = true,
 				LabelFormat = "0"
 			};
@@ -83,18 +150,18 @@ namespace MainApp.Reports
 
 			var recordsStart = 2010;
 
-			foreach(var year in Enumerable.Range(recordsStart, DateTime.Now.Year - recordsStart + 1))
+			foreach (var year in Enumerable.Range(recordsStart, DateTime.Now.Year - recordsStart + 1))
 			{
-				var yearTime = Controller.Database.Query<float>($"EXEC Reports.[Yearly {category}] @Year = {year}").FirstOrDefault();
+				var yearTime = monthlyReports.Where(o => o.Month == year).Sum(o => o.Time) / 60f;
 				var index = series.Points.AddXY(year, yearTime);
 
-				if(yearTime > chart.ChartAreas[0].AxisY.Maximum)
+				if (yearTime > chart.ChartAreas[0].AxisY.Maximum)
 				{
 					chart.ChartAreas[0].AxisY.Maximum = yearTime;
 				}
 
 				series.Points[index].AxisLabel = year.ToString().Substring("20".Length);
-				series.Points[index].Color = color;
+				series.Points[index].Color = ChartColors.GetColor(category);
 				series.Points[index].ToolTip = string.Format("{0:0}", yearTime);
 			}
 

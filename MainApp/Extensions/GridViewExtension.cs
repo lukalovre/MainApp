@@ -19,14 +19,6 @@ namespace MainApp
 			return dataGridView.Rows[rowIndex].DataBoundItem as T;
 		}
 
-		public static T GetSelected<T>(this TabControl tabControl) where T : class
-		{
-			return (tabControl.SelectedTab.Controls
-				.Cast<Control>()
-				.FirstOrDefault(x => x is DataGridView) as DataGridView)
-				.GetSelected<T>();
-		}
-
 		public static void SelectLastRow(this DataGridView dataGridView)
 		{
 			if (dataGridView.RowCount > 0)
@@ -114,10 +106,15 @@ namespace MainApp
 			}
 		}
 
-		internal static void SetGrid(this DataGridView dataGridView)
+		internal static void SetGrid(this DataGridView dataGridView, bool setLocation = true)
 		{
-			dataGridView.Width = 500;
-			dataGridView.Height = 610;
+			if (setLocation)
+			{
+				dataGridView.Width = 500;
+				dataGridView.Height = 610;
+				dataGridView.Location = new Point(0, 0);
+			}
+
 			dataGridView.MultiSelect = true;
 			dataGridView.RowHeadersWidth = 25;
 			dataGridView.AutoGenerateColumns = false;

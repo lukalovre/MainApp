@@ -21,6 +21,11 @@ namespace MainApp.StatsControls
 		{
 			base.OnLoad(e);
 
+			if (DesignMode)
+			{
+				return;
+			}
+
 			chart1.Series.Clear();
 
 			chart1.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
@@ -37,22 +42,22 @@ namespace MainApp.StatsControls
 			{
 				new ChartData{
 					Name = "Games",
-					Value = Database.GetList<Game>().Count},
+					Value = Datasource.GetList<Game>().Count},
 				new ChartData{
 					Name = "Albums",
-					Value = Database.GetList<Music>().Count},
+					Value = Datasource.GetList<Music>().Count},
 				new ChartData{
 					Name = "Books",
-					Value = Database.GetList<Book>().Count},
+					Value = Datasource.GetList<Book>().Count},
 				new ChartData{
 					Name = "Movies",
-					Value = Database.GetList<Movie>().Count},
+					Value = Datasource.GetList<Movie>().Count},
 				new ChartData{
 					Name = "TV Shows",
-					Value = Database.GetList<TVShow>().Count},
+					Value = Datasource.GetList<TVShow>().Count},
 				new ChartData{
 					Name = "Comics",
-					Value = Database.GetList<Comic>().Count}};
+					Value = Datasource.GetList<Comic>().Count}};
 
 			chartData = chartData.SortByValue();
 
@@ -63,9 +68,10 @@ namespace MainApp.StatsControls
 				var index = series.Points.AddXY(i, time);
 				series.Points[index].AxisLabel = data.Name;
 				series.Points[index].Color = ChartColors.GetColor(data.Name);
+				series.Points[index].ToolTip = string.Format("{0:0}", time);
 			}
 
-			chart1.ChartAreas.FirstOrDefault().RecalculateAxesScale();
+			chart1.ChartAreas[0].AxisY.Maximum = 2000;
 		}
 	}
 }

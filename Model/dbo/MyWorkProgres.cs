@@ -2,6 +2,7 @@
 
 namespace Model.dbo
 {
+	[Table("dbo.MyWorkProgress")]
 	public class MyWorkProgres
 	{
 		[Key]

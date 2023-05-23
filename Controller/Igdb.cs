@@ -44,6 +44,7 @@ namespace Controller
 		private static List<int> m_1001Igdb;
 		private static IGDBClient m_api;
 		private static Dictionary<IgdbListItem, int> m_gotyGames;
+		private static List<int> m_OwnedIgdb;
 
 		public static Game1001 ConvertToGame1001(IgdbListItem igdb)
 		{
@@ -57,22 +58,8 @@ namespace Controller
 				Igdb = igdb.id,
 				Title = igdb.game,
 				Year = Convert.ToInt32(year),
-				_1001 = Is1001(igdb.id)
-			};
-		}
-
-		public static GameDaysAgo ConvertToGameDaysAgo(Model.dbo.Game game, IEnumerable<Model.dbo.GameEvent> gameEvents)
-		{
-			var daysAgo = (int)(DateTime.Now - gameEvents.Max(o => o.Date).Value).TotalDays;
-
-			return new GameDaysAgo
-			{
-				ID = game.ID,
-				Igdb = game.Igdb,
-				Platform = game.Platform,
-				Title = game.Title,
-				Year = game.Year,
-				DaysAgo = daysAgo
+				_1001 = Is1001(igdb.id),
+				Owned = IsOwned(igdb.id)
 			};
 		}
 
@@ -86,62 +73,41 @@ namespace Controller
 				Title = game1001.Title,
 				Year = game1001.Year,
 				_1001 = game1001._1001,
+				Owned = game1001.Owned,
 				GOTY = goty
 			};
 		}
 
 		public static int Get1001Count()
 		{
-			var allGames = Database.GetList<Model.dbo.Game>();
+			var allGames = Datasource.GetList<Model.dbo.Game>();
 			return allGames
 				.Select(o => o.Igdb)
 				.Distinct() // This is needed for 1001 games played on different platforms (Fallout 3 on PC and PS3)
 				.Count(o => Is1001(o));
 		}
 
-		public static async Task<Model.dbo.Game> GetDataFromAPIAsync(string igdbUrl)
+		public static async Task<Model.dbo.Game> GetDataFromAPIAsync(string igdbUrl, bool downloadPoster = true)
 		{
 			m_api = GetApiClient();
 
 			var games = await m_api.QueryAsync<Game>(IGDBClient.Endpoints.Games, $"fields name, url, summary, first_release_date, id, involved_companies, cover.image_id; where url = \"{igdbUrl.Trim()}\";");
 			var game = games.FirstOrDefault();
 
-			var imageId = game.Cover.Value.ImageId;
+			if (downloadPoster)
+			{
+				var imageId = game.Cover.Value.ImageId;
+				var coverUrl = $"https://images.igdb.com/igdb/image/upload/t_cover_big/{imageId}.jpg";
+				var destinationFile = Path.Combine(Paths.GameCovers, $"{game.Id.Value}");
 
-			var coverUrl = $"https://images.igdb.com/igdb/image/upload/t_cover_big/{imageId}.jpg";
-			var destinationFile = Path.Combine(Paths.GameCovers, $"{game.Id.Value}.png");
+				Web.DownloadPNG(coverUrl, destinationFile);
+			}
 
-			Web.Download(coverUrl, destinationFile);
 			return new Model.dbo.Game
 			{
 				Igdb = (int)game.Id.Value,
 				Title = game.Name,
 				Year = game.FirstReleaseDate.Value.Year
-			};
-		}
-
-		public static async Task<Model.dbo.Game> GetDataFromAPIAsync(int igdb)
-		{
-			m_api = GetApiClient();
-
-			var games = await m_api.QueryAsync<Game>(IGDBClient.Endpoints.Games, $"fields name, url, summary, first_release_date, id, involved_companies, cover.image_id; where id = {igdb};");
-			var game = games.FirstOrDefault();
-
-			if (game.Cover == null)
-			{
-				return null;
-			}
-
-			var imageId = game.Cover.Value.ImageId;
-
-			var coverUrl = $"https://images.igdb.com/igdb/image/upload/t_cover_big/{imageId}.jpg";
-			var destinationFile = Path.Combine(Paths.GameCovers, $"{game.Id.Value}.png");
-
-			Web.Download(coverUrl, destinationFile);
-			return new Model.dbo.Game
-			{
-				Igdb = (int)game.Id.Value,
-				Title = game.Name
 			};
 		}
 
@@ -157,7 +123,7 @@ namespace Controller
 			{
 				var listName = Path.GetFileNameWithoutExtension(file);
 
-				var listItems = CsvHelper.GetFromList<IgdbListItem>(folderPath, listName);
+				var listItems = CsvHelper.GetFromList<IgdbListItem>(folderPath, listName, out _);
 
 				foreach (var item in listItems)
 				{
@@ -186,6 +152,16 @@ namespace Controller
 			return ordered.Keys.ToList();
 		}
 
+		public static async Task<string> GetUrlFromAPIAsync(int igdbID)
+		{
+			m_api = GetApiClient();
+
+			var games = await m_api.QueryAsync<Game>(IGDBClient.Endpoints.Games, $"fields name, url, summary, first_release_date, id, involved_companies, cover.image_id; where id = {igdbID};");
+			var game = games.FirstOrDefault();
+
+			return game.Url;
+		}
+
 		public static string GetYear(string str)
 		{
 			return Regex.Match(str, @"\d{4}").Value;
@@ -196,11 +172,22 @@ namespace Controller
 			return Get1001().Contains(igdb) || AlternativeVersions.Values.Contains(igdb);
 		}
 
+		public static bool IsOwned(int igdb)
+		{
+			return GetOwned().Contains(igdb);
+		}
+
+		public static async void OpenLink(Game1001 listItem)
+		{
+			var url = await GetUrlFromAPIAsync(listItem.Igdb);
+			Web.OpenLink(url);
+		}
+
 		private static List<int> Get1001()
 		{
 			if (m_1001Igdb == null)
 			{
-				m_1001Igdb = CsvHelper.GetFromList<IgdbListItem>(Paths.Igdb, "1001-video-games-you-must-play-before-you-die")
+				m_1001Igdb = CsvHelper.GetFromList<IgdbListItem>(Paths.Igdb, "1001-video-games-you-must-play-before-you-die", out _)
 				.Select(o => o.id)
 				.ToList();
 			}
@@ -221,6 +208,16 @@ namespace Controller
 			var clientSecret = lines[1];
 
 			return new IGDBClient(clientId, clientSecret);
+		}
+
+		private static List<int> GetOwned()
+		{
+			if (m_OwnedIgdb == null)
+			{
+				m_OwnedIgdb = Datasource.GetList<Model.Collection.Game>().Select(o => o.Igdb).ToList();
+			}
+
+			return m_OwnedIgdb;
 		}
 	}
 }

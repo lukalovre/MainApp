@@ -3,6 +3,7 @@ using System;
 
 namespace Model.dbo
 {
+	[Table("dbo.MyWorks")]
 	public class MyWork
 	{
 		public string Collaborators { get; set; }

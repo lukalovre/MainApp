@@ -12,7 +12,7 @@ namespace Controller
 		{
 			get
 			{
-				if(s_following == null)
+				if (s_following == null)
 				{
 					s_following = Load();
 				}
@@ -23,9 +23,9 @@ namespace Controller
 
 		public static void Update(bool @checked, List<string> property, string id)
 		{
-			if(@checked)
+			if (@checked)
 			{
-				if(!property.Contains(id))
+				if (!property.Contains(id))
 				{
 					property.Add(id);
 				}

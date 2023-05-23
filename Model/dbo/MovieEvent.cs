@@ -1,11 +1,13 @@
-﻿namespace Model.dbo
+﻿using Dapper.Contrib.Extensions;
+
+namespace Model.dbo
 {
+	[Table("dbo.MovieEvents")]
 	public class MovieEvent : Event, IImdb
 	{
-		public bool EminaWatched { get; set; }
-
 		public string Imdb { get; set; }
 
-		public bool WatchedInCinema { get; set; }
+		public string People { get; set; }
+		public string Platform { get; set; }
 	}
 }

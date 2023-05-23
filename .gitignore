@@ -263,8 +263,7 @@ __pycache__/
 # Main App
 /Keys
 /Temp
-/Database/data
+/Resources/JsonData
 /Resources/Albums
-/Resources/GameCovers
 /Resources/Posters
-/Resources/Following.json
+/Resources/Stats

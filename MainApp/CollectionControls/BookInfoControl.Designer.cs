@@ -36,7 +36,6 @@
 			this.numericUpDownYear = new System.Windows.Forms.NumericUpDown();
 			this.checkBox1001 = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBoxType = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.textBoxGoodreadsID = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
 			this.checkBoxPlanToRead = new System.Windows.Forms.CheckBox();
 			this.numericUpDownPages = new System.Windows.Forms.NumericUpDown();
 			this.label8 = new System.Windows.Forms.Label();
+			this.comboBoxType = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownPages)).BeginInit();
 			this.SuspendLayout();
@@ -129,14 +129,6 @@
 			this.label4.Size = new System.Drawing.Size(43, 20);
 			this.label4.TabIndex = 7;
 			this.label4.Text = "Type";
-			// 
-			// textBoxType
-			// 
-			this.textBoxType.Location = new System.Drawing.Point(3, 162);
-			this.textBoxType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.textBoxType.Name = "textBoxType";
-			this.textBoxType.Size = new System.Drawing.Size(98, 26);
-			this.textBoxType.TabIndex = 8;
 			// 
 			// label5
 			// 
@@ -227,10 +219,19 @@
 			this.label8.TabIndex = 18;
 			this.label8.Text = "Pages";
 			// 
+			// comboBoxType
+			// 
+			this.comboBoxType.FormattingEnabled = true;
+			this.comboBoxType.Location = new System.Drawing.Point(6, 159);
+			this.comboBoxType.Name = "comboBoxType";
+			this.comboBoxType.Size = new System.Drawing.Size(96, 28);
+			this.comboBoxType.TabIndex = 19;
+			// 
 			// BookInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.comboBoxType);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.numericUpDownPages);
 			this.Controls.Add(this.checkBoxPlanToRead);
@@ -240,7 +241,6 @@
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.textBoxGoodreadsID);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.textBoxType);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.checkBox1001);
 			this.Controls.Add(this.numericUpDownYear);
@@ -269,7 +269,6 @@
 		private System.Windows.Forms.NumericUpDown numericUpDownYear;
 		private System.Windows.Forms.CheckBox checkBox1001;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox textBoxType;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox textBoxGoodreadsID;
 		private System.Windows.Forms.Label label6;
@@ -279,5 +278,6 @@
 		private System.Windows.Forms.CheckBox checkBoxPlanToRead;
         private System.Windows.Forms.NumericUpDown numericUpDownPages;
         private System.Windows.Forms.Label label8;
-    }
+		private System.Windows.Forms.ComboBox comboBoxType;
+	}
 }

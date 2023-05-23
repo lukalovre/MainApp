@@ -1,8 +1,8 @@
 ﻿using Controller;
+using Model.Collection;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Model.Collection;
 
 namespace MainApp.Collection
 {
@@ -25,7 +25,7 @@ namespace MainApp.Collection
 				return;
 			}
 
-			m_musics = Database.GetList<Music>();
+			m_musics = Datasource.GetList<Music>();
 
 			m_bindingList = new SortableBindingList<Music>(m_musics);
 
@@ -41,7 +41,7 @@ namespace MainApp.Collection
 			var item = musicInfo.GetItem();
 			item.Date = DateTime.Now;
 
-			Database.Add(item);
+			Datasource.Add(item);
 			m_bindingList.Add(item);
 			dataGridViewAll.SelectLastRow();
 		}

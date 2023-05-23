@@ -8,8 +8,10 @@ CREATE TABLE [Collection].[Movies] (
    [Format] [nvarchar](25) NULL,
    [Region] [int] NULL,
    [Price] [float] NULL,
-   [Price in RSD] [float] NULL,
-   [Date buy] [datetime] NULL
+   [PriceInRSD] [float] NULL,
+   [Date] [datetime] NULL,
+   [Imdb] [nvarchar](255) NULL,
+   [Comment] [nvarchar](255) NULL
 
    ,CONSTRAINT [PK_Movies_1] PRIMARY KEY CLUSTERED ([ID])
 )

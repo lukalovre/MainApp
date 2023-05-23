@@ -1,14 +1,13 @@
-﻿using Controller.Properties;
-using Dapper.Contrib.Extensions;
+﻿using HtmlAgilityPack;
 using Model.dbo;
 using Model.Grid;
 using Newtonsoft.Json;
 using SpotifyAPI.Web;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net;
 
 namespace Controller
 {
@@ -28,75 +27,107 @@ namespace Controller
 			};
 		}
 
-		public static void FindAlbum(Music music)
+		//public static void FindAlbum(Music music)
+		//{
+		//    var destinationFile = Path.Combine(Paths.Albums, $"{music.ItemID}.png");
+
+		//    if (File.Exists(destinationFile) && music.SpotifyID != null)
+		//    {
+		//        return;
+		//    }
+
+		//    var spotify = GetSpotifyClient();
+
+		//    var albumSearchList = spotify.Search.Item(new SearchRequest(SearchRequest.Types.Album, music.Title)).Result;
+
+		//    SimpleAlbum foundAlbum = null;
+
+		//    foreach (var albumInfo in albumSearchList.Albums.Items)
+		//    {
+		//        DateTime.TryParse(albumInfo.ReleaseDate, out var date);
+
+		//        if (albumInfo.Artists.Any(o => o.Name == music.Artist)
+		//            &&
+		//            (albumInfo.ReleaseDate == music.Year.ToString()
+		//            || date.Year == music.Year))
+		//        {
+		//            foundAlbum = albumInfo;
+		//            break;
+		//        }
+		//    }
+
+		//    if (foundAlbum != null)
+		//    {
+		//        Web.Download(foundAlbum.Images.FirstOrDefault().Url, destinationFile);
+
+		//        music.SpotifyID = foundAlbum.Id;
+
+		//        using (var sqlConnection = new SqlConnection(Resources.MainConnectionString))
+		//        {
+		//            sqlConnection.Open();
+		//            sqlConnection.Update(music);
+		//        }
+		//    }
+		//    else
+		//    {
+		//    }
+		//}
+
+		public static Music GetAlbumInfoBandcamp(string url)
 		{
-			var destinationFile = Path.Combine(Paths.Albums, $"{music.ItemID}.png");
-
-			if (File.Exists(destinationFile) && music.SpotifyID != null)
+			using (var client = new WebClient())
 			{
-				return;
-			}
+				var content = client.DownloadData(url);
 
-			var spotify = GetSpotifyClient();
-
-			var albumSearchList = spotify.Search.Item(new SearchRequest(SearchRequest.Types.Album, music.Title)).Result;
-
-			SimpleAlbum foundAlbum = null;
-
-			foreach (var albumInfo in albumSearchList.Albums.Items)
-			{
-				DateTime.TryParse(albumInfo.ReleaseDate, out var date);
-
-				if (albumInfo.Artists.Any(o => o.Name == music.Artist)
-					&&
-					(albumInfo.ReleaseDate == music.Year.ToString()
-					|| date.Year == music.Year))
+				using (var stream = new MemoryStream(content))
 				{
-					foundAlbum = albumInfo;
-					break;
+					var text = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+					var htmlDocument = new HtmlDocument();
+					htmlDocument.LoadHtml(text);
+
+					var title = htmlDocument.DocumentNode.SelectSingleNode("//meta[@property='og:title']").Attributes["content"].Value.Split(new string[] { ", by" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault().Trim();
+					var artist = htmlDocument.DocumentNode.SelectSingleNode("//meta[@property='og:title']").Attributes["content"].Value.Split(new string[] { ", by" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault().Trim();
+
+					var year = Convert.ToInt32(Igdb.GetYear(htmlDocument.DocumentNode.SelectSingleNode("//div[@class='tralbumData tralbum-credits']").InnerText.Trim()));
+					var bandcampLink = htmlDocument.DocumentNode.SelectSingleNode("//meta[@property='og:url']").Attributes["content"].Value.Trim();
+
+					var totalMinutes = 0;
+					var totalSeconds = 0;
+
+					foreach (var item in htmlDocument.DocumentNode.SelectNodes("//span[contains(@class, 'time secondaryText')]"))
+					{
+						var timeString = item.InnerText.Trim();
+						var split = timeString.Split(':');
+
+						if (split.Count() != 2)
+						{
+							continue;
+						}
+
+						var minutes = Convert.ToInt32(split[0]);
+						var seconds = Convert.ToInt32(split[1]);
+
+						totalMinutes += minutes;
+						totalSeconds += seconds;
+					}
+
+					var runtime = totalMinutes + (int)Math.Round(totalSeconds / 60f, MidpointRounding.AwayFromZero);
+
+					var destinationFile = Paths.TempAlbumCover;
+					File.Delete($"{destinationFile}.png");
+					Web.DownloadPNG(htmlDocument.DocumentNode.SelectSingleNode("//a[@class='popupImage']").Attributes["href"].Value.Trim(), destinationFile);
+
+					return new Music
+					{
+						Artist = artist,
+						Title = title,
+						Year = year,
+						_1001 = false,
+						Runtime = runtime,
+						SpotifyID = bandcampLink
+					};
 				}
 			}
-
-			if (foundAlbum != null)
-			{
-				Web.Download(foundAlbum.Images.FirstOrDefault().Url, destinationFile);
-
-				music.SpotifyID = foundAlbum.Id;
-
-				using (var sqlConnection = new SqlConnection(Resources.MainConnectionString))
-				{
-					sqlConnection.Open();
-					sqlConnection.Update(music);
-				}
-			}
-			else
-			{
-			}
-		}
-
-		public static Music GetAlbumInfoBandcamp(string text)
-		{
-			var split = text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-			var title = split.FirstOrDefault();
-			var year = DateTime.Now.Year;
-
-			var split2 = split.LastOrDefault().Split(new string[] { "by", "Total runtime:" }, StringSplitOptions.RemoveEmptyEntries);
-			var artist = split2.FirstOrDefault();
-
-			var timeSpan = TimeSpan.Parse(split2.LastOrDefault());
-
-			var runtime = (int)timeSpan.TotalMinutes;
-
-			return new Music
-			{
-				Artist = artist,
-				Title = title,
-				Year = year,
-				_1001 = false,
-				Runtime = runtime,
-				SpotifyID = null
-			};
 		}
 
 		public static Music GetAlbumInfoSpotify(string albumID)
@@ -109,9 +140,9 @@ namespace Controller
 
 			var destinationFile = Paths.TempAlbumCover;
 
-			File.Delete(destinationFile);
+			File.Delete($"{destinationFile}.png");
 
-			Web.Download(album.Images.FirstOrDefault().Url, destinationFile);
+			Web.DownloadPNG(album.Images.FirstOrDefault().Url, destinationFile);
 
 			return new Music
 			{

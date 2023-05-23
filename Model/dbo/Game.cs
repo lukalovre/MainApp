@@ -1,5 +1,8 @@
-﻿namespace Model.dbo
+﻿using Dapper.Contrib.Extensions;
+
+namespace Model.dbo
 {
+	[Table("dbo.Games")]
 	public class Game : Item
 	{
 		public int Igdb { get; set; }

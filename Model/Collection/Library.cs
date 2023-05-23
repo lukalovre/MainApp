@@ -9,7 +9,7 @@ namespace Model.Collection
 		[Key]
 		public int ID { get; set; }
 
-		public string ItemID { get; set; }
+		public int ItemID { get; set; }
 
 		public DateTime LentDate { get; set; }
 		public string LentTo { get; set; }

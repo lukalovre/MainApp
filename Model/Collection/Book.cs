@@ -4,7 +4,7 @@ using System;
 namespace Model.Collection
 {
 	[Table("Collection.Books")]
-	public class Book
+	public class Book : ICollection
 	{
 		public bool _1001 { get; set; }
 		public string Author { get; set; }

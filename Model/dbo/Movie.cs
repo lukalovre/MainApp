@@ -1,5 +1,8 @@
-﻿namespace Model.dbo
+﻿using Dapper.Contrib.Extensions;
+
+namespace Model.dbo
 {
+	[Table("dbo.Movies")]
 	public class Movie : Item, IImdb
 	{
 		public string Actors { get; set; }

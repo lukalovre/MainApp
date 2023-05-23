@@ -34,8 +34,8 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBoxType = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBoxLentTo = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.comboBoxLentTo = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// textBoxItemID
@@ -89,14 +89,6 @@
 			this.label3.TabIndex = 5;
 			this.label3.Text = "Type";
 			// 
-			// textBoxLentTo
-			// 
-			this.textBoxLentTo.Location = new System.Drawing.Point(4, 114);
-			this.textBoxLentTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.textBoxLentTo.Name = "textBoxLentTo";
-			this.textBoxLentTo.Size = new System.Drawing.Size(112, 26);
-			this.textBoxLentTo.TabIndex = 6;
-			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
@@ -106,12 +98,20 @@
 			this.label4.TabIndex = 7;
 			this.label4.Text = "Lent to";
 			// 
+			// comboBoxLentTo
+			// 
+			this.comboBoxLentTo.FormattingEnabled = true;
+			this.comboBoxLentTo.Location = new System.Drawing.Point(4, 116);
+			this.comboBoxLentTo.Name = "comboBoxLentTo";
+			this.comboBoxLentTo.Size = new System.Drawing.Size(112, 28);
+			this.comboBoxLentTo.TabIndex = 8;
+			// 
 			// LibraryInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.comboBoxLentTo);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.textBoxLentTo);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.textBoxType);
 			this.Controls.Add(this.label2);
@@ -134,7 +134,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBoxType;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBoxLentTo;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.ComboBox comboBoxLentTo;
 	}
 }

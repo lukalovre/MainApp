@@ -37,16 +37,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.2.0.90\lib\net461\Dapper.dll</HintPath>
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="Dapper.Contrib, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.Contrib.2.0.78\lib\net461\Dapper.Contrib.dll</HintPath>
     </Reference>
-    <Reference Include="MoreLinq, Version=3.3.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
-      <HintPath>..\packages\morelinq.3.3.2\lib\net451\MoreLinq.dll</HintPath>
+    <Reference Include="MoreLinq, Version=3.4.1.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.3.4.1\lib\net462\MoreLinq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -109,18 +109,138 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Z.Dapper.Plus, Version=4.0.12.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.Dapper.Plus.4.0.12\lib\net45\Z.Dapper.Plus.dll</HintPath>
+    <Reference Include="Z.Dapper.Plus, Version=5.0.0.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.Dapper.Plus.5.0.0\lib\net45\Z.Dapper.Plus.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\TabControlExtension.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="ImdbListControl.cs">
+    <Compile Include="CollectionControls\MovieInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ImdbListControl.Designer.cs">
+    <Compile Include="CollectionControls\MovieInfoControl.Designer.cs">
+      <DependentUpon>MovieInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionControls\MoviesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionControls\MoviesControl.Designer.cs">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControls\EventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommonControls\EventControl.Designer.cs">
+      <DependentUpon>EventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControls\IgdbListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommonControls\IgdbListControl.Designer.cs">
+      <DependentUpon>IgdbListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControls\PeopleListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommonControls\PeopleListControl.Designer.cs">
+      <DependentUpon>PeopleListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\TabControlExtension.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="CommonControls\ImdbListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommonControls\ImdbListControl.Designer.cs">
       <DependentUpon>ImdbListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListControls\GameListsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListControls\GameListsControl.Designer.cs">
+      <DependentUpon>GameListsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListControls\MovieListsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListControls\MovieListsControl.Designer.cs">
+      <DependentUpon>MovieListsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListControls\TVShowListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListControls\TVShowListControl.Designer.cs">
+      <DependentUpon>TVShowListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\DnD\DnDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\DnD\DnDControl.Designer.cs">
+      <DependentUpon>DnDControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\DnD\DnDInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\DnD\DnDInfoControl.Designer.cs">
+      <DependentUpon>DnDInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\Links\LinkInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\Links\LinkInfoControl.Designer.cs">
+      <DependentUpon>LinkInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\Links\LinksControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\Links\LinksControl.Designer.cs">
+      <DependentUpon>LinksControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\People\PeopleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\People\PeopleControl.Designer.cs">
+      <DependentUpon>PeopleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\People\PersonInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\People\PersonInfoControl.Designer.cs">
+      <DependentUpon>PersonInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\Zoo\ZooControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\Zoo\ZooControl.Designer.cs">
+      <DependentUpon>ZooControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainControls\Zoo\ZooInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControls\Zoo\ZooInfoControl.Designer.cs">
+      <DependentUpon>ZooInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordForm.Designer.cs">
+      <DependentUpon>PasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StatsControls\HelperStats.cs" />
+    <Compile Include="StatsControls\SummaryControls\GameSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\SummaryControls\GameSummaryControl.Designer.cs">
+      <DependentUpon>GameSummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatsControls\SummaryControls\ItemCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\SummaryControls\ItemCard.Designer.cs">
+      <DependentUpon>ItemCard.cs</DependentUpon>
     </Compile>
     <Compile Include="StatsControls\Total.cs">
       <SubType>UserControl</SubType>
@@ -128,22 +248,34 @@
     <Compile Include="StatsControls\Total.Designer.cs">
       <DependentUpon>Total.cs</DependentUpon>
     </Compile>
+    <Compile Include="StatsControls\YearStatsCollectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\YearStatsCollectionControl.Designer.cs">
+      <DependentUpon>YearStatsCollectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatsControls\YearSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatsControls\YearSummary.Designer.cs">
+      <DependentUpon>YearSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="StatsControls\_1001Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="StatsControls\_1001Control.Designer.cs">
       <DependentUpon>_1001Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\BooksControl.cs">
+    <Compile Include="MainControls\Books\BooksControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\BooksControl.Designer.cs">
+    <Compile Include="MainControls\Books\BooksControl.Designer.cs">
       <DependentUpon>BooksControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\BookInfoControl.cs">
+    <Compile Include="MainControls\Books\BookInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\BookInfoControl.Designer.cs">
+    <Compile Include="MainControls\Books\BookInfoControl.Designer.cs">
       <DependentUpon>BookInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CollectionControls\BookInfoControl.cs">
@@ -206,23 +338,23 @@
     <Compile Include="CollectionControls\MusicControl.Designer.cs">
       <DependentUpon>MusicControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\ComicInfoControl.cs">
+    <Compile Include="MainControls\Comics\ComicInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\ComicInfoControl.Designer.cs">
+    <Compile Include="MainControls\Comics\ComicInfoControl.Designer.cs">
       <DependentUpon>ComicInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\ComicsControl.cs">
+    <Compile Include="MainControls\Comics\ComicsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\ComicsControl.Designer.cs">
+    <Compile Include="MainControls\Comics\ComicsControl.Designer.cs">
       <DependentUpon>ComicsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ChartExtensions.cs" />
-    <Compile Include="MainControls\GameInfoControl.cs">
+    <Compile Include="MainControls\Games\GameInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\GameInfoControl.Designer.cs">
+    <Compile Include="MainControls\Games\GameInfoControl.Designer.cs">
       <DependentUpon>GameInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\GridViewExtension.cs" />
@@ -232,34 +364,34 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\GamesControl.cs">
+    <Compile Include="MainControls\Games\GamesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\GamesControl.Designer.cs">
+    <Compile Include="MainControls\Games\GamesControl.Designer.cs">
       <DependentUpon>GamesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\MovieInfoControl.cs">
+    <Compile Include="MainControls\Movies\MovieInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\MovieInfoControl.Designer.cs">
+    <Compile Include="MainControls\Movies\MovieInfoControl.Designer.cs">
       <DependentUpon>MovieInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\MoviesControl.cs">
+    <Compile Include="MainControls\Movies\MoviesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\MoviesControl.Designer.cs">
+    <Compile Include="MainControls\Movies\MoviesControl.Designer.cs">
       <DependentUpon>MoviesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\MusicInfoControl.cs">
+    <Compile Include="MainControls\Music\MusicInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\MusicInfoControl.Designer.cs">
+    <Compile Include="MainControls\Music\MusicInfoControl.Designer.cs">
       <DependentUpon>MusicInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\MusicControl.cs">
+    <Compile Include="MainControls\Music\MusicControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\MusicControl.Designer.cs">
+    <Compile Include="MainControls\Music\MusicControl.Designer.cs">
       <DependentUpon>MusicControl.cs</DependentUpon>
     </Compile>
     <Compile Include="StatsControls\YearStatsControl.cs">
@@ -268,42 +400,42 @@
     <Compile Include="StatsControls\YearStatsControl.Designer.cs">
       <DependentUpon>YearStatsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="StarRatingControl.cs">
+    <Compile Include="CommonControls\StarRatingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="StarRatingControl.Designer.cs">
+    <Compile Include="CommonControls\StarRatingControl.Designer.cs">
       <DependentUpon>StarRatingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\MyWorkProgressInfoControl.cs">
+    <Compile Include="MainControls\MyWorkProgress\MyWorkProgressInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\MyWorkProgressInfoControl.Designer.cs">
+    <Compile Include="MainControls\MyWorkProgress\MyWorkProgressInfoControl.Designer.cs">
       <DependentUpon>MyWorkProgressInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\MyWorkProgressControl.cs">
+    <Compile Include="MainControls\MyWorkProgress\MyWorkProgressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\MyWorkProgressControl.Designer.cs">
+    <Compile Include="MainControls\MyWorkProgress\MyWorkProgressControl.Designer.cs">
       <DependentUpon>MyWorkProgressControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\MyWorkInfoControl.cs">
+    <Compile Include="MainControls\MyWork\MyWorkInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\MyWorkInfoControl.Designer.cs">
+    <Compile Include="MainControls\MyWork\MyWorkInfoControl.Designer.cs">
       <DependentUpon>MyWorkInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\MyWorkControl.cs">
+    <Compile Include="MainControls\MyWork\MyWorkControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\MyWorkControl.Designer.cs">
+    <Compile Include="MainControls\MyWork\MyWorkControl.Designer.cs">
       <DependentUpon>MyWorkControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MainControls\StandupInfoControl.cs">
+    <Compile Include="MainControls\Standup\StandupInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\StandupInfoControl.Designer.cs">
+    <Compile Include="MainControls\Standup\StandupInfoControl.Designer.cs">
       <DependentUpon>StandupInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="StatsControls\MontlyReportsControl.cs">
@@ -318,43 +450,110 @@
     <Compile Include="StatsControls\YearProgressControl.Designer.cs">
       <DependentUpon>YearProgressControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\StandupsControl.cs">
+    <Compile Include="MainControls\Standup\StandupsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\StandupsControl.Designer.cs">
+    <Compile Include="MainControls\Standup\StandupsControl.Designer.cs">
       <DependentUpon>StandupsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\TVShowInfoControl.cs">
+    <Compile Include="MainControls\TVShows\TVShowInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\TVShowInfoControl.Designer.cs">
+    <Compile Include="MainControls\TVShows\TVShowInfoControl.Designer.cs">
       <DependentUpon>TVShowInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainControls\TVShowsControl.cs">
+    <Compile Include="MainControls\TVShows\TVShowsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainControls\TVShowsControl.Designer.cs">
+    <Compile Include="MainControls\TVShows\TVShowsControl.Designer.cs">
       <DependentUpon>TVShowsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="YearFilterControl.cs">
+    <Compile Include="CommonControls\YearFilterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="YearFilterControl.Designer.cs">
+    <Compile Include="CommonControls\YearFilterControl.Designer.cs">
       <DependentUpon>YearFilterControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ImdbListControl.resx">
+    <EmbeddedResource Include="CollectionControls\MovieInfoControl.resx">
+      <DependentUpon>MovieInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionControls\MoviesControl.resx">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonControls\EventControl.resx">
+      <DependentUpon>EventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonControls\IgdbListControl.resx">
+      <DependentUpon>IgdbListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonControls\ImdbListControl.resx">
       <DependentUpon>ImdbListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonControls\PeopleListControl.resx">
+      <DependentUpon>PeopleListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListControls\GameListsControl.resx">
+      <DependentUpon>GameListsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListControls\MovieListsControl.resx">
+      <DependentUpon>MovieListsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListControls\TVShowListControl.resx">
+      <DependentUpon>TVShowListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\DnD\DnDControl.resx">
+      <DependentUpon>DnDControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\DnD\DnDInfoControl.resx">
+      <DependentUpon>DnDInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\Links\LinkInfoControl.resx">
+      <DependentUpon>LinkInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\Links\LinksControl.resx">
+      <DependentUpon>LinksControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\People\PeopleControl.resx">
+      <DependentUpon>PeopleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\People\PersonInfoControl.resx">
+      <DependentUpon>PersonInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\Zoo\ZooControl.resx">
+      <DependentUpon>ZooControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControls\Zoo\ZooInfoControl.resx">
+      <DependentUpon>ZooInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordForm.resx">
+      <DependentUpon>PasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatsControls\SummaryControls\GameSummaryControl.resx">
+      <DependentUpon>GameSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatsControls\SummaryControls\ItemCard.resx">
+      <DependentUpon>ItemCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatsControls\Total.resx">
       <DependentUpon>Total.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StatsControls\YearStatsCollectionControl.resx">
+      <DependentUpon>YearStatsCollectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatsControls\YearSummary.resx">
+      <DependentUpon>YearSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StatsControls\_1001Control.resx">
       <DependentUpon>_1001Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\BooksControl.resx">
+    <EmbeddedResource Include="MainControls\Books\BooksControl.resx">
       <DependentUpon>BooksControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\BookInfoControl.resx">
+    <EmbeddedResource Include="MainControls\Books\BookInfoControl.resx">
       <DependentUpon>BookInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CollectionControls\BookInfoControl.resx">
@@ -387,53 +586,53 @@
     <EmbeddedResource Include="CollectionControls\MusicControl.resx">
       <DependentUpon>MusicControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\ComicInfoControl.resx">
+    <EmbeddedResource Include="MainControls\Comics\ComicInfoControl.resx">
       <DependentUpon>ComicInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\ComicsControl.resx">
+    <EmbeddedResource Include="MainControls\Comics\ComicsControl.resx">
       <DependentUpon>ComicsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\GameInfoControl.resx">
+    <EmbeddedResource Include="MainControls\Games\GameInfoControl.resx">
       <DependentUpon>GameInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\GamesControl.resx">
+    <EmbeddedResource Include="MainControls\Games\GamesControl.resx">
       <DependentUpon>GamesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\MovieInfoControl.resx">
+    <EmbeddedResource Include="MainControls\Movies\MovieInfoControl.resx">
       <DependentUpon>MovieInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\MoviesControl.resx">
+    <EmbeddedResource Include="MainControls\Movies\MoviesControl.resx">
       <DependentUpon>MoviesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\MusicInfoControl.resx">
+    <EmbeddedResource Include="MainControls\Music\MusicInfoControl.resx">
       <DependentUpon>MusicInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\MusicControl.resx">
+    <EmbeddedResource Include="MainControls\Music\MusicControl.resx">
       <DependentUpon>MusicControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\MyWorkProgressInfoControl.resx">
+    <EmbeddedResource Include="MainControls\MyWorkProgress\MyWorkProgressInfoControl.resx">
       <DependentUpon>MyWorkProgressInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\MyWorkProgressControl.resx">
+    <EmbeddedResource Include="MainControls\MyWorkProgress\MyWorkProgressControl.resx">
       <DependentUpon>MyWorkProgressControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\MyWorkInfoControl.resx">
+    <EmbeddedResource Include="MainControls\MyWork\MyWorkInfoControl.resx">
       <DependentUpon>MyWorkInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\MyWorkControl.resx">
+    <EmbeddedResource Include="MainControls\MyWork\MyWorkControl.resx">
       <DependentUpon>MyWorkControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatsControls\YearStatsControl.resx">
       <DependentUpon>YearStatsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\StandupInfoControl.resx">
+    <EmbeddedResource Include="MainControls\Standup\StandupInfoControl.resx">
       <DependentUpon>StandupInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StarRatingControl.resx">
+    <EmbeddedResource Include="CommonControls\StarRatingControl.resx">
       <DependentUpon>StarRatingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatsControls\MontlyReportsControl.resx">
@@ -442,16 +641,16 @@
     <EmbeddedResource Include="StatsControls\YearProgressControl.resx">
       <DependentUpon>YearProgressControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\StandupsControl.resx">
+    <EmbeddedResource Include="MainControls\Standup\StandupsControl.resx">
       <DependentUpon>StandupsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\TVShowInfoControl.resx">
+    <EmbeddedResource Include="MainControls\TVShows\TVShowInfoControl.resx">
       <DependentUpon>TVShowInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainControls\TVShowsControl.resx">
+    <EmbeddedResource Include="MainControls\TVShows\TVShowsControl.resx">
       <DependentUpon>TVShowsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="YearFilterControl.resx">
+    <EmbeddedResource Include="CommonControls\YearFilterControl.resx">
       <DependentUpon>YearFilterControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

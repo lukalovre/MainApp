@@ -20,7 +20,8 @@ namespace Controller
 			{ "Music", Color.HotPink },
 			{ "My work progress", Color.DarkKhaki },
 			{ "My work", Color.DarkKhaki },
-			{ "Year progress", Color.DimGray }
+			{ "Year progress", Color.DimGray },
+			{ "All", Color.YellowGreen}
 		};
 
 		public static Color GetColor(string name)

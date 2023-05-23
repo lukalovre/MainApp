@@ -263,7 +263,6 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "MontlyReports";
 			this.Size = new System.Drawing.Size(1545, 1038);
-			this.Load += new System.EventHandler(this.MonthlyReports_Load);
 			((System.ComponentModel.ISupportInitialize)(this.chartMusic)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.chartGames)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.chartBooks)).EndInit();

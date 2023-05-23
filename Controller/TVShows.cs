@@ -1,23 +1,38 @@
 ﻿using Model.dbo;
+using System;
 using System.Linq;
 
 namespace Controller
 {
 	public class TVShows
 	{
-		public static TVShow GetTVShow(string imdbText)
+		public static TVShow GetTVShow(string url)
 		{
-			string inputImdb = Imdb.GetImdbIDFromUrl(imdbText);
+			string inputImdb = Imdb.GetImdbIDFromUrl(url);
+
+			if (!string.IsNullOrWhiteSpace(url) && string.IsNullOrWhiteSpace(inputImdb))
+			{
+				return GetYoutubeChannel(url);
+			}
 
 			var imdbData = Imdb.GetDataFromAPI(inputImdb);
+
+			var runtime = 0;
+
+			try
+			{
+				runtime = imdbData.Runtime == @"\N" || imdbData.Runtime == @"N/A" ? 0 : int.Parse(imdbData.Runtime.TrimEnd(" min".ToArray()));
+			}
+			catch
+			{
+			}
 
 			return new TVShow
 			{
 				Title = imdbData.Title,
-				Runtime = imdbData.Runtime == @"\N" || imdbData.Runtime == @"N/A" ? 0 : int.Parse(imdbData.Runtime.TrimEnd(" min".ToArray())),
+				Runtime = runtime,
 				Year = int.Parse(imdbData.Year.Split('–').FirstOrDefault()),
 				Imdb = imdbData.imdbID,
-				_1001 = _1001.Is1001(imdbData.imdbID),
 				Actors = imdbData.Actors,
 				Country = imdbData.Country,
 				Director = imdbData.Director,
@@ -29,11 +44,23 @@ namespace Controller
 			};
 		}
 
+		private static TVShow GetYoutubeChannel(string url)
+		{
+			var youtubeData = Links.GetYouTubeChannelNamData(url);
+
+			return new TVShow
+			{
+				Title = youtubeData.Title,
+				Imdb = youtubeData.ID,
+				Year = DateTime.Now.Year,
+				Runtime = 10
+			};
+		}
+
 		public static void OpenHyperlink(Movie movie)
 		{
 			var hyperlink = $"https://www.imdb.com/title/{movie.Imdb}";
-
-			System.Diagnostics.Process.Start(hyperlink);
+			Web.OpenLink(hyperlink);
 		}
 	}
 }

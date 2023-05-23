@@ -43,7 +43,7 @@ namespace MainApp.Reports
 			this.buttonRefresh.TabIndex = 31;
 			this.buttonRefresh.Text = "Refresh";
 			this.buttonRefresh.UseVisualStyleBackColor = true;
-			this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+			this.buttonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
 			// 
 			// chartYearProgress
 			// 
@@ -51,18 +51,18 @@ namespace MainApp.Reports
 			this.chartYearProgress.ChartAreas.Add(chartArea1);
 			this.chartYearProgress.Location = new System.Drawing.Point(4, 48);
 			this.chartYearProgress.Name = "chartYearProgress";
-			this.chartYearProgress.Size = new System.Drawing.Size(1560, 691);
+			this.chartYearProgress.Size = new System.Drawing.Size(1560, 873);
 			this.chartYearProgress.TabIndex = 32;
 			this.chartYearProgress.Text = "chart1";
 			// 
-			// YearProgress
+			// YearProgressControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.chartYearProgress);
 			this.Controls.Add(this.buttonRefresh);
-			this.Name = "YearProgress";
-			this.Size = new System.Drawing.Size(1757, 1117);
+			this.Name = "YearProgressControl";
+			this.Size = new System.Drawing.Size(1717, 1079);
 			((System.ComponentModel.ISupportInitialize)(this.chartYearProgress)).EndInit();
 			this.ResumeLayout(false);
 

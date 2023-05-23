@@ -13,10 +13,24 @@ namespace Controller
 
 			var split = imdbData.Title.Split(':');
 
+			string performer;
+			string title;
+
+			if (split.Count() > 1)
+			{
+				performer = split[0].Trim();
+				title = split[1].Trim();
+			}
+			else
+			{
+				performer = imdbData.Writer;
+				title = imdbData.Title;
+			}
+
 			return new Standup
 			{
-				Performer = split[0].Trim(),
-				Title = split[1].Trim(),
+				Performer = performer,
+				Title = title,
 				Runtime = imdbData.Runtime == @"\N" || imdbData.Runtime == @"N/A" ? 0 : int.Parse(imdbData.Runtime.TrimEnd(" min".ToArray())),
 				Year = int.Parse(imdbData.Year.Split('–').FirstOrDefault()),
 				Imdb = imdbData.imdbID

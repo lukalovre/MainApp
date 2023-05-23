@@ -33,21 +33,18 @@ namespace MainApp.Collection.Games
         {
 			this.labelHLTBtime = new System.Windows.Forms.Label();
 			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
-			this.dataGridViewToPlay = new System.Windows.Forms.DataGridView();
+			this.dataGridViewUnplayed = new System.Windows.Forms.DataGridView();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1001ToPlay = new System.Windows.Forms.TabPage();
-			this.dataGridView1001ToPlay = new System.Windows.Forms.DataGridView();
-			this.tabPagePlanToPlay = new System.Windows.Forms.TabPage();
+			this.tabPageUnplayed = new System.Windows.Forms.TabPage();
 			this.tabPageAll = new System.Windows.Forms.TabPage();
 			this.buttonAdd = new System.Windows.Forms.Button();
-			this.gameInfo = new MainApp.Collection.Games.GameInfoControl();
 			this.textBoxIgdbUrl = new System.Windows.Forms.TextBox();
+			this.gameInfo = new MainApp.Collection.Games.GameInfoControl();
+			this.buttonOpenLink = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewToPlay)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewUnplayed)).BeginInit();
 			this.tabControl1.SuspendLayout();
-			this.tabPage1001ToPlay.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1001ToPlay)).BeginInit();
-			this.tabPagePlanToPlay.SuspendLayout();
+			this.tabPageUnplayed.SuspendLayout();
 			this.tabPageAll.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -72,21 +69,20 @@ namespace MainApp.Collection.Games
 			this.dataGridViewAll.TabIndex = 5;
 			this.dataGridViewAll.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
-			// dataGridViewToPlay
+			// dataGridViewUnplayed
 			// 
-			this.dataGridViewToPlay.ColumnHeadersHeight = 34;
-			this.dataGridViewToPlay.Location = new System.Drawing.Point(4, 5);
-			this.dataGridViewToPlay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.dataGridViewToPlay.Name = "dataGridViewToPlay";
-			this.dataGridViewToPlay.RowHeadersWidth = 62;
-			this.dataGridViewToPlay.Size = new System.Drawing.Size(866, 1146);
-			this.dataGridViewToPlay.TabIndex = 8;
-			this.dataGridViewToPlay.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			this.dataGridViewUnplayed.ColumnHeadersHeight = 34;
+			this.dataGridViewUnplayed.Location = new System.Drawing.Point(4, 5);
+			this.dataGridViewUnplayed.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.dataGridViewUnplayed.Name = "dataGridViewUnplayed";
+			this.dataGridViewUnplayed.RowHeadersWidth = 62;
+			this.dataGridViewUnplayed.Size = new System.Drawing.Size(866, 1146);
+			this.dataGridViewUnplayed.TabIndex = 8;
+			this.dataGridViewUnplayed.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1001ToPlay);
-			this.tabControl1.Controls.Add(this.tabPagePlanToPlay);
+			this.tabControl1.Controls.Add(this.tabPageUnplayed);
 			this.tabControl1.Controls.Add(this.tabPageAll);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -96,39 +92,17 @@ namespace MainApp.Collection.Games
 			this.tabControl1.Size = new System.Drawing.Size(882, 1189);
 			this.tabControl1.TabIndex = 37;
 			// 
-			// tabPage1001ToPlay
+			// tabPageUnplayed
 			// 
-			this.tabPage1001ToPlay.Controls.Add(this.dataGridView1001ToPlay);
-			this.tabPage1001ToPlay.Location = new System.Drawing.Point(4, 29);
-			this.tabPage1001ToPlay.Name = "tabPage1001ToPlay";
-			this.tabPage1001ToPlay.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1001ToPlay.Size = new System.Drawing.Size(874, 1156);
-			this.tabPage1001ToPlay.TabIndex = 2;
-			this.tabPage1001ToPlay.Text = "1001 to play";
-			this.tabPage1001ToPlay.UseVisualStyleBackColor = true;
-			// 
-			// dataGridView1001ToPlay
-			// 
-			this.dataGridView1001ToPlay.ColumnHeadersHeight = 34;
-			this.dataGridView1001ToPlay.Location = new System.Drawing.Point(3, 3);
-			this.dataGridView1001ToPlay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.dataGridView1001ToPlay.Name = "dataGridView1001ToPlay";
-			this.dataGridView1001ToPlay.RowHeadersWidth = 62;
-			this.dataGridView1001ToPlay.Size = new System.Drawing.Size(868, 1150);
-			this.dataGridView1001ToPlay.TabIndex = 9;
-			this.dataGridView1001ToPlay.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
-			// 
-			// tabPagePlanToPlay
-			// 
-			this.tabPagePlanToPlay.Controls.Add(this.dataGridViewToPlay);
-			this.tabPagePlanToPlay.Location = new System.Drawing.Point(4, 29);
-			this.tabPagePlanToPlay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPagePlanToPlay.Name = "tabPagePlanToPlay";
-			this.tabPagePlanToPlay.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPagePlanToPlay.Size = new System.Drawing.Size(874, 1156);
-			this.tabPagePlanToPlay.TabIndex = 0;
-			this.tabPagePlanToPlay.Text = "Other to play";
-			this.tabPagePlanToPlay.UseVisualStyleBackColor = true;
+			this.tabPageUnplayed.Controls.Add(this.dataGridViewUnplayed);
+			this.tabPageUnplayed.Location = new System.Drawing.Point(4, 29);
+			this.tabPageUnplayed.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tabPageUnplayed.Name = "tabPageUnplayed";
+			this.tabPageUnplayed.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tabPageUnplayed.Size = new System.Drawing.Size(874, 1156);
+			this.tabPageUnplayed.TabIndex = 0;
+			this.tabPageUnplayed.Text = "Unplayed";
+			this.tabPageUnplayed.UseVisualStyleBackColor = true;
 			// 
 			// tabPageAll
 			// 
@@ -152,14 +126,6 @@ namespace MainApp.Collection.Games
 			this.buttonAdd.UseVisualStyleBackColor = true;
 			this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
 			// 
-			// gameInfo
-			// 
-			this.gameInfo.Location = new System.Drawing.Point(885, 104);
-			this.gameInfo.Margin = new System.Windows.Forms.Padding(6);
-			this.gameInfo.Name = "gameInfo";
-			this.gameInfo.Size = new System.Drawing.Size(439, 549);
-			this.gameInfo.TabIndex = 36;
-			// 
 			// textBoxIgdbUrl
 			// 
 			this.textBoxIgdbUrl.Location = new System.Drawing.Point(895, 803);
@@ -168,10 +134,29 @@ namespace MainApp.Collection.Games
 			this.textBoxIgdbUrl.TabIndex = 39;
 			this.textBoxIgdbUrl.TextChanged += new System.EventHandler(this.TextBoxIgdbUrl_TextChanged);
 			// 
+			// gameInfo
+			// 
+			this.gameInfo.Location = new System.Drawing.Point(885, 104);
+			this.gameInfo.Margin = new System.Windows.Forms.Padding(6);
+			this.gameInfo.Name = "gameInfo";
+			this.gameInfo.Size = new System.Drawing.Size(439, 549);
+			this.gameInfo.TabIndex = 36;
+			// 
+			// buttonOpenLink
+			// 
+			this.buttonOpenLink.Location = new System.Drawing.Point(1071, 677);
+			this.buttonOpenLink.Name = "buttonOpenLink";
+			this.buttonOpenLink.Size = new System.Drawing.Size(98, 32);
+			this.buttonOpenLink.TabIndex = 40;
+			this.buttonOpenLink.Text = "Open Link";
+			this.buttonOpenLink.UseVisualStyleBackColor = true;
+			this.buttonOpenLink.Click += new System.EventHandler(this.ButtonOpenLink_Click);
+			// 
 			// GamesControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.buttonOpenLink);
 			this.Controls.Add(this.textBoxIgdbUrl);
 			this.Controls.Add(this.buttonAdd);
 			this.Controls.Add(this.tabControl1);
@@ -181,11 +166,9 @@ namespace MainApp.Collection.Games
 			this.Name = "GamesControl";
 			this.Size = new System.Drawing.Size(1408, 1189);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewToPlay)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewUnplayed)).EndInit();
 			this.tabControl1.ResumeLayout(false);
-			this.tabPage1001ToPlay.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1001ToPlay)).EndInit();
-			this.tabPagePlanToPlay.ResumeLayout(false);
+			this.tabPageUnplayed.ResumeLayout(false);
 			this.tabPageAll.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -196,15 +179,14 @@ namespace MainApp.Collection.Games
         #endregion
 
         internal DataGridView dataGridViewAll;
-        private DataGridView dataGridViewToPlay;
+        private DataGridView dataGridViewUnplayed;
         private System.Windows.Forms.Label labelHLTBtime;
         private GameInfoControl gameInfo;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPagePlanToPlay;
-		private System.Windows.Forms.TabPage tabPage1001ToPlay;
-		private DataGridView dataGridView1001ToPlay;
+        private System.Windows.Forms.TabPage tabPageUnplayed;
 		private System.Windows.Forms.TabPage tabPageAll;
 		private Button buttonAdd;
 		private TextBox textBoxIgdbUrl;
-	}
+        private Button buttonOpenLink;
+    }
 }

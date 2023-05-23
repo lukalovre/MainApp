@@ -1,5 +1,8 @@
-﻿namespace Model.dbo
+﻿using Dapper.Contrib.Extensions;
+
+namespace Model.dbo
 {
+	[Table("dbo.Musics")]
 	public class Music : Item, IItemID
 	{
 		public bool _1001 { get; set; }

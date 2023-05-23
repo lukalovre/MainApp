@@ -9,15 +9,6 @@ namespace Controller
 {
 	public class Imdb
 	{
-		public static float Get1001MoviesCount()
-		{
-			var allMovies = Database.GetList<Model.dbo.Movie>();
-			return allMovies
-				.Select(o => o.Imdb)
-				.Count(o => _1001.Is1001(o))
-				+ 2; // Riget, Dekalog
-		}
-
 		public static ImdbData GetDataFromAPI(string imdb, bool savePoster = true)
 		{
 			HttpClient client = new HttpClient
@@ -51,15 +42,13 @@ namespace Controller
 		public static void OpenLink(IImdb imdb)
 		{
 			var hyperlink = $"https://www.imdb.com/title/{imdb.Imdb}/";
-
-			System.Diagnostics.Process.Start(hyperlink);
+			Web.OpenLink(hyperlink);
 		}
 
 		private static void SavePoster(ImdbData imdbData)
 		{
-			var destinationFile = Path.Combine(Paths.Posters, $"{imdbData.imdbID}.png");
-
-			Web.Download(imdbData.Poster, destinationFile);
+			var destinationFile = Path.Combine(Paths.Posters, $"{imdbData.imdbID}");
+			Web.DownloadPNG(imdbData.Poster, destinationFile);
 		}
 	}
 }

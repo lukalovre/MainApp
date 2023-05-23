@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Windows.Forms;
 
 namespace MainApp
@@ -11,17 +12,23 @@ namespace MainApp
 		[STAThread]
 		private static void Main(string[] args)
 		{
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+
+			if (Settings.Instance.Datasource == Settings.eDatasource.Json)
+			{
+				Application.Run(new PasswordForm());
+			}
+
 			try
 			{
-				Controller.Backup.MakeBackup();
+				Backup.MakeBackup();
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message);
+				MessageBox.Show($"{ex.Message}\n\n{ex.StackTrace}");
 			}
 
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new FormMain());
 		}
 	}

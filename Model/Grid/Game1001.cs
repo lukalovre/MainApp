@@ -3,5 +3,6 @@
 	public class Game1001 : dbo.Game
 	{
 		public bool _1001 { get; set; }
+		public bool Owned { get; set; }
 	}
 }

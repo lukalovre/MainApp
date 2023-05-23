@@ -1,4 +1,7 @@
-﻿using Model.Collection;
+﻿using Controller;
+using Model.Collection;
+using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MainApp.Collection
@@ -12,13 +15,25 @@ namespace MainApp.Collection
 			InitializeComponent();
 		}
 
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			if (DesignMode)
+			{
+				return;
+			}
+
+			comboBoxLentTo.Items.AddRange(Datasource.GetList<Library>().Select(o => o.LentTo).Distinct().ToArray());
+		}
+
 		internal void Fill(Library item)
 		{
 			m_item = item;
 
 			textBoxType.Text = item.Type;
-			textBoxItemID.Text = item.ItemID;
-			textBoxLentTo.Text = item.LentTo;
+			textBoxItemID.Text = item.ItemID.ToString();
+			comboBoxLentTo.Text = item.LentTo;
 			textBoxTitle.Text = item.Title;
 		}
 
@@ -26,8 +41,8 @@ namespace MainApp.Collection
 		{
 			return new Library
 			{
-				ItemID = textBoxItemID.Text,
-				LentTo = textBoxLentTo.Text,
+				ItemID = int.Parse(textBoxItemID.Text),
+				LentTo = comboBoxLentTo.Text,
 				Title = textBoxTitle.Text,
 				Type = textBoxType.Text,
 				LentDate = m_item.LentDate,

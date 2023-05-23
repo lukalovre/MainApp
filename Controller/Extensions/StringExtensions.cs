@@ -15,5 +15,19 @@ namespace Controller.Extensions
 				? (float?)null
 				: float.Parse(source);
 		}
+
+		public static string TrimEndLegit(this string source, string trim)
+		{
+			return source.EndsWith(trim)
+				? source.Substring(0, source.Length - trim.Length)
+				: source;
+		}
+
+		public static string TrimStartLegit(this string source, string trim)
+		{
+			return source.StartsWith(trim)
+				? source.Substring(trim.Length, source.Length - trim.Length)
+				: source;
+		}
 	}
 }

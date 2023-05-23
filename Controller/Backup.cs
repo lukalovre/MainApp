@@ -7,7 +7,7 @@ namespace Controller
 	public static class Backup
 	{
 		private static string DailyPath => Path.Combine(PathRoot, "_Daily");
-		private static string PathRoot => Path.Combine(@"", "Main Database Backups");
+		private static string PathRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MainDatabaseBackups");
 		private static string WeeklyPath => Path.Combine(PathRoot, DateTime.Now.Year.ToString());
 
 		public static void MakeBackup()
@@ -31,7 +31,7 @@ namespace Controller
 				return;
 			}
 
-			ExecuteBackup(path);
+			Datasource.MakeBackup(path);
 
 			Verify();
 		}
@@ -72,23 +72,11 @@ namespace Controller
 				.OrderByDescending(f => f.LastWriteTime)
 				.FirstOrDefault();
 
-			if (sundayLastWeek.Date > latestFile.CreationTime.Date)
+			if (latestFile == null
+				|| sundayLastWeek.Date > latestFile.CreationTime.Date)
 			{
 				WeeklyMove();
 			}
-		}
-
-		private static void ExecuteBackup(string path)
-		{
-			var commandText = $@"
-BACKUP DATABASE [Main] TO  DISK = N'{path}' WITH NOFORMAT, INIT,  NAME = N'Main-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10
-
-declare @backupSetId as int
-select @backupSetId = position from msdb..backupset where database_name=N'Main' and backup_set_id=(select max(backup_set_id) from msdb..backupset where database_name=N'Main' )
-if @backupSetId is null begin raiserror(N'Verify failed. Backup information for database ''Main'' not found.', 16, 1) end
-RESTORE VERIFYONLY FROM  DISK = N'{path}' WITH  FILE = @backupSetId,  NOUNLOAD,  NOREWIND";
-
-			Database.Execute(commandText);
 		}
 
 		private static void Verify()
@@ -108,9 +96,9 @@ RESTORE VERIFYONLY FROM  DISK = N'{path}' WITH  FILE = @backupSetId,  NOUNLOAD, 
 
 				Directory.Delete(DailyPath, true);
 			}
-			catch
+			catch (Exception ex)
 			{
-				throw new Exception("Weekly backup not done");
+				throw new Exception($"Weekly backup not done\n{ex.Message}");
 			}
 		}
 	}

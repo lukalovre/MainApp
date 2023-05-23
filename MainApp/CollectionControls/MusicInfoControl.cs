@@ -1,6 +1,8 @@
-﻿using Controller.Extensions;
+﻿using Controller;
+using Controller.Extensions;
 using Model.Collection;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MainApp.Collection
@@ -59,14 +61,12 @@ namespace MainApp.Collection
 
 		private void FillFormats()
 		{
-			comboBoxFormat.Items.AddRange(Controller.Database.GetDropdownValues(@"	SELECT distinct([Format]) as Format
-																					FROM [Main].[Collection].[Musics]"));
+			comboBoxFormat.Items.AddRange(Datasource.GetList<Music>().Select(o => o.Format).Distinct().ToArray());
 		}
 
 		private void FillOwners()
 		{
-			comboBoxOwner.Items.AddRange(Controller.Database.GetDropdownValues(@"	SELECT distinct([Owner]) as Owner
-																					FROM [Main].[Collection].[Musics]"));
+			comboBoxOwner.Items.AddRange(Datasource.GetList<Music>().Where(o => o.Owner != null).Select(o => o.Owner).Distinct().ToArray());
 		}
 	}
 }

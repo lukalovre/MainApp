@@ -1,6 +1,8 @@
 ﻿using Controller;
 using Model.Collection;
+using Model.Grid;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,7 +10,9 @@ namespace MainApp.Collection
 {
 	public partial class LibraryControl : UserControl
 	{
-		private SortableBindingList<Library> m_bindingList;
+		private SortableBindingList<LibraryGrid> m_bindingList;
+		private List<UniversalItem> m_filterResult;
+		private List<Library> m_library;
 
 		public LibraryControl()
 		{
@@ -24,13 +28,20 @@ namespace MainApp.Collection
 				return;
 			}
 
-			var library = Database.GetList<Library>();
-			var lent = library
+			m_library = Datasource.GetList<Library>();
+			var lent = m_library
 				.Where(o => o.ReturnDate == null)
 				.OrderBy(o => o.LentDate)
 				.ToList();
 
-			m_bindingList = new SortableBindingList<Library>(lent);
+			m_bindingList = new SortableBindingList<LibraryGrid>(lent.Select(o => new LibraryGrid
+			{
+				ID = o.ID,
+				LentTo = o.LentTo,
+				Title = o.Title,
+				LentDate = o.LentDate,
+				DaysAgo = (int)(DateTime.Now - o.LentDate).TotalDays
+			}).ToList());
 
 			dataGridViewAll.DataSource = m_bindingList;
 
@@ -42,8 +53,15 @@ namespace MainApp.Collection
 			var item = libraryInfo.GetItem();
 			item.LentDate = DateTime.Now;
 
-			Database.Add(item);
-			m_bindingList.Add(item);
+			Datasource.Add(item);
+			m_bindingList.Add(new LibraryGrid
+			{
+				ID = item.ID,
+				LentTo = item.LentTo,
+				Title = item.Title,
+				LentDate = item.LentDate,
+				DaysAgo = 0
+			});
 
 			dataGridViewAll.SelectLastRow();
 		}
@@ -53,7 +71,7 @@ namespace MainApp.Collection
 			var item = libraryInfo.GetItem();
 			item.ReturnDate = DateTime.Now;
 
-			Database.Update(item);
+			Datasource.Update(item);
 			m_bindingList.Remove(m_bindingList.FirstOrDefault(o => o.ID == item.ID));
 
 			dataGridViewAll.SelectLastRow();
@@ -61,30 +79,121 @@ namespace MainApp.Collection
 
 		private void DataGridViewAll_SelectionChanged(object sender, EventArgs e)
 		{
-			var item = (sender as DataGridView).GetRowObject<Library>();
+			var item = (sender as DataGridView).GetRowObject<LibraryGrid>();
 
 			if (item == null)
 			{
 				return;
 			}
 
-			libraryInfo.Fill(item);
+			libraryInfo.Fill(m_library.FirstOrDefault(o => o.ID == item.ID));
 		}
 
 		private void SetGridAll(DataGridView dataGridView)
 		{
 			dataGridView.SetGrid();
 
-			dataGridView.SetColumns(new string[]{
-			nameof(Library.Title),
-			nameof(Library.Type),
-			nameof(Library.LentTo),
-			nameof(Library.LentDate)});
+			dataGridView.Columns[nameof(LibraryGrid.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			dataGridView.Columns[nameof(LibraryGrid.LentTo)].CenterColumn();
+			dataGridView.Columns[nameof(LibraryGrid.DaysAgo)].CenterColumn();
+			dataGridView.Columns[nameof(LibraryGrid.LentDate)].Visible = false;
+		}
 
-			dataGridView.Columns[nameof(Library.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-			dataGridView.Columns[nameof(Library.Type)].CenterColumn();
-			dataGridView.Columns[nameof(Library.LentTo)].CenterColumn();
-			dataGridView.Columns[nameof(Library.LentDate)].CenterColumn();
+		private void TextBoxFilter_TextChanged(object sender, EventArgs e)
+		{
+			var filterText = textBoxFilter.Text;
+
+			if (filterText.Length > 3)
+			{
+				if (m_filterResult == null)
+				{
+					LoadFilterList();
+				}
+
+				dataGridViewFilterResult.DataSource = new SortableBindingList<UniversalItem>(
+					m_filterResult.Where(o => (o.Title != null && o.Title.IndexOf(filterText, StringComparison.OrdinalIgnoreCase) >= 0)
+											|| (o.Author != null && o.Author.IndexOf(filterText, StringComparison.OrdinalIgnoreCase) >= 0)
+											|| (o.Year.HasValue && o.Year.ToString().IndexOf(filterText, StringComparison.OrdinalIgnoreCase) >= 0)).ToList());
+
+				dataGridViewFilterResult.SetGrid(setLocation: false);
+				dataGridViewFilterResult.Columns[nameof(UniversalItem.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+				dataGridViewFilterResult.Columns[nameof(UniversalItem.Year)].CenterColumn();
+				dataGridViewFilterResult.Columns[nameof(UniversalItem.Type)].Visible = false;
+			}
+		}
+
+		private void LoadFilterList()
+		{
+			m_filterResult = new List<UniversalItem>();
+
+			foreach (var book in Datasource.GetList<Book>())
+			{
+				m_filterResult.Add(new UniversalItem
+				{
+					ID = book.ID,
+					Title = book.Title,
+					Author = book.Author,
+					Year = book.Year,
+					Type = nameof(Book)
+				});
+			}
+
+			foreach (var comic in Datasource.GetList<Comic>())
+			{
+				m_filterResult.Add(new UniversalItem
+				{
+					ID = comic.ID,
+					Title = comic.Title,
+					Author = comic.Writer,
+					Year = null,
+					Type = nameof(Comic)
+				});
+			}
+
+			foreach (var game in Datasource.GetList<Game>())
+			{
+				m_filterResult.Add(new UniversalItem
+				{
+					ID = game.ID,
+					Title = game.Title,
+					Author = null,
+					Year = game.Year,
+					Type = nameof(Game)
+				});
+			}
+		}
+
+		private void DataGridViewFilterResult_SelectionChanged(object sender, EventArgs e)
+		{
+			var item = (sender as DataGridView).GetRowObject<UniversalItem>();
+
+			if (item == null)
+			{
+				return;
+			}
+
+			var libraryItem = new Library
+			{
+				ItemID = item.ID,
+				Title = item.Title,
+				Type = item.Type
+			};
+
+			libraryInfo.Fill(libraryItem);
+		}
+
+		private void DataGridViewAll_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.ColumnIndex == dataGridViewAll.Columns[nameof(LibraryGrid.DaysAgo)].Index)
+			{
+				//column name
+				DataGridViewCell cell = dataGridViewAll.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+				//column id
+				DataGridViewCell cell1 = dataGridViewAll.Rows[e.RowIndex].Cells[nameof(LibraryGrid.LentDate)];
+
+				cell.ToolTipText = ((DateTime)cell1.Value).ToString("MM-dd-yyyy");
+			}
 		}
 	}
 }

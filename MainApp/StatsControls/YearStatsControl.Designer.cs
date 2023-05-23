@@ -29,18 +29,31 @@ namespace MainApp.Reports
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// YearStatsControl
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Name = "YearStatsControl";
-			this.Size = new System.Drawing.Size(1311, 1018);
-			this.ResumeLayout(false);
+            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(3, 3);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(102, 38);
+            this.buttonRefresh.TabIndex = 34;
+            this.buttonRefresh.Text = "Refresh";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            // 
+            // YearStatsControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonRefresh);
+            this.Name = "YearStatsControl";
+            this.Size = new System.Drawing.Size(1311, 1018);
+            this.ResumeLayout(false);
 
 		}
 
-		#endregion
-	}
+        #endregion
+
+        private System.Windows.Forms.Button buttonRefresh;
+    }
 }

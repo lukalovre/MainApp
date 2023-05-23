@@ -6,7 +6,6 @@ CREATE TABLE [dbo].[TVShows] (
    [OriginalTitle] [nvarchar](255) NULL,
    [Year] [int] NULL,
    [Runtime] [int] NULL,
-   [_1001] [bit] NOT NULL,
    [Actors] [nvarchar](max) NULL,
    [Country] [nvarchar](max) NULL,
    [Genre] [nvarchar](max) NULL,

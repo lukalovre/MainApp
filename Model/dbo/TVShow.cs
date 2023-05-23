@@ -1,8 +1,10 @@
-﻿namespace Model.dbo
+﻿using Dapper.Contrib.Extensions;
+
+namespace Model.dbo
 {
+	[Table("dbo.TVShows")]
 	public class TVShow : Item, IImdb
 	{
-		public bool _1001 { get; set; }
 		public string Actors { get; set; }
 		public string Country { get; set; }
 		public string Director { get; set; }

@@ -20,6 +20,7 @@ namespace Model
 		[Name("IMDb Rating")]
 		public float? IMDbRating { get; set; }
 
+		public int? Metascore { get; set; }
 		public string Modified { get; set; }
 
 		[Name("Num Votes")]

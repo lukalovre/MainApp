@@ -10,6 +10,7 @@ namespace MainApp.Collection.Books
 {
 	public partial class BooksControl : UserControl
 	{
+		private SortableBindingList<Book> m_bindable;
 		private List<Book> m_books;
 
 		public BooksControl()
@@ -26,14 +27,15 @@ namespace MainApp.Collection.Books
 				return;
 			}
 
-			m_books = Database.GetList<Book>();
+			m_books = Datasource.GetList<Book>();
 
-			dataGridViewAll.DataSource = m_books;
+			m_bindable = new SortableBindingList<Book>(m_books.OrderBy(o => o.Date).ToList());
+			dataGridViewAll.DataSource = m_bindable;
+
 			LoadData();
 
 			SetGridAll(dataGridViewAll);
 			SetGridPlanToRead(dataGridViewPlanToRead);
-			SetGridPlanToRead(dataGridViewShort);
 
 			dataGridViewAll.SelectLastRow();
 
@@ -59,10 +61,10 @@ namespace MainApp.Collection.Books
 		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
 			var book = bookInfo1.GetItem();
-			Database.Add(book);
+			Datasource.Add(book);
+			m_bindable.Add(book);
 
-			m_books = Database.GetList<Book>();
-			dataGridViewAll.DataSource = m_books;
+			dataGridViewAll.SelectLastRow();
 		}
 
 		private void ButtonRead_Click(object sender, EventArgs e)
@@ -85,32 +87,6 @@ namespace MainApp.Collection.Books
 			bookInfo1.Fill(book);
 		}
 
-		//private int GetAveragePerYearValue()
-		//{
-		//			SqlConnection sqlConnection1 = new SqlConnection(Resources.MainConnectionString);
-		//			SqlCommand cmd = new SqlCommand();
-
-		//			cmd.CommandText = @"select
-		//cast(sum([Hours read])/3 as int) Hours
-		//from [View Books]
-		//where Last >= getdate()-(3*365)  -- Last 3 years";
-
-		//			cmd.Connection = sqlConnection1;
-
-		//			sqlConnection1.Open();
-
-		//			using(SqlDataReader reader = cmd.ExecuteReader())
-		//			{
-		//				while(reader.Read())
-		//				{
-		//					return int.Parse(reader["Hours"].ToString());
-		//				}
-		//			}
-
-		//			sqlConnection1.Close();
-
-		//			return 0;
-		//}
 
 		private void LoadData()
 		{
@@ -121,10 +97,6 @@ namespace MainApp.Collection.Books
 				.ToList();
 
 			dataGridViewPlanToRead.DataSource = new SortableBindingList<Book>(toRead);
-
-			dataGridViewShort.DataSource = toRead
-				.Where(o => o.Pages < 300)
-				.ToList();
 		}
 
 		private void RefreshGrid()
@@ -159,6 +131,7 @@ namespace MainApp.Collection.Books
 			nameof(Book.Title),
 			nameof(Book.Author),
 			nameof(Book.Year),
+			nameof(Book.Pages),
 			nameof(Book._1001),
 			nameof(Book.EminaRating)});
 
@@ -166,32 +139,26 @@ namespace MainApp.Collection.Books
 			dataGridView.Columns[nameof(Book._1001)].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 			dataGridView.Columns[nameof(Book.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 			dataGridView.Columns[nameof(Book.Author)].Width = 130;
+			dataGridView.Columns[nameof(Book.EminaRating)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
 			dataGridView.Columns[nameof(Book.EminaRating)].Width = 30;
 			dataGridView.Columns[nameof(Book.Year)].CenterColumn();
+			dataGridView.Columns[nameof(Book.Pages)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
+			dataGridView.Columns[nameof(Book.Pages)].Width = 35;
 
 			SetZeroValuesToEmpty(dataGridView);
 		}
 
-		private void SetHLTBSum()
+		private void TextBoxUrl_TextChanged(object sender, EventArgs e)
 		{
-			//int hltbTimeSum = 0;
+			var url = textBoxUrl.Text;
 
-			//for(int i = 0; i < dataGridCustomPlanToRead.Rows.Count; ++i)
-			//{
-			//	hltbTimeSum += Convert.ToInt32(dataGridCustomPlanToRead.Rows[i].Cells[Table.HLTB].Value);
-			//}
+			var book = Links.GetGoodreadsDataBook(url);
 
-			//var averagePerYear = GetAveragePerYearValue();
-			//float yearsToCompletion = hltbTimeSum / (float)averagePerYear;
+			bookInfo1.Fill(book);
 
-			//labelHLTBtime.Text = $@"HLTB: {hltbTimeSum}h / {hltbTimeSum / 24} days
-			//						Average per year: {averagePerYear}h
-			//						Years to compeltion: {yearsToCompletion.ToString("0.00")}";
-		}
-
-		private void TextBoxTitleTextChanged(object sender, EventArgs e)
-		{
-			//dataGridCustomAll.RowFilter = $"{Table.Title} LIKE '%{textBoxTitle.Text}%'";
+			textBoxUrl.TextChanged -= new EventHandler(TextBoxUrl_TextChanged);
+			textBoxUrl.Clear();
+			textBoxUrl.TextChanged += new EventHandler(TextBoxUrl_TextChanged);
 		}
 	}
 }

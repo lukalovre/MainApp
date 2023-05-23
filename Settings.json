@@ -1,0 +1,7 @@
+{
+  "DatabaseConnectionString": "Data Source=localhost;Initial Catalog=Main;Integrated Security=True",
+  "Datasource": 1,
+  "JsonDataPath": "../../../Resources/JsonData",
+  "Location": "-1032, 1371",
+  "Size": "1040, 744"
+}

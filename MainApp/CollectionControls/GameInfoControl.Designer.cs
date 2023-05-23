@@ -36,7 +36,6 @@
 			this.comboBoxPlatform = new System.Windows.Forms.ComboBox();
 			this.numericUpDownYear = new System.Windows.Forms.NumericUpDown();
 			this.textBoxTitle = new System.Windows.Forms.TextBox();
-			this.checkBoxPlanToPlay = new System.Windows.Forms.CheckBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.checkBoxPhysicalCopy = new System.Windows.Forms.CheckBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -133,20 +132,6 @@
 			this.textBoxTitle.Name = "textBoxTitle";
 			this.textBoxTitle.Size = new System.Drawing.Size(264, 26);
 			this.textBoxTitle.TabIndex = 43;
-			// 
-			// checkBoxPlanToPlay
-			// 
-			this.checkBoxPlanToPlay.AutoSize = true;
-			this.checkBoxPlanToPlay.Checked = true;
-			this.checkBoxPlanToPlay.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxPlanToPlay.Location = new System.Drawing.Point(4, 465);
-			this.checkBoxPlanToPlay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.checkBoxPlanToPlay.Name = "checkBoxPlanToPlay";
-			this.checkBoxPlanToPlay.Size = new System.Drawing.Size(116, 24);
-			this.checkBoxPlanToPlay.TabIndex = 42;
-			this.checkBoxPlanToPlay.Text = "Plan to play";
-			this.checkBoxPlanToPlay.UseVisualStyleBackColor = true;
-			this.checkBoxPlanToPlay.CheckedChanged += new System.EventHandler(this.CheckBoxPlanToPlay_CheckedChanged);
 			// 
 			// label8
 			// 
@@ -319,7 +304,6 @@
 			this.Controls.Add(this.comboBoxPlatform);
 			this.Controls.Add(this.numericUpDownYear);
 			this.Controls.Add(this.textBoxTitle);
-			this.Controls.Add(this.checkBoxPlanToPlay);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.checkBoxPhysicalCopy);
 			this.Controls.Add(this.label7);
@@ -348,7 +332,6 @@
 		private System.Windows.Forms.ComboBox comboBoxPlatform;
 		private System.Windows.Forms.NumericUpDown numericUpDownYear;
 		private System.Windows.Forms.TextBox textBoxTitle;
-		private System.Windows.Forms.CheckBox checkBoxPlanToPlay;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.CheckBox checkBoxPhysicalCopy;
 		private System.Windows.Forms.Label label7;

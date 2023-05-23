@@ -1,4 +1,5 @@
 ﻿using Model;
+using Model.dbo;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,6 +37,53 @@ namespace Controller
 			}
 		}
 
+		public static int GetAlbumsCount()
+		{
+			return 1001;
+		}
+
+		public static int GetBooksCount()
+		{
+			return Datasource.GetList<Book>()
+				.Count(o => o._1001)
+				+ 1; // Watchmen;
+		}
+
+		public static int GetComicsCount()
+		{
+			return Datasource.GetList<Comic>().Count(o => o._1001);
+		}
+
+		public static int GetMoviesCount()
+		{
+			return Datasource.GetList<Movie>()
+				.Select(o => o.Imdb)
+				.Count(o => Is1001(o))
+				+ 2; // Riget, Dekalog
+		}
+
+		public static int GetPaintingCount()
+		{
+			return 1001;
+		}
+
+		public static int GetPhotographsCount()
+		{
+			return 1001;
+		}
+
+		public static int GetSongsCount()
+		{
+			return 1001;
+		}
+
+		public static int GetTVShowsCount()
+		{
+			return Datasource.GetList<TVShow>()
+				.Select(o => o.Imdb)
+				.Count(o => Is1001(o));
+		}
+
 		public static bool Is1001(string imdbSource)
 		{
 			return Movies1001List.Any(i => i == imdbSource)
@@ -44,7 +92,7 @@ namespace Controller
 
 		private static List<string> Fill1001List(string listFolderPath, string listName)
 		{
-			var result = CsvHelper.GetFromList<ImdbListItem>(listFolderPath, listName);
+			var result = CsvHelper.GetFromList<ImdbListItem>(listFolderPath, listName, out _);
 
 			return result.Select(o => o.Const).ToList();
 		}

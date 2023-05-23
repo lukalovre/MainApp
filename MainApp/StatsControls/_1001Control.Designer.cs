@@ -45,7 +45,7 @@ namespace MainApp._1001
 			series1.ChartArea = "ChartArea1";
 			series1.Name = "Series1";
 			this.chart1001.Series.Add(series1);
-			this.chart1001.Size = new System.Drawing.Size(1272, 571);
+			this.chart1001.Size = new System.Drawing.Size(1560, 873);
 			this.chart1001.TabIndex = 0;
 			this.chart1001.Text = "chart1";
 			// 
@@ -57,16 +57,16 @@ namespace MainApp._1001
 			this.buttonRefresh.TabIndex = 1;
 			this.buttonRefresh.Text = "Refresh";
 			this.buttonRefresh.UseVisualStyleBackColor = true;
-			this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+			this.buttonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
 			// 
-			// _1001
+			// _1001Control
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.buttonRefresh);
 			this.Controls.Add(this.chart1001);
-			this.Name = "_1001";
-			this.Size = new System.Drawing.Size(1349, 1047);
+			this.Name = "_1001Control";
+			this.Size = new System.Drawing.Size(1679, 1047);
 			((System.ComponentModel.ISupportInitialize)(this.chart1001)).EndInit();
 			this.ResumeLayout(false);
 

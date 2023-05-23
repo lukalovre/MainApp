@@ -8,9 +8,9 @@
 		public string Platform { get; set; }
 		public bool Playing { get; set; }
 		public string PosterPath { get; set; }
-		public string Review { get; set; }
+		public string Comment { get; set; }
 		public int Stars { get; set; }
-		public string Time { get; set; }
+		public int Time { get; set; }
 		public string Title { get; set; }
 		public int Year { get; set; }
 	}

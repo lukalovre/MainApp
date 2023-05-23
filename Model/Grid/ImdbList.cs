@@ -10,12 +10,14 @@ namespace Model.Grid
 	{
 		[Browsable(false)]
 		public string Imdb { get; set; }
+        public int Position { get; set; }
 		public string Title { get; set; }
 		public string Director { get; set; }
 		public int? Year { get; set; }
 		public int? Runtime { get; set; }
 		public int? Votes { get; set; }
 		public float? Rating { get; set; }
+		public int? Metascore { get; set; }
 		public bool _1001 { get; set; }
-	}
+    }
 }

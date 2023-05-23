@@ -4,7 +4,7 @@ using System;
 namespace Model.Collection
 {
 	[Table("Collection.Games")]
-	public class Game
+	public class Game : ICollection
 	{
 		public string Client { get; set; }
 

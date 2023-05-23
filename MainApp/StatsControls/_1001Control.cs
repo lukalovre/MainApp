@@ -1,8 +1,11 @@
 ﻿using Controller;
 using MainApp.Extensions;
+using MainApp.StatsControls;
 using Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -11,6 +14,9 @@ namespace MainApp._1001
 {
 	public partial class _1001Control : UserControl
 	{
+		private const string NAME = "1001";
+		private readonly string m_path = Path.Combine(Paths.Stats, $"{NAME}.json");
+
 		public _1001Control()
 		{
 			InitializeComponent();
@@ -20,36 +26,20 @@ namespace MainApp._1001
 		{
 			base.OnLoad(e);
 
-			LoadData();
-		}
-
-		private void buttonRefresh_Click(object sender, EventArgs e)
-		{
-			LoadData();
-		}
-
-		private void LoadData()
-		{
-			chart1001.Series.Clear();
-
-			chart1001.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
-			chart1001.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
-			chart1001.ChartAreas[0].AxisY.Maximum = 1100;
-
-			var series = new Series
+			if (DesignMode)
 			{
-				IsValueShownAsLabel = true
-			};
+				return;
+			}
 
-			chart1001.Series.Add(series);
+			LoadChart();
+		}
 
-			var _1001Data = Database.Query<_1001Data>($@"	SELECT
-															 [Books]
-															,[TVShows]
-															,[Comics]
-															,[Albums]
-															,[Songs]
-															FROM [Main].[1001].[All Progress]").ToList().FirstOrDefault();
+		private List<ChartData> LoadChartData()
+		{
+			if (File.Exists(m_path))
+			{
+				return HelperStats.ReadFile(m_path);
+			}
 
 			var chartData = new List<ChartData>
 			{
@@ -58,29 +48,82 @@ namespace MainApp._1001
 					Value = Igdb.Get1001Count()},
 				new ChartData{
 					Name = "Albums",
-					Value = _1001Data.Albums},
+					Value = Controller._1001.GetAlbumsCount()},
 				new ChartData{
 					Name = "Songs",
-					Value = _1001Data.Songs},
+					Value = Controller._1001.GetSongsCount()},
 				new ChartData{
 					Name = "Books",
-					Value = _1001Data.Books},
+					Value = Controller._1001.GetBooksCount()},
 				new ChartData{
 					Name = "Movies",
-					Value = Imdb.Get1001MoviesCount()},
+					Value = Controller._1001.GetMoviesCount()},
 				new ChartData{
 					Name = "TV Shows",
-					Value = _1001Data.TVShows},
+					Value = Controller._1001.GetTVShowsCount()},
 				new ChartData{
 					Name = "Comics",
-					Value = _1001Data.Comics},
+					Value = Controller._1001.GetComicsCount()},
 				new ChartData{
 					Name = "Paintings",
-					Value = 1001},
+					Value = Controller._1001.GetPaintingCount()},
 				new ChartData{
 					Name = "Photographs",
-					Value = 1001}
+					Value = Controller._1001.GetPhotographsCount()}
 			};
+
+			var jsonText = JsonConvert.SerializeObject(chartData, Formatting.Indented);
+
+			File.WriteAllText(m_path, jsonText);
+
+			return chartData;
+		}
+
+		private void ButtonRefresh_Click(object sender, EventArgs e)
+		{
+			var oldData = new List<ChartData>();
+
+			if (File.Exists(m_path))
+			{
+				oldData = HelperStats.ReadFile(m_path);
+				File.Delete(m_path);
+			}
+
+			var newData = LoadChart();
+
+			for (int i = 0; i < newData.Count; i++)
+			{
+				ChartData newDataItem = newData[i];
+				var point = chart1001.Series[0].Points[i];
+
+				var oldDataItem = oldData.FirstOrDefault(o => o.Name == newDataItem.Name);
+				var change = newDataItem.Value - oldDataItem.Value;
+
+				if (change != 0)
+				{
+					point.AxisLabel += $"\n+{change}";
+				}
+			}
+		}
+
+		private List<ChartData> LoadChart()
+		{
+			chart1001.Series.Clear();
+
+			var chartArea = chart1001.ChartAreas.FirstOrDefault();
+
+			chartArea.AxisX.MajorGrid.LineWidth = 0;
+			chartArea.AxisY.MajorGrid.LineWidth = 0;
+			chartArea.AxisY.Maximum = 1100;
+
+			var series = new Series
+			{
+				IsValueShownAsLabel = true
+			};
+
+			chart1001.Series.Add(series);
+
+			var chartData = LoadChartData();
 
 			chartData = chartData.SortByValue();
 
@@ -93,7 +136,9 @@ namespace MainApp._1001
 				series.Points[index].Color = ChartColors.GetColor(data.Name);
 			}
 
-			chart1001.ChartAreas.FirstOrDefault().RecalculateAxesScale();
+			chartArea.RecalculateAxesScale();
+
+			return chartData;
 		}
 	}
 }

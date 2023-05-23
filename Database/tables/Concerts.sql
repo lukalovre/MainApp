@@ -7,7 +7,8 @@ CREATE TABLE [dbo].[Concerts] (
    [City] [nvarchar](255) NULL,
    [Country] [nvarchar](255) NULL,
    [Ticket price] [int] NULL,
-   [Date] [date] NULL
+   [Date] [date] NULL,
+   [People] [nvarchar](max) NULL
 
    ,CONSTRAINT [PK__Concerts__3BD018485B7F5AE0] PRIMARY KEY CLUSTERED ([ID])
 )

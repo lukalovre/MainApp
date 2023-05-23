@@ -30,51 +30,25 @@ namespace MainApp.Collection.Books
         /// </summary>
         private void InitializeComponent()
         {
-			this.label1 = new System.Windows.Forms.Label();
-			this.textBoxTitle = new System.Windows.Forms.TextBox();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPagePlanToRead = new System.Windows.Forms.TabPage();
 			this.dataGridViewPlanToRead = new System.Windows.Forms.DataGridView();
 			this.tabPageAll = new System.Windows.Forms.TabPage();
 			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
-			this.labelHLTBtime = new System.Windows.Forms.Label();
 			this.buttonAdd = new System.Windows.Forms.Button();
 			this.buttonRead = new System.Windows.Forms.Button();
 			this.bookInfo1 = new MainApp.Collection.Books.BookInfoControl();
-			this.tabPagePlanToReadShort = new System.Windows.Forms.TabPage();
-			this.dataGridViewShort = new System.Windows.Forms.DataGridView();
+			this.textBoxUrl = new System.Windows.Forms.TextBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPagePlanToRead.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanToRead)).BeginInit();
 			this.tabPageAll.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
-			this.tabPagePlanToReadShort.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewShort)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(930, 0);
-			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(38, 20);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Title";
-			// 
-			// textBoxTitle
-			// 
-			this.textBoxTitle.Location = new System.Drawing.Point(892, 25);
-			this.textBoxTitle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.textBoxTitle.Name = "textBoxTitle";
-			this.textBoxTitle.Size = new System.Drawing.Size(148, 26);
-			this.textBoxTitle.TabIndex = 2;
-			this.textBoxTitle.TextChanged += new System.EventHandler(this.TextBoxTitleTextChanged);
 			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPagePlanToRead);
-			this.tabControl1.Controls.Add(this.tabPagePlanToReadShort);
 			this.tabControl1.Controls.Add(this.tabPageAll);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -130,19 +104,9 @@ namespace MainApp.Collection.Books
 			this.dataGridViewAll.TabIndex = 0;
 			this.dataGridViewAll.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
-			// labelHLTBtime
-			// 
-			this.labelHLTBtime.AutoSize = true;
-			this.labelHLTBtime.Location = new System.Drawing.Point(870, 522);
-			this.labelHLTBtime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.labelHLTBtime.Name = "labelHLTBtime";
-			this.labelHLTBtime.Size = new System.Drawing.Size(50, 20);
-			this.labelHLTBtime.TabIndex = 6;
-			this.labelHLTBtime.Text = "HLTB";
-			// 
 			// buttonAdd
 			// 
-			this.buttonAdd.Location = new System.Drawing.Point(875, 423);
+			this.buttonAdd.Location = new System.Drawing.Point(875, 413);
 			this.buttonAdd.Name = "buttonAdd";
 			this.buttonAdd.Size = new System.Drawing.Size(82, 36);
 			this.buttonAdd.TabIndex = 7;
@@ -152,7 +116,7 @@ namespace MainApp.Collection.Books
 			// 
 			// buttonRead
 			// 
-			this.buttonRead.Location = new System.Drawing.Point(1038, 423);
+			this.buttonRead.Location = new System.Drawing.Point(1030, 413);
 			this.buttonRead.Name = "buttonRead";
 			this.buttonRead.Size = new System.Drawing.Size(106, 36);
 			this.buttonRead.TabIndex = 8;
@@ -162,42 +126,29 @@ namespace MainApp.Collection.Books
 			// 
 			// bookInfo1
 			// 
-			this.bookInfo1.Location = new System.Drawing.Point(866, 65);
+			this.bookInfo1.Location = new System.Drawing.Point(864, 34);
 			this.bookInfo1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
 			this.bookInfo1.Name = "bookInfo1";
 			this.bookInfo1.Size = new System.Drawing.Size(369, 368);
 			this.bookInfo1.TabIndex = 3;
 			// 
-			// tabPagePlanToReadShort
+			// textBoxUrl
 			// 
-			this.tabPagePlanToReadShort.Controls.Add(this.dataGridViewShort);
-			this.tabPagePlanToReadShort.Location = new System.Drawing.Point(4, 29);
-			this.tabPagePlanToReadShort.Name = "tabPagePlanToReadShort";
-			this.tabPagePlanToReadShort.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPagePlanToReadShort.Size = new System.Drawing.Size(859, 933);
-			this.tabPagePlanToReadShort.TabIndex = 2;
-			this.tabPagePlanToReadShort.Text = "Short";
-			this.tabPagePlanToReadShort.UseVisualStyleBackColor = true;
-			// 
-			// dataGridViewShort
-			// 
-			this.dataGridViewShort.Location = new System.Drawing.Point(3, 6);
-			this.dataGridViewShort.Name = "dataGridViewShort";
-			this.dataGridViewShort.Size = new System.Drawing.Size(831, 921);
-			this.dataGridViewShort.TabIndex = 0;
-			this.dataGridViewShort.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			this.textBoxUrl.Location = new System.Drawing.Point(870, 528);
+			this.textBoxUrl.Name = "textBoxUrl";
+			this.textBoxUrl.Size = new System.Drawing.Size(224, 26);
+			this.textBoxUrl.TabIndex = 9;
+			this.textBoxUrl.TextChanged += new System.EventHandler(this.TextBoxUrl_TextChanged);
 			// 
 			// BooksControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.textBoxUrl);
 			this.Controls.Add(this.buttonRead);
 			this.Controls.Add(this.buttonAdd);
-			this.Controls.Add(this.labelHLTBtime);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.bookInfo1);
-			this.Controls.Add(this.textBoxTitle);
-			this.Controls.Add(this.label1);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "BooksControl";
 			this.Size = new System.Drawing.Size(1239, 966);
@@ -206,8 +157,6 @@ namespace MainApp.Collection.Books
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanToRead)).EndInit();
 			this.tabPageAll.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();
-			this.tabPagePlanToReadShort.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewShort)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -216,17 +165,13 @@ namespace MainApp.Collection.Books
         #endregion
 
         private DataGridView dataGridViewAll;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxTitle;
         private BookInfoControl bookInfo1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPagePlanToRead;
         private System.Windows.Forms.TabPage tabPageAll;
         private DataGridView dataGridViewPlanToRead;
-		private System.Windows.Forms.Label labelHLTBtime;
 		private Button buttonAdd;
 		private Button buttonRead;
-		private TabPage tabPagePlanToReadShort;
-		private DataGridView dataGridViewShort;
+		private TextBox textBoxUrl;
 	}
 }
