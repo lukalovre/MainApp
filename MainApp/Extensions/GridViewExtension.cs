@@ -123,6 +123,11 @@ namespace MainApp
 			dataGridView.AllowUserToResizeRows = false;
 			dataGridView.ReadOnly = true;
 			dataGridView.AddCoundOfRowsToHeader();
+
+			foreach (DataGridViewColumn column in dataGridView.Columns)
+			{
+				column.SortMode = DataGridViewColumnSortMode.Automatic;
+			}
 		}
 	}
 }

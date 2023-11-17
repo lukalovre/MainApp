@@ -33,7 +33,7 @@ namespace MainApp.Standups
 			this.dataGridViewStandup = new System.Windows.Forms.DataGridView();
 			this.standupInfo1 = new MainApp.Standups.StandupInfoControl();
 			this.textBoxImdb = new System.Windows.Forms.TextBox();
-			this.buttonAdd = new System.Windows.Forms.Button();
+			this.addButton1 = new MainApp.CommonControls.AddButton();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewStandup)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -49,46 +49,43 @@ namespace MainApp.Standups
 			this.dataGridViewStandup.Name = "dataGridViewStandup";
 			this.dataGridViewStandup.ReadOnly = true;
 			this.dataGridViewStandup.RowHeadersWidth = 62;
-			this.dataGridViewStandup.Size = new System.Drawing.Size(885, 1037);
+			this.dataGridViewStandup.Size = new System.Drawing.Size(712, 1037);
 			this.dataGridViewStandup.TabIndex = 0;
 			this.dataGridViewStandup.SelectionChanged += new System.EventHandler(this.DataGridViewStandup_SelectionChanged);
 			// 
 			// standupInfo1
 			// 
-			this.standupInfo1.Location = new System.Drawing.Point(892, 0);
+			this.standupInfo1.Location = new System.Drawing.Point(759, 0);
 			this.standupInfo1.Name = "standupInfo1";
 			this.standupInfo1.Size = new System.Drawing.Size(756, 665);
 			this.standupInfo1.TabIndex = 1;
 			// 
 			// textBoxImdb
 			// 
-			this.textBoxImdb.Location = new System.Drawing.Point(893, 729);
+			this.textBoxImdb.Location = new System.Drawing.Point(760, 731);
 			this.textBoxImdb.Name = "textBoxImdb";
 			this.textBoxImdb.Size = new System.Drawing.Size(100, 26);
 			this.textBoxImdb.TabIndex = 2;
 			this.textBoxImdb.TextChanged += new System.EventHandler(this.TextBoxImdb_TextChanged);
 			// 
-			// buttonAdd
+			// addButton1
 			// 
-			this.buttonAdd.Location = new System.Drawing.Point(893, 762);
-			this.buttonAdd.Name = "buttonAdd";
-			this.buttonAdd.Size = new System.Drawing.Size(80, 35);
-			this.buttonAdd.TabIndex = 3;
-			this.buttonAdd.Text = "Add";
-			this.buttonAdd.UseVisualStyleBackColor = true;
-			this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
+			this.addButton1.Location = new System.Drawing.Point(759, 777);
+			this.addButton1.Name = "addButton1";
+			this.addButton1.Size = new System.Drawing.Size(315, 43);
+			this.addButton1.TabIndex = 3;
 			// 
 			// StandupsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.buttonAdd);
+			this.Controls.Add(this.addButton1);
 			this.Controls.Add(this.textBoxImdb);
 			this.Controls.Add(this.standupInfo1);
 			this.Controls.Add(this.dataGridViewStandup);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "StandupsControl";
-			this.Size = new System.Drawing.Size(1669, 1037);
+			this.Size = new System.Drawing.Size(1667, 1037);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewStandup)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -100,6 +97,6 @@ namespace MainApp.Standups
 		private DataGridView dataGridViewStandup;
 		private StandupInfoControl standupInfo1;
 		private TextBox textBoxImdb;
-		private Button buttonAdd;
+		private CommonControls.AddButton addButton1;
 	}
 }

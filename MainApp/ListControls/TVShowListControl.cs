@@ -18,7 +18,7 @@ namespace MainApp.ListControls
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}

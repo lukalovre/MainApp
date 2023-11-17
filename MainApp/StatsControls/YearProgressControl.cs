@@ -28,7 +28,7 @@ namespace MainApp.Reports
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}

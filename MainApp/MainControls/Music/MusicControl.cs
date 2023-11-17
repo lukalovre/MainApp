@@ -28,7 +28,7 @@ namespace MainApp.Musics
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -55,13 +55,16 @@ namespace MainApp.Musics
 
 			SetGrid(dataGridViewAll);
 			SetGrid(dataGridViewIn);
-			SetGrid(dataGridViewTodo);
+			SetGrid(dataGridViewTodo2);
+			SetGrid(dataGridViewTodo1);
 			SetGrid(dataGridViewYearList);
 
 			dataGridViewAll.SelectLastRow();
 
 			musicInfo1.ArtistTextChanged += new MusicInfoControl.ArtistTextChangedDelegate(ArtistTextChanged);
 			musicInfo1.TitleTextChanged += new MusicInfoControl.TitleTextChangedDelegate(TitleTextChanged);
+
+			addButton1.SetAddButton(ButtonAdd_Click);
 		}
 
 		private void LoadGridData()
@@ -72,7 +75,7 @@ namespace MainApp.Musics
 				.Select(o => Controller.Musics.ConvertToMusicIn(o, m_musicEvents))
 				.ToList());
 
-			var thisDay = m_musicEvents.Where(m => m.Date.HasValue && m.Date.Value.Date == DateTime.Today).ToList();
+			var thisDay = m_musicEvents.Where(m => m.Date.HasValue && m.Date.Value.Date >= DateTime.Today.AddDays(-5)).ToList();
 
 			var bind = new List<Music>();
 
@@ -89,7 +92,8 @@ namespace MainApp.Musics
 			dataGridViewYearList.DataSource = new SortableBindingList<MusicIn>(m_musicIn.Where(o => o.Year == DateTime.Today.Year).ToList());
 
 			dataGridViewIn.DataSource = new SortableBindingList<MusicIn>(m_musicIn.ToList().OrderBy(o => o.Count).ToList());
-			dataGridViewTodo.DataSource = new SortableBindingList<MusicIn>(m_musicIn.Where(o => m_musicEvents.Where(ev => ev.ItemID == o.ItemID).Max(i => i.Date).Value <= DateTime.Now.AddYears(-2)).ToList());
+			dataGridViewTodo2.DataSource = new SortableBindingList<MusicIn>(m_musicIn.Where(o => m_musicEvents.Where(ev => ev.ItemID == o.ItemID).Max(i => i.Date).Value <= DateTime.Now.AddYears(-2)).ToList());
+			dataGridViewTodo1.DataSource = new SortableBindingList<MusicIn>(m_musicIn.Where(o => m_musicEvents.Where(ev => ev.ItemID == o.ItemID).Max(i => i.Date).Value <= DateTime.Now.AddYears(-1)).ToList());
 		}
 
 		private void ArtistTextChanged(string artist)
@@ -125,7 +129,7 @@ namespace MainApp.Musics
 
 			var musicEvent = musicInfo1.GetEvent();
 			musicEvent.ItemID = music.ItemID;
-			musicEvent.Date = DateTime.Now;
+			musicEvent.Date = addButton1.GetDate();
 
 			Datasource.Add(musicEvent);
 			m_musicEvents.Add(musicEvent);
@@ -146,7 +150,7 @@ namespace MainApp.Musics
 		private void ButtonListenAgain_Click(object sender, EventArgs e)
 		{
 			var musicEvent = musicInfo1.GetEvent();
-			musicEvent.Date = DateTime.Now;
+			musicEvent.Date = addButton1.GetDate();
 
 			m_musicEvents.Add(musicEvent);
 			Datasource.Add(musicEvent);
@@ -159,7 +163,7 @@ namespace MainApp.Musics
 
 				(dataGridViewIn.DataSource as SortableBindingList<MusicIn>).Remove(musicIn);
 				(dataGridViewYearList.DataSource as SortableBindingList<MusicIn>).Remove(musicIn);
-				(dataGridViewTodo.DataSource as SortableBindingList<MusicIn>).Remove(musicIn);
+				(dataGridViewTodo2.DataSource as SortableBindingList<MusicIn>).Remove(musicIn);
 			}
 			else
 			{

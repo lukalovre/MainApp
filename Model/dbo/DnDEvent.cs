@@ -1,17 +1,11 @@
 ﻿using Dapper.Contrib.Extensions;
-using System;
 
 namespace Model.dbo
 {
 	[Table("dbo.DnDEvents")]
-	public class DnDEvent
+	public class DnDEvent : Event
 	{
-		public DateTime? Date { get; set; }
-
 		public int? Hours { get; set; }
-
-		[Key]
-		public int ID { get; set; }
 
 		public int ItemID { get; set; }
 		public int? Level { get; set; }

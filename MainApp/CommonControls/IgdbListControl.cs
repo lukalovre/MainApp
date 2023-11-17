@@ -37,7 +37,7 @@ namespace MainApp
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -56,17 +56,29 @@ namespace MainApp
 				return;
 			}
 
+			LoadGridData();
+			SetGrid(dataGridView);
+		}
+
+		private void CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.RowIndex == -1 && e.ColumnIndex == -1)
+			{
+				LoadGridData();
+			}
+		}
+
+		private void LoadGridData()
+		{
 			var imdbFromList = GetGamesFromCsv(m_listName);
 
 			dataGridView.DataSource = m_dataSource = new SortableBindingList<Game1001>(
 				imdbFromList
 				.Where(o => !m_filter.Contains(o.Igdb))
 				.ToList());
-
-			SetGrid(dataGridView);
 		}
 
-		private static void SetGrid(DataGridView dataGridView)
+		private void SetGrid(DataGridView dataGridView)
 		{
 			dataGridView.SetGrid();
 			dataGridView.Location = new System.Drawing.Point(0, 35);
@@ -83,12 +95,16 @@ namespace MainApp
 			dataGridView.Columns[nameof(GameGOTY.Owned)].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 			dataGridView.Columns[nameof(Game1001.Title)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 			dataGridView.Columns[nameof(Game1001.Year)].CenterColumn();
+
+			dataGridView.CellClick -= CellClick;
+			dataGridView.CellClick += CellClick;
+			dataGridView.DoubleClick -= new EventHandler(DataGridView_DoubleClick);
+			dataGridView.DoubleClick += new EventHandler(DataGridView_DoubleClick);
 		}
 
-		private void ButtonOpenLink_Click(object sender, EventArgs e)
+		private void DataGridView_DoubleClick(object sender, EventArgs e)
 		{
 			var listItem = dataGridView.GetRowObject<Game1001>();
-
 			Igdb.OpenLink(listItem);
 		}
 

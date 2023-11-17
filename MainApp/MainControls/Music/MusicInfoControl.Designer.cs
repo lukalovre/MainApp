@@ -40,7 +40,7 @@
 			this.pictureBoxAlbum = new System.Windows.Forms.PictureBox();
 			this.buttonOpenLink = new System.Windows.Forms.Button();
 			this.labelListenedTimes = new System.Windows.Forms.Label();
-			this.eventControl1 = new MainApp.EventControl();
+			this.eventControl = new MainApp.CommonControls.EvenControl();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRuntime)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbum)).BeginInit();
@@ -148,9 +148,9 @@
 			// 
 			// pictureBoxAlbum
 			// 
-			this.pictureBoxAlbum.Location = new System.Drawing.Point(4, 249);
+			this.pictureBoxAlbum.Location = new System.Drawing.Point(209, 596);
 			this.pictureBoxAlbum.Name = "pictureBoxAlbum";
-			this.pictureBoxAlbum.Size = new System.Drawing.Size(640, 640);
+			this.pictureBoxAlbum.Size = new System.Drawing.Size(316, 285);
 			this.pictureBoxAlbum.TabIndex = 25;
 			this.pictureBoxAlbum.TabStop = false;
 			// 
@@ -173,18 +173,18 @@
 			this.labelListenedTimes.TabIndex = 27;
 			this.labelListenedTimes.Text = "Listened to 5 times";
 			// 
-			// eventControl1
+			// evenTControl_11
 			// 
-			this.eventControl1.Location = new System.Drawing.Point(468, 3);
-			this.eventControl1.Name = "eventControl1";
-			this.eventControl1.Size = new System.Drawing.Size(176, 141);
-			this.eventControl1.TabIndex = 28;
+			this.eventControl.Location = new System.Drawing.Point(4, 165);
+			this.eventControl.Name = "evenTControl_11";
+			this.eventControl.Size = new System.Drawing.Size(440, 425);
+			this.eventControl.TabIndex = 29;
 			// 
 			// MusicInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.eventControl1);
+			this.Controls.Add(this.eventControl);
 			this.Controls.Add(this.labelListenedTimes);
 			this.Controls.Add(this.buttonOpenLink);
 			this.Controls.Add(this.pictureBoxAlbum);
@@ -221,6 +221,6 @@
 		private System.Windows.Forms.PictureBox pictureBoxAlbum;
 		private System.Windows.Forms.Button buttonOpenLink;
 		private System.Windows.Forms.Label labelListenedTimes;
-		private EventControl eventControl1;
+		private CommonControls.EvenControl eventControl;
 	}
 }

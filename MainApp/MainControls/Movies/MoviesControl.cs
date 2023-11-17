@@ -23,7 +23,7 @@ namespace MainApp.Movies
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -35,6 +35,7 @@ namespace MainApp.Movies
 
 			SetGrid(dataGridMovies);
 			dataGridMovies.SelectLastRow();
+			addButton1.SetAddButton(ButtonAdd_Click);
 		}
 
 		private void ButtonAdd_Click(object sender, EventArgs e)
@@ -49,9 +50,7 @@ namespace MainApp.Movies
 
 			var movieEvent = movieInfo1.GetMovieEvent();
 
-			movieEvent.Date = checkBoxDateTimePicker.Checked
-				? dateTimePicker1.Value
-				: DateTime.Now;
+			movieEvent.Date = addButton1.GetDate();		
 
 			Datasource.Add(movieEvent);
 			m_movieEvents.Add(movieEvent);

@@ -12,7 +12,6 @@ namespace MainApp.Books
 		private int m_addedPages;
 		private Book m_book;
 		private List<BookEvent> m_bookEvents;
-		private string m_oldComment;
 
 		public BookInfoControl()
 		{
@@ -32,17 +31,15 @@ namespace MainApp.Books
 			if (!bookEvents.Any())
 			{
 				numericUpDownPages.Value = 0;
-				starRating1.SelectedStar = 1;
 				checkBoxRead.Checked = false;
-				m_oldComment = string.Empty;
+				evenControl1.Clear();
 				return;
 			}
 
+			var lastEvent = bookEvents.LastOrDefault();
+
 			numericUpDownPages.Value = bookEvents.Where(o => !o.Read).Sum(o => o.Pages);
-			starRating1.SelectedStar = bookEvents.MaxBy(o => o.Date).FirstOrDefault().Rating.Value;
 			checkBoxRead.Checked = bookEvents.Any(o => o.Read);
-			richTextBoxComment.Text = bookEvents.LastOrDefault().Comment;
-			m_oldComment = bookEvents.LastOrDefault().Comment ?? string.Empty;
 
 			// Duplicate
 			var minuterPerPageBooks = 2;
@@ -50,11 +47,11 @@ namespace MainApp.Books
 			var events = bookEvents.Select(o => new Model.EventListItem
 			{
 				ID = o.ID,
-				Time = o.Pages * minuterPerPageBooks,
+				CountValue = o.Pages * minuterPerPageBooks,
 				Date = o.Date
 			}).ToList();
 
-			eventControl1.FIll(events);
+			evenControl1.Fill(lastEvent, events, EventListControl.CountValue.Pages);
 		}
 
 		public Book GetItem()
@@ -71,19 +68,13 @@ namespace MainApp.Books
 
 		internal BookEvent GetEvent()
 		{
-			var comment = m_oldComment.Trim() == richTextBoxComment.Text.Trim()
-			? null
-			: richTextBoxComment.Text;
-			comment = string.IsNullOrWhiteSpace(comment) ? null : comment;
-
 			return new BookEvent
 			{
-				Date = DateTime.Now,
 				GoodreadsID = m_book.GoodreadsID,
-				Rating = starRating1.SelectedStar,
+				Rating = evenControl1.Rating,
 				Pages = m_addedPages,
 				Read = checkBoxRead.Checked,
-				Comment = comment
+				Comment = evenControl1.GetComment()
 			};
 		}
 

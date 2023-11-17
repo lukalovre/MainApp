@@ -22,13 +22,14 @@ namespace MainApp.MainControls.Zoo
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
 
 			LoadGridData();
 			SetGrid(dataGridViewAll);
+			addButton1.SetAddButton(ButtonAdd_Click);
 		}
 
 		private void LoadGridData()
@@ -84,10 +85,7 @@ namespace MainApp.MainControls.Zoo
 
 			var @event = zooInfoControl1.GetEvent();
 			@event.ItemID = item.ID;
-
-			@event.Date = checkBoxDateTimePicker.Checked
-				? dateTimePicker1.Value
-				: DateTime.Now;
+			@event.Date = addButton1.GetDate();
 
 			Datasource.Add(@event);
 			m_zooEvents.Add(@event);

@@ -18,7 +18,7 @@ namespace MainApp.Standups
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -29,13 +29,13 @@ namespace MainApp.Standups
 			SetGrid();
 
 			dataGridViewStandup.SelectLastRow();
+			addButton1.SetAddButton(ButtonAdd_Click);
 		}
 
 		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
 			var standup = standupInfo1.GetStandup();
-
-			standup.Date = DateTime.Now;
+			standup.Date = addButton1.GetDate();
 
 			Controller.Datasource.Add(standup);
 			m_bindingList.Add(standup);

@@ -43,13 +43,10 @@ namespace MainApp.Movies
 			this.label4 = new System.Windows.Forms.Label();
 			this.richTextBoxPlot = new System.Windows.Forms.RichTextBox();
 			this.labelWatchedTimes = new System.Windows.Forms.Label();
-			this.starRatingControl1 = new MainApp.StarRatingControl();
 			this.buttonGoToImdb = new System.Windows.Forms.Button();
 			this.comboBoxPlatform = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.peopleListControl1 = new MainApp.CommonControls.PeopleListControl();
-			this.richTextBoxComment = new System.Windows.Forms.RichTextBox();
-			this.label6 = new System.Windows.Forms.Label();
+			this.evenControl1 = new MainApp.CommonControls.EvenControl();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -59,7 +56,7 @@ namespace MainApp.Movies
 			this.pictureBoxPoster.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxPoster.Image")));
 			this.pictureBoxPoster.Location = new System.Drawing.Point(13, 108);
 			this.pictureBoxPoster.Name = "pictureBoxPoster";
-			this.pictureBoxPoster.Size = new System.Drawing.Size(300, 440);
+			this.pictureBoxPoster.Size = new System.Drawing.Size(284, 390);
 			this.pictureBoxPoster.TabIndex = 0;
 			this.pictureBoxPoster.TabStop = false;
 			// 
@@ -97,7 +94,7 @@ namespace MainApp.Movies
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(320, 108);
+			this.label1.Location = new System.Drawing.Point(309, 11);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(73, 20);
 			this.label1.TabIndex = 4;
@@ -106,7 +103,7 @@ namespace MainApp.Movies
 			// labelDirector
 			// 
 			this.labelDirector.AutoSize = true;
-			this.labelDirector.Location = new System.Drawing.Point(399, 108);
+			this.labelDirector.Location = new System.Drawing.Point(388, 11);
 			this.labelDirector.Name = "labelDirector";
 			this.labelDirector.Size = new System.Drawing.Size(136, 20);
 			this.labelDirector.TabIndex = 5;
@@ -116,7 +113,7 @@ namespace MainApp.Movies
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(320, 173);
+			this.label2.Location = new System.Drawing.Point(309, 76);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(66, 20);
 			this.label2.TabIndex = 6;
@@ -125,7 +122,7 @@ namespace MainApp.Movies
 			// labelWriters
 			// 
 			this.labelWriters.AutoSize = true;
-			this.labelWriters.Location = new System.Drawing.Point(399, 173);
+			this.labelWriters.Location = new System.Drawing.Point(388, 76);
 			this.labelWriters.Name = "labelWriters";
 			this.labelWriters.Size = new System.Drawing.Size(326, 40);
 			this.labelWriters.TabIndex = 7;
@@ -135,7 +132,7 @@ namespace MainApp.Movies
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(320, 260);
+			this.label3.Location = new System.Drawing.Point(309, 132);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(52, 20);
 			this.label3.TabIndex = 8;
@@ -144,7 +141,7 @@ namespace MainApp.Movies
 			// labelStars
 			// 
 			this.labelStars.AutoSize = true;
-			this.labelStars.Location = new System.Drawing.Point(399, 260);
+			this.labelStars.Location = new System.Drawing.Point(388, 132);
 			this.labelStars.Name = "labelStars";
 			this.labelStars.Size = new System.Drawing.Size(136, 60);
 			this.labelStars.TabIndex = 9;
@@ -154,7 +151,7 @@ namespace MainApp.Movies
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(319, 371);
+			this.label4.Location = new System.Drawing.Point(308, 213);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(40, 20);
 			this.label4.TabIndex = 10;
@@ -162,33 +159,25 @@ namespace MainApp.Movies
 			// 
 			// richTextBoxPlot
 			// 
-			this.richTextBoxPlot.Location = new System.Drawing.Point(403, 371);
+			this.richTextBoxPlot.Location = new System.Drawing.Point(392, 213);
 			this.richTextBoxPlot.Name = "richTextBoxPlot";
 			this.richTextBoxPlot.ReadOnly = true;
-			this.richTextBoxPlot.Size = new System.Drawing.Size(290, 115);
+			this.richTextBoxPlot.Size = new System.Drawing.Size(290, 90);
 			this.richTextBoxPlot.TabIndex = 12;
 			this.richTextBoxPlot.Text = "A man with short-term memory loss attempts to track down his wife\'s murderer.";
 			// 
 			// labelWatchedTimes
 			// 
 			this.labelWatchedTimes.AutoSize = true;
-			this.labelWatchedTimes.Location = new System.Drawing.Point(9, 729);
+			this.labelWatchedTimes.Location = new System.Drawing.Point(9, 596);
 			this.labelWatchedTimes.Name = "labelWatchedTimes";
 			this.labelWatchedTimes.Size = new System.Drawing.Size(128, 20);
 			this.labelWatchedTimes.TabIndex = 13;
 			this.labelWatchedTimes.Text = "Watched 3 times";
 			// 
-			// starRatingControl1
-			// 
-			this.starRatingControl1.Location = new System.Drawing.Point(13, 554);
-			this.starRatingControl1.Name = "starRatingControl1";
-			this.starRatingControl1.SelectedStar = 1;
-			this.starRatingControl1.Size = new System.Drawing.Size(250, 92);
-			this.starRatingControl1.TabIndex = 14;
-			// 
 			// buttonGoToImdb
 			// 
-			this.buttonGoToImdb.Location = new System.Drawing.Point(13, 765);
+			this.buttonGoToImdb.Location = new System.Drawing.Point(13, 632);
 			this.buttonGoToImdb.Name = "buttonGoToImdb";
 			this.buttonGoToImdb.Size = new System.Drawing.Size(100, 32);
 			this.buttonGoToImdb.TabIndex = 18;
@@ -199,7 +188,7 @@ namespace MainApp.Movies
 			// comboBoxPlatform
 			// 
 			this.comboBoxPlatform.FormattingEnabled = true;
-			this.comboBoxPlatform.Location = new System.Drawing.Point(13, 657);
+			this.comboBoxPlatform.Location = new System.Drawing.Point(13, 554);
 			this.comboBoxPlatform.Name = "comboBoxPlatform";
 			this.comboBoxPlatform.Size = new System.Drawing.Size(121, 28);
 			this.comboBoxPlatform.TabIndex = 21;
@@ -207,48 +196,27 @@ namespace MainApp.Movies
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(140, 660);
+			this.label5.Location = new System.Drawing.Point(140, 557);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(68, 20);
 			this.label5.TabIndex = 22;
 			this.label5.Text = "Platform";
 			// 
-			// peopleListControl1
+			// evenControl1
 			// 
-			this.peopleListControl1.Location = new System.Drawing.Point(269, 567);
-			this.peopleListControl1.Name = "peopleListControl1";
-			this.peopleListControl1.Size = new System.Drawing.Size(128, 194);
-			this.peopleListControl1.TabIndex = 23;
-			// 
-			// richTextBoxComment
-			// 
-			this.richTextBoxComment.Location = new System.Drawing.Point(403, 503);
-			this.richTextBoxComment.Name = "richTextBoxComment";
-			this.richTextBoxComment.Size = new System.Drawing.Size(290, 258);
-			this.richTextBoxComment.TabIndex = 24;
-			this.richTextBoxComment.Text = "";
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(312, 503);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(85, 20);
-			this.label6.TabIndex = 25;
-			this.label6.Text = "Comment";
+			this.evenControl1.Location = new System.Drawing.Point(303, 319);
+			this.evenControl1.Name = "evenControl1";
+			this.evenControl1.Size = new System.Drawing.Size(440, 425);
+			this.evenControl1.TabIndex = 23;
 			// 
 			// MovieInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.label6);
-			this.Controls.Add(this.richTextBoxComment);
-			this.Controls.Add(this.peopleListControl1);
+			this.Controls.Add(this.evenControl1);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.comboBoxPlatform);
 			this.Controls.Add(this.buttonGoToImdb);
-			this.Controls.Add(this.starRatingControl1);
 			this.Controls.Add(this.labelWatchedTimes);
 			this.Controls.Add(this.richTextBoxPlot);
 			this.Controls.Add(this.label4);
@@ -263,7 +231,7 @@ namespace MainApp.Movies
 			this.Controls.Add(this.labelTitle);
 			this.Controls.Add(this.pictureBoxPoster);
 			this.Name = "MovieInfoControl";
-			this.Size = new System.Drawing.Size(726, 837);
+			this.Size = new System.Drawing.Size(732, 837);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -285,12 +253,9 @@ namespace MainApp.Movies
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.RichTextBox richTextBoxPlot;
 		private System.Windows.Forms.Label labelWatchedTimes;
-		private StarRatingControl starRatingControl1;
 		private System.Windows.Forms.Button buttonGoToImdb;
         private System.Windows.Forms.ComboBox comboBoxPlatform;
         private System.Windows.Forms.Label label5;
-        private CommonControls.PeopleListControl peopleListControl1;
-		private System.Windows.Forms.RichTextBox richTextBoxComment;
-		private System.Windows.Forms.Label label6;
+		private CommonControls.EvenControl evenControl1;
 	}
 }

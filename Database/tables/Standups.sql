@@ -7,7 +7,9 @@ CREATE TABLE [dbo].[Standups] (
    [Runtime] [int] NULL,
    [Rating] [int] NULL,
    [Imdb] [nvarchar](255) NOT NULL,
-   [Date] [datetime] NULL
+   [Date] [datetime] NULL,
+   [People] [nvarchar](max) NULL,
+   [Comment] [nvarchar](max) NULL
 
    ,CONSTRAINT [PK__Stand-up__3BD01848B6FED30C] PRIMARY KEY CLUSTERED ([ID])
 )

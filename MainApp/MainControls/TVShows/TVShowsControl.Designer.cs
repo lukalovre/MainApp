@@ -30,7 +30,7 @@ namespace MainApp.TV_Shows
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.dataGridViewTVShows = new System.Windows.Forms.DataGridView();
+			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageWatching = new System.Windows.Forms.TabPage();
 			this.dataGridViewWatching = new System.Windows.Forms.DataGridView();
@@ -41,12 +41,13 @@ namespace MainApp.TV_Shows
 			this.tabPageWaiting = new System.Windows.Forms.TabPage();
 			this.dataGridViewWaiting = new System.Windows.Forms.DataGridView();
 			this.tabPageAll = new System.Windows.Forms.TabPage();
-			this.buttonUpdate = new System.Windows.Forms.Button();
 			this.numericUpDownYear = new System.Windows.Forms.NumericUpDown();
 			this.checkBoxUpdateSeason = new System.Windows.Forms.CheckBox();
 			this.tvShowInfo1 = new MainApp.TVShows.TVShowInfo();
 			this.textBoxImdb = new System.Windows.Forms.TextBox();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTVShows)).BeginInit();
+			this.textBoxFilter = new System.Windows.Forms.TextBox();
+			this.addButton1 = new MainApp.CommonControls.AddButton();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPageWatching.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewWatching)).BeginInit();
@@ -60,21 +61,21 @@ namespace MainApp.TV_Shows
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// dataGridViewTVShows
+			// dataGridViewAll
 			// 
-			this.dataGridViewTVShows.AllowUserToAddRows = false;
-			this.dataGridViewTVShows.AllowUserToDeleteRows = false;
-			this.dataGridViewTVShows.AllowUserToResizeRows = false;
-			this.dataGridViewTVShows.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewTVShows.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridViewTVShows.Location = new System.Drawing.Point(4, 5);
-			this.dataGridViewTVShows.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.dataGridViewTVShows.Name = "dataGridViewTVShows";
-			this.dataGridViewTVShows.ReadOnly = true;
-			this.dataGridViewTVShows.RowHeadersWidth = 51;
-			this.dataGridViewTVShows.Size = new System.Drawing.Size(784, 1266);
-			this.dataGridViewTVShows.TabIndex = 12;
-			this.dataGridViewTVShows.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			this.dataGridViewAll.AllowUserToAddRows = false;
+			this.dataGridViewAll.AllowUserToDeleteRows = false;
+			this.dataGridViewAll.AllowUserToResizeRows = false;
+			this.dataGridViewAll.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewAll.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridViewAll.Location = new System.Drawing.Point(4, 5);
+			this.dataGridViewAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.dataGridViewAll.Name = "dataGridViewAll";
+			this.dataGridViewAll.ReadOnly = true;
+			this.dataGridViewAll.RowHeadersWidth = 51;
+			this.dataGridViewAll.Size = new System.Drawing.Size(784, 981);
+			this.dataGridViewAll.TabIndex = 12;
+			this.dataGridViewAll.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
 			// tabControl1
 			// 
@@ -125,7 +126,7 @@ namespace MainApp.TV_Shows
 			this.tabPageOngoing.Location = new System.Drawing.Point(4, 29);
 			this.tabPageOngoing.Name = "tabPageOngoing";
 			this.tabPageOngoing.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageOngoing.Size = new System.Drawing.Size(792, 1276);
+			this.tabPageOngoing.Size = new System.Drawing.Size(792, 991);
 			this.tabPageOngoing.TabIndex = 2;
 			this.tabPageOngoing.Text = "Ongoing";
 			this.tabPageOngoing.UseVisualStyleBackColor = true;
@@ -138,7 +139,7 @@ namespace MainApp.TV_Shows
 			this.dataGridViewOngoing.Name = "dataGridViewOngoing";
 			this.dataGridViewOngoing.RowHeadersWidth = 62;
 			this.dataGridViewOngoing.RowTemplate.Height = 28;
-			this.dataGridViewOngoing.Size = new System.Drawing.Size(786, 1270);
+			this.dataGridViewOngoing.Size = new System.Drawing.Size(786, 985);
 			this.dataGridViewOngoing.TabIndex = 0;
 			this.dataGridViewOngoing.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
@@ -148,7 +149,7 @@ namespace MainApp.TV_Shows
 			this.tabPageYouTube.Location = new System.Drawing.Point(4, 29);
 			this.tabPageYouTube.Name = "tabPageYouTube";
 			this.tabPageYouTube.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageYouTube.Size = new System.Drawing.Size(792, 1276);
+			this.tabPageYouTube.Size = new System.Drawing.Size(792, 991);
 			this.tabPageYouTube.TabIndex = 3;
 			this.tabPageYouTube.Text = "YouTube";
 			this.tabPageYouTube.UseVisualStyleBackColor = true;
@@ -169,7 +170,7 @@ namespace MainApp.TV_Shows
 			this.tabPageWaiting.Location = new System.Drawing.Point(4, 29);
 			this.tabPageWaiting.Name = "tabPageWaiting";
 			this.tabPageWaiting.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageWaiting.Size = new System.Drawing.Size(792, 1276);
+			this.tabPageWaiting.Size = new System.Drawing.Size(792, 991);
 			this.tabPageWaiting.TabIndex = 4;
 			this.tabPageWaiting.Text = "Waiting";
 			this.tabPageWaiting.UseVisualStyleBackColor = true;
@@ -182,31 +183,21 @@ namespace MainApp.TV_Shows
 			this.dataGridViewWaiting.Name = "dataGridViewWaiting";
 			this.dataGridViewWaiting.RowHeadersWidth = 62;
 			this.dataGridViewWaiting.RowTemplate.Height = 28;
-			this.dataGridViewWaiting.Size = new System.Drawing.Size(786, 1270);
+			this.dataGridViewWaiting.Size = new System.Drawing.Size(786, 985);
 			this.dataGridViewWaiting.TabIndex = 0;
 			this.dataGridViewWaiting.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
 			// tabPageAll
 			// 
-			this.tabPageAll.Controls.Add(this.dataGridViewTVShows);
+			this.tabPageAll.Controls.Add(this.dataGridViewAll);
 			this.tabPageAll.Location = new System.Drawing.Point(4, 29);
 			this.tabPageAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tabPageAll.Name = "tabPageAll";
 			this.tabPageAll.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPageAll.Size = new System.Drawing.Size(792, 1276);
+			this.tabPageAll.Size = new System.Drawing.Size(792, 991);
 			this.tabPageAll.TabIndex = 0;
 			this.tabPageAll.Text = "All";
 			this.tabPageAll.UseVisualStyleBackColor = true;
-			// 
-			// buttonUpdate
-			// 
-			this.buttonUpdate.Location = new System.Drawing.Point(805, 786);
-			this.buttonUpdate.Name = "buttonUpdate";
-			this.buttonUpdate.Size = new System.Drawing.Size(97, 38);
-			this.buttonUpdate.TabIndex = 19;
-			this.buttonUpdate.Text = "Update";
-			this.buttonUpdate.UseVisualStyleBackColor = true;
-			this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
 			// 
 			// numericUpDownYear
 			// 
@@ -224,7 +215,7 @@ namespace MainApp.TV_Shows
 			// checkBoxUpdateSeason
 			// 
 			this.checkBoxUpdateSeason.AutoSize = true;
-			this.checkBoxUpdateSeason.Location = new System.Drawing.Point(908, 794);
+			this.checkBoxUpdateSeason.Location = new System.Drawing.Point(808, 778);
 			this.checkBoxUpdateSeason.Name = "checkBoxUpdateSeason";
 			this.checkBoxUpdateSeason.Size = new System.Drawing.Size(144, 24);
 			this.checkBoxUpdateSeason.TabIndex = 22;
@@ -247,20 +238,36 @@ namespace MainApp.TV_Shows
 			this.textBoxImdb.TabIndex = 23;
 			this.textBoxImdb.TextChanged += new System.EventHandler(this.TextBoxImdb_TextChanged);
 			// 
+			// textBoxFilter
+			// 
+			this.textBoxFilter.Location = new System.Drawing.Point(808, 928);
+			this.textBoxFilter.Name = "textBoxFilter";
+			this.textBoxFilter.Size = new System.Drawing.Size(100, 26);
+			this.textBoxFilter.TabIndex = 24;
+			this.textBoxFilter.TextChanged += new System.EventHandler(this.TextBoxFilter_TextChanged);
+			// 
+			// addButton1
+			// 
+			this.addButton1.Location = new System.Drawing.Point(808, 808);
+			this.addButton1.Name = "addButton1";
+			this.addButton1.Size = new System.Drawing.Size(315, 43);
+			this.addButton1.TabIndex = 25;
+			// 
 			// TVShowsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.addButton1);
+			this.Controls.Add(this.textBoxFilter);
 			this.Controls.Add(this.textBoxImdb);
 			this.Controls.Add(this.checkBoxUpdateSeason);
 			this.Controls.Add(this.numericUpDownYear);
 			this.Controls.Add(this.tvShowInfo1);
-			this.Controls.Add(this.buttonUpdate);
 			this.Controls.Add(this.tabControl1);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "TVShowsControl";
 			this.Size = new System.Drawing.Size(1535, 1024);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTVShows)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPageWatching.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewWatching)).EndInit();
@@ -279,12 +286,11 @@ namespace MainApp.TV_Shows
 
 		#endregion
 
-		internal DataGridView dataGridViewTVShows;
+		internal DataGridView dataGridViewAll;
 		public System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPageAll;
 		private System.Windows.Forms.TabPage tabPageWatching;
 		private DataGridView dataGridViewWatching;
-		private Button buttonUpdate;
 		private MainApp.TVShows.TVShowInfo tvShowInfo1;
 		private NumericUpDown numericUpDownYear;
 		private CheckBox checkBoxUpdateSeason;
@@ -295,5 +301,7 @@ namespace MainApp.TV_Shows
 		private DataGridView dataGridViewYouTube;
 		private TabPage tabPageWaiting;
 		private DataGridView dataGridViewWaiting;
+		private TextBox textBoxFilter;
+		private CommonControls.AddButton addButton1;
 	}
 }

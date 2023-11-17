@@ -56,7 +56,7 @@ namespace MainApp
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -140,7 +140,7 @@ namespace MainApp
 
 		private void ButtonOpenList_Click(object sender, EventArgs e)
 		{
-			Web.OpenLink(m_downloadUrl.TrimEnd("/export?ref_=ttls_otexp".ToCharArray()));
+			Web.OpenLink(m_downloadUrl.TrimEndLegit("/export?ref_=ttls_otexp"));
 		}
 
 		private void SetGrid(DataGridView dataGridView)
@@ -168,6 +168,7 @@ namespace MainApp
 				}
 			}
 
+			dataGridView.DoubleClick -= new EventHandler(DataGridView_DoubleClick);
 			dataGridView.DoubleClick += new EventHandler(DataGridView_DoubleClick);
 		}
 

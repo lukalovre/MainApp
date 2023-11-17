@@ -35,12 +35,10 @@ namespace MainApp.Movies
 			this.numericUpDownYearWatched = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBoxImdb = new System.Windows.Forms.TextBox();
-			this.buttonAdd = new System.Windows.Forms.Button();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.movieInfo1 = new MainApp.Movies.MovieInfoControl();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-			this.checkBoxDateTimePicker = new System.Windows.Forms.CheckBox();
+			this.addButton1 = new MainApp.CommonControls.AddButton();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridMovies)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYearWatched)).BeginInit();
 			this.tabControl1.SuspendLayout();
@@ -93,16 +91,6 @@ namespace MainApp.Movies
 			this.textBoxImdb.TabIndex = 29;
 			this.textBoxImdb.TextChanged += new System.EventHandler(this.TextBoxImdb_TextChanged);
 			// 
-			// buttonAdd
-			// 
-			this.buttonAdd.Location = new System.Drawing.Point(936, 912);
-			this.buttonAdd.Name = "buttonAdd";
-			this.buttonAdd.Size = new System.Drawing.Size(88, 37);
-			this.buttonAdd.TabIndex = 30;
-			this.buttonAdd.Text = "Add";
-			this.buttonAdd.UseVisualStyleBackColor = true;
-			this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
-			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
@@ -130,32 +118,19 @@ namespace MainApp.Movies
 			this.movieInfo1.Size = new System.Drawing.Size(728, 903);
 			this.movieInfo1.TabIndex = 28;
 			// 
-			// dateTimePicker1
+			// addButton1
 			// 
-			this.dateTimePicker1.CustomFormat = "yyyy-MM-dd hh:mm";
-			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dateTimePicker1.Location = new System.Drawing.Point(1043, 917);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(183, 26);
-			this.dateTimePicker1.TabIndex = 32;
-			// 
-			// checkBoxDateTimePicker
-			// 
-			this.checkBoxDateTimePicker.AutoSize = true;
-			this.checkBoxDateTimePicker.Location = new System.Drawing.Point(1233, 918);
-			this.checkBoxDateTimePicker.Name = "checkBoxDateTimePicker";
-			this.checkBoxDateTimePicker.Size = new System.Drawing.Size(22, 21);
-			this.checkBoxDateTimePicker.TabIndex = 33;
-			this.checkBoxDateTimePicker.UseVisualStyleBackColor = true;
+			this.addButton1.Location = new System.Drawing.Point(936, 906);
+			this.addButton1.Name = "addButton1";
+			this.addButton1.Size = new System.Drawing.Size(315, 43);
+			this.addButton1.TabIndex = 34;
 			// 
 			// MoviesControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.checkBoxDateTimePicker);
-			this.Controls.Add(this.dateTimePicker1);
+			this.Controls.Add(this.addButton1);
 			this.Controls.Add(this.tabControl1);
-			this.Controls.Add(this.buttonAdd);
 			this.Controls.Add(this.textBoxImdb);
 			this.Controls.Add(this.movieInfo1);
 			this.Controls.Add(this.label1);
@@ -178,10 +153,8 @@ namespace MainApp.Movies
 		private Label label1;
 		internal MovieInfoControl movieInfo1;
 		private TextBox textBoxImdb;
-		private Button buttonAdd;
 		private TabControl tabControl1;
 		private TabPage tabPage1;
-		private DateTimePicker dateTimePicker1;
-		private CheckBox checkBoxDateTimePicker;
+		private CommonControls.AddButton addButton1;
 	}
 }

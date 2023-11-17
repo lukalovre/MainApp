@@ -21,5 +21,6 @@ namespace Model.dbo
 		public string Title { get; set; }
 
 		public string Type { get; set; }
+		public bool Main { get; set; }
 	}
 }

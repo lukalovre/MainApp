@@ -14,19 +14,18 @@ namespace MainApp.TVShows
 	{
 		private TVShow m_tvShow;
 		private List<TVShowEvent> m_tvShowEvents;
-		private string m_oldComment;
 
 		public TVShowInfo()
 		{
 			InitializeComponent();
-			eventControl1.DefaultInterval = EventControl.Interval.Years;
+			evenControl1.SetEventListDefaultInterval(EventListControl.Interval.Years);
 		}
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -53,26 +52,16 @@ namespace MainApp.TVShows
 
 			if (m_tvShowEvents == null)
 			{
-				richTextBoxComment.Text = string.Empty;
-				eventControl1.Clear();
+				evenControl1.Clear();
 				return;
 			}
 
 			var events = m_tvShowEvents.Select(o => new Model.EventListItem
 			{
 				ID = o.ID,
-				Time = o.Runtime,
+				CountValue = o.Runtime,
 				Date = o.Date
 			}).ToList();
-
-			eventControl1.FIll(events);
-
-			var lastTVShow = m_tvShowEvents.LastOrDefault();
-
-			richTextBoxComment.Text = lastTVShow.Comment;
-			m_oldComment = lastTVShow.Comment ?? string.Empty;
-
-			starRatingControl1.SelectedStar = lastTVShow.Rating.Value;
 
 			var seasons = m_tvShowEvents.DistinctBy(o => o.Season).OrderBy(o => o.Season);
 			listBoxSeasons.Items.Clear();
@@ -84,19 +73,8 @@ namespace MainApp.TVShows
 
 			listBoxSeasons.SelectedIndex = listBoxSeasons.Items.Count - 1;
 
-			var people = Datasource.GetList<Person>();
-			var lastPeople = lastTVShow.People;
-
-			if (lastPeople != null)
-			{
-				var peopleList = CsvHelper.Get(lastPeople).Select(o => people.FirstOrDefault(p => p.ID == int.Parse(o)).ID);
-
-				peopleListControl1.SelectPeople(peopleList);
-			}
-			else
-			{
-				peopleListControl1.SelectPeople(null);
-			}
+			var lastEvent = m_tvShowEvents.LastOrDefault();
+			evenControl1.Fill(lastEvent, events);
 		}
 
 		internal TVShowEvent GetEvent()
@@ -105,20 +83,14 @@ namespace MainApp.TVShows
 			? m_tvShowEvents.Max(i => i.Season)
 			: 1;
 
-			var comment = m_oldComment.Trim() == richTextBoxComment.Text.Trim()
-				? null
-				: richTextBoxComment.Text;
-			comment = string.IsNullOrWhiteSpace(comment) ? null : comment;
-
 			return new TVShowEvent
 			{
-				Date = DateTime.Now,
 				Imdb = m_tvShow.Imdb,
-				Rating = starRatingControl1.SelectedStar,
+				Rating = evenControl1.Rating,
 				Season = maxSeason,
 				Runtime = (int)numericUpDownRuntime.Value,
-				People = peopleListControl1.GetCheckedCSV(),
-				Comment = comment
+				People = evenControl1.GetPeople(),
+				Comment = evenControl1.GetComment()
 			};
 		}
 

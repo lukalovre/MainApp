@@ -18,7 +18,7 @@ namespace MainApp.ListControls
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -28,7 +28,6 @@ namespace MainApp.ListControls
 
 			tabControl1.AddControlToNewTab(IgdbListControl.Init("1001-video-games-you-must-play-before-you-die", filter), "1001");
 			tabControl1.AddControlToNewTab(IgdbListControl.Init($"the-video-game-canon-the-top-100-{currentYear}", filter), "Canon");
-			tabControl1.AddControlToNewTab(IgdbListControl.Init("list-of-video-games-considered-the-best", filter), "Wiki");
 			tabControl1.AddControlToNewTab(IgdbListControl.Init($"igdb-top-100-{currentYear}", filter), "Igdb");
 			tabControl1.AddControlToNewTab(IgdbListControl.Init($"metacritic-top-100-{currentYear}", filter), "Metacritic");
 			tabControl1.AddControlToNewTab(IgdbListControl.Init("zero-punctuation-goty", filter), "ZP");

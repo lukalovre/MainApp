@@ -151,6 +151,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Following.cs" />
     <Compile Include="Games.cs" />
+    <Compile Include="TimeHelper.cs" />
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="Igdb.cs" />
     <Compile Include="Imdb.cs" />

@@ -24,7 +24,7 @@ namespace MainApp.StatsControls.SummaryControls
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -50,7 +50,7 @@ namespace MainApp.StatsControls.SummaryControls
 			var gameEventListBefore = gameEventList.Where(o => o.Date < startDate);
 
 			labelGamesPlayed.Text = gameEventListDateRange.DistinctBy(o => o.Igdb).Count().ToString();
-			labelHoursPlayed.Text = Helper.GetFormatedTime(gameEventListDateRange.Sum(o => o.Time));
+			labelHoursPlayed.Text = TimeHelper.GetFormatedTime(gameEventListDateRange.Sum(o => o.Time));
 
 			var newGamesList = gameEventListDateRange.DistinctBy(o => o.Igdb).Where(o => !gameEventListBefore.Any(b => b.Igdb == o.Igdb));
 			var oldGamesList = gameEventListDateRange.DistinctBy(o => o.Igdb).Where(o => gameEventListBefore.Any(b => b.Igdb == o.Igdb));
@@ -80,7 +80,6 @@ namespace MainApp.StatsControls.SummaryControls
 
 			dataGridView.Columns[nameof(GameGrid.Rating)].CenterColumn();
 			dataGridView.Columns[nameof(GameGrid.Completed)].CenterColumn();
-			dataGridView.Columns[nameof(GameGrid.Completed)].SortMode = DataGridViewColumnSortMode.Automatic;
 			dataGridView.Columns[nameof(GameGrid.TimeMinutes)].Visible = false;
 			dataGridView.Columns[nameof(GameGrid.Platform)].CenterColumn();
 			dataGridView.Columns[nameof(GameGrid.Time)].CenterColumn();
@@ -144,7 +143,7 @@ namespace MainApp.StatsControls.SummaryControls
 				Title = game.Title,
 				Year = game.Year,
 				TimeMinutes = timeMinutes,
-				Time = Helper.GetFormatedTime(timeMinutes),
+				Time = TimeHelper.GetFormatedTime(timeMinutes),
 				LastPlayedDate = gameEvents.Max(o => o.Date).Value,
 				Completed = gameEvents.Any(o => o.Completed),
 				Rating = gameEvents.MaxBy(o => o.Date).FirstOrDefault().Rating.Value

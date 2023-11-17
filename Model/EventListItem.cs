@@ -6,6 +6,6 @@ namespace Model
 	{
 		public DateTime? Date { get; set; }
 		public int ID { get; set; }
-		public int Time { get; set; } // In minutes
+		public int CountValue { get; set; } 
 	}
 }

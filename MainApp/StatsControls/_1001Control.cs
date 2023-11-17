@@ -26,7 +26,7 @@ namespace MainApp._1001
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}

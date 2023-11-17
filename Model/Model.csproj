@@ -91,6 +91,9 @@
     <Compile Include="dbo\LinkEvent.cs" />
     <Compile Include="dbo\Link.cs" />
     <Compile Include="dbo\Person.cs" />
+    <Compile Include="dbo\Concert.cs" />
+    <Compile Include="dbo\SongEvent.cs" />
+    <Compile Include="dbo\Song.cs" />
     <Compile Include="dbo\Zoo.cs" />
     <Compile Include="dbo\ZooEvents.cs" />
     <Compile Include="EventListItem.cs" />
@@ -103,8 +106,10 @@
     <Compile Include="Grid\LibraryGrid.cs" />
     <Compile Include="Grid\LinkGrid.cs" />
     <Compile Include="Grid\MovieCollection.cs" />
+    <Compile Include="Grid\MyWorkGrid.cs" />
+    <Compile Include="Grid\MyWorkProgresGrid.cs" />
     <Compile Include="Grid\PeopleGrid.cs" />
-    <Compile Include="dbo\IItemID.cs" />
+    <Compile Include="Interfaces\IItemID.cs" />
     <Compile Include="dbo\Movie.cs" />
     <Compile Include="dbo\Music.cs" />
     <Compile Include="dbo\MusicEvent.cs" />
@@ -122,6 +127,8 @@
     <Compile Include="Grid\MusicIn.cs" />
     <Compile Include="Grid\TVShowWatchingGrid.cs" />
     <Compile Include="Grid\UniversalItem.cs" />
+    <Compile Include="Grid\ConcertsGrid.cs" />
+    <Compile Include="Grid\SongGrid.cs" />
     <Compile Include="Grid\ZooGrid.cs" />
     <Compile Include="IgdbData.cs" />
     <Compile Include="IgdbListItem.cs" />
@@ -129,13 +136,14 @@
     <Compile Include="Item.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Following.cs" />
-    <Compile Include="IGoodreads.cs" />
-    <Compile Include="dbo\IImdb.cs" />
+    <Compile Include="Interfaces\IGoodreads.cs" />
+    <Compile Include="Interfaces\IImdb.cs" />
     <Compile Include="ImdbData.cs" />
     <Compile Include="ImdbListItem.cs" />
     <Compile Include="MonthlyReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YoutubeData.cs" />
+    <Compile Include="YoutubeSongData.cs" />
+    <Compile Include="YoutubeChannelData.cs" />
     <Compile Include="_1001Data.cs" />
   </ItemGroup>
   <ItemGroup>

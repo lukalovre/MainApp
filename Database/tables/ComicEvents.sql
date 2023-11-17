@@ -7,7 +7,8 @@ CREATE TABLE [dbo].[ComicEvents] (
    [Pages] [int] NULL,
    [Rating] [int] NULL,
    [Date] [datetime] NULL,
-   [Comment] [nvarchar](max) NULL
+   [Comment] [nvarchar](max) NULL,
+   [People] [nvarchar](max) NULL
 
    ,CONSTRAINT [PK_ComicEvents] PRIMARY KEY CLUSTERED ([ID])
 )

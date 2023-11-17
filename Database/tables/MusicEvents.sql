@@ -5,7 +5,8 @@ CREATE TABLE [dbo].[MusicEvents] (
    [In] [bit] NULL,
    [Date] [datetime] NOT NULL,
    [Comment] [nvarchar](max) NULL,
-   [Rating] [int] NULL
+   [Rating] [int] NULL,
+   [People] [nvarchar](max) NULL
 
    ,CONSTRAINT [PK_MusicEvents] PRIMARY KEY CLUSTERED ([ID])
 )

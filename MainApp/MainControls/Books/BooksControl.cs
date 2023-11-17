@@ -37,7 +37,7 @@ namespace MainApp.Books
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -52,9 +52,10 @@ namespace MainApp.Books
 			SetGrid();
 
 			dataGridViewAll.SelectLastRow();
+			addButton1.SetAddButton(ButtonAdd_Click);
 		}
 
-		private void ButtonUpdate_Click(object sender, EventArgs e)
+		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
 			var book = bookInfo1.GetItem();
 
@@ -65,7 +66,7 @@ namespace MainApp.Books
 			}
 
 			var bookEvent = bookInfo1.GetEvent();
-
+			bookEvent.Date = addButton1.GetDate();
 			Controller.Datasource.Add(bookEvent);
 			m_bookEvents.Add(bookEvent);
 

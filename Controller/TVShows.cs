@@ -46,7 +46,7 @@ namespace Controller
 
 		private static TVShow GetYoutubeChannel(string url)
 		{
-			var youtubeData = Links.GetYouTubeChannelNamData(url);
+			var youtubeData = Links.GetYouTubeChannelNameData(url);
 
 			return new TVShow
 			{

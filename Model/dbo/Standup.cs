@@ -1,16 +1,16 @@
 ﻿using Dapper.Contrib.Extensions;
-using System;
 
 namespace Model.dbo
 {
 	[Table("dbo.Standups")]
-	public class Standup : Item, IImdb
+	public class Standup : Event, IImdb
 	{
-		public DateTime? Date { get; set; }
+		public string Title { get; set; }
+		public int Year { get; set; }
 
 		public string Imdb { get; set; }
 		public string Performer { get; set; }
-		public int Rating { get; set; }
+
 		public int Runtime { get; set; }
 	}
 }

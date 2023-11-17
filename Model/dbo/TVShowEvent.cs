@@ -7,7 +7,6 @@ namespace Model.dbo
 	{
 		public string Imdb { get; set; }
 
-		public string People { get; set; }
 		public int Runtime { get; set; }
 		public int Season { get; set; }
 	}

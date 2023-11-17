@@ -36,8 +36,8 @@ namespace MainApp.Standups
 			this.labelRuntime = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.labelPerformer = new System.Windows.Forms.Label();
-			this.starRatingControl1 = new StarRatingControl();
 			this.buttonGoToImdb = new System.Windows.Forms.Button();
+			this.evenControl1 = new MainApp.CommonControls.EvenControl();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -87,7 +87,7 @@ namespace MainApp.Standups
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(320, 108);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(94, 20);
+			this.label1.Size = new System.Drawing.Size(88, 20);
 			this.label1.TabIndex = 4;
 			this.label1.Text = "Performer";
 			// 
@@ -100,14 +100,6 @@ namespace MainApp.Standups
 			this.labelPerformer.TabIndex = 5;
 			this.labelPerformer.Text = "Christopher Nolan";
 			// 
-			// starRatingControl1
-			// 
-			this.starRatingControl1.Location = new System.Drawing.Point(13, 554);
-			this.starRatingControl1.Name = "starRatingControl1";
-			this.starRatingControl1.Size = new System.Drawing.Size(201, 44);
-			this.starRatingControl1.TabIndex = 14;
-			this.starRatingControl1.Text = "starRatingControl1";
-			// 
 			// buttonGoToImdb
 			// 
 			this.buttonGoToImdb.Location = new System.Drawing.Point(13, 613);
@@ -118,20 +110,27 @@ namespace MainApp.Standups
 			this.buttonGoToImdb.UseVisualStyleBackColor = true;
 			this.buttonGoToImdb.Click += new System.EventHandler(this.ButtonGoToImdb_Click);
 			// 
-			// StandupInfo
+			// evenControl1
+			// 
+			this.evenControl1.Location = new System.Drawing.Point(324, 177);
+			this.evenControl1.Name = "evenControl1";
+			this.evenControl1.Size = new System.Drawing.Size(440, 425);
+			this.evenControl1.TabIndex = 19;
+			// 
+			// StandupInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.evenControl1);
 			this.Controls.Add(this.buttonGoToImdb);
-			this.Controls.Add(this.starRatingControl1);
 			this.Controls.Add(this.labelPerformer);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.labelRuntime);
 			this.Controls.Add(this.labelYear);
 			this.Controls.Add(this.labelTitle);
 			this.Controls.Add(this.pictureBoxPoster);
-			this.Name = "StandupInfo";
-			this.Size = new System.Drawing.Size(756, 665);
+			this.Name = "StandupInfoControl";
+			this.Size = new System.Drawing.Size(761, 763);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -146,7 +145,7 @@ namespace MainApp.Standups
 		private System.Windows.Forms.Label labelRuntime;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label labelPerformer;
-		private StarRatingControl starRatingControl1;
 		private System.Windows.Forms.Button buttonGoToImdb;
+		private CommonControls.EvenControl evenControl1;
 	}
 }

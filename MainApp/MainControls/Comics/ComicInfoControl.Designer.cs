@@ -47,9 +47,8 @@
 			this.checkBoxReading = new System.Windows.Forms.CheckBox();
 			this.checkBoxOngoing = new System.Windows.Forms.CheckBox();
 			this.labelAddingPages = new System.Windows.Forms.Label();
-			this.starRatingControl1 = new MainApp.StarRatingControl();
 			this.listBoxChapters = new System.Windows.Forms.ListBox();
-			this.eventControl1 = new MainApp.EventControl();
+			this.evenControl1 = new MainApp.CommonControls.EvenControl();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownChapters)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownPages)).BeginInit();
@@ -259,38 +258,29 @@
 			this.labelAddingPages.TabIndex = 36;
 			this.labelAddingPages.Text = "Adding 15 pages";
 			// 
-			// starRatingControl1
-			// 
-			this.starRatingControl1.Location = new System.Drawing.Point(4, 337);
-			this.starRatingControl1.Name = "starRatingControl1";
-			this.starRatingControl1.SelectedStar = 1;
-			this.starRatingControl1.Size = new System.Drawing.Size(223, 101);
-			this.starRatingControl1.TabIndex = 35;
-			// 
 			// listBoxChapters
 			// 
 			this.listBoxChapters.FormattingEnabled = true;
 			this.listBoxChapters.ItemHeight = 20;
-			this.listBoxChapters.Location = new System.Drawing.Point(322, 5);
+			this.listBoxChapters.Location = new System.Drawing.Point(322, 9);
 			this.listBoxChapters.Name = "listBoxChapters";
-			this.listBoxChapters.Size = new System.Drawing.Size(201, 444);
+			this.listBoxChapters.Size = new System.Drawing.Size(201, 324);
 			this.listBoxChapters.TabIndex = 37;
 			// 
-			// eventControl1
+			// evenControl1
 			// 
-			this.eventControl1.Location = new System.Drawing.Point(6, 455);
-			this.eventControl1.Name = "eventControl1";
-			this.eventControl1.Size = new System.Drawing.Size(301, 335);
-			this.eventControl1.TabIndex = 38;
+			this.evenControl1.Location = new System.Drawing.Point(3, 336);
+			this.evenControl1.Name = "evenControl1";
+			this.evenControl1.Size = new System.Drawing.Size(424, 416);
+			this.evenControl1.TabIndex = 38;
 			// 
 			// ComicInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.eventControl1);
+			this.Controls.Add(this.evenControl1);
 			this.Controls.Add(this.listBoxChapters);
 			this.Controls.Add(this.labelAddingPages);
-			this.Controls.Add(this.starRatingControl1);
 			this.Controls.Add(this.checkBoxOngoing);
 			this.Controls.Add(this.checkBoxReading);
 			this.Controls.Add(this.textBoxIllustrator);
@@ -339,9 +329,8 @@
         private System.Windows.Forms.TextBox textBoxIllustrator;
 		private System.Windows.Forms.CheckBox checkBoxReading;
 		private System.Windows.Forms.CheckBox checkBoxOngoing;
-		private StarRatingControl starRatingControl1;
 		private System.Windows.Forms.Label labelAddingPages;
 		private System.Windows.Forms.ListBox listBoxChapters;
-		private EventControl eventControl1;
+		private CommonControls.EvenControl evenControl1;
 	}
 }

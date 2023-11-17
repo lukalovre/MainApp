@@ -5,13 +5,12 @@ namespace Model
 {
 	public class Event
 	{
-		public string Comment { get; set; }
-
-		public DateTime? Date { get; set; }
-
 		[Key]
 		public int ID { get; set; }
 
+		public DateTime? Date { get; set; }
 		public int? Rating { get; set; }
+		public string Comment { get; set; }
+		public string People { get; set; }
 	}
 }

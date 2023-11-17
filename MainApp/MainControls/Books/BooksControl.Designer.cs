@@ -31,12 +31,12 @@ namespace MainApp.Books
 		private void InitializeComponent()
 		{
 			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
-			this.buttonUpdate = new System.Windows.Forms.Button();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageAll = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.yearFilter1 = new MainApp.YearFilterControl();
 			this.bookInfo1 = new MainApp.Books.BookInfoControl();
+			this.addButton1 = new MainApp.CommonControls.AddButton();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPageAll.SuspendLayout();
@@ -52,16 +52,6 @@ namespace MainApp.Books
 			this.dataGridViewAll.Size = new System.Drawing.Size(731, 970);
 			this.dataGridViewAll.TabIndex = 1;
 			this.dataGridViewAll.SelectionChanged += new System.EventHandler(this.DataGridViewAll_SelectionChanged);
-			// 
-			// buttonUpdate
-			// 
-			this.buttonUpdate.Location = new System.Drawing.Point(811, 718);
-			this.buttonUpdate.Name = "buttonUpdate";
-			this.buttonUpdate.Size = new System.Drawing.Size(99, 46);
-			this.buttonUpdate.TabIndex = 5;
-			this.buttonUpdate.Text = "Update";
-			this.buttonUpdate.UseVisualStyleBackColor = true;
-			this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
 			// 
 			// tabControl1
 			// 
@@ -109,13 +99,20 @@ namespace MainApp.Books
 			this.bookInfo1.Size = new System.Drawing.Size(668, 628);
 			this.bookInfo1.TabIndex = 4;
 			// 
+			// addButton1
+			// 
+			this.addButton1.Location = new System.Drawing.Point(811, 693);
+			this.addButton1.Name = "addButton1";
+			this.addButton1.Size = new System.Drawing.Size(315, 43);
+			this.addButton1.TabIndex = 8;
+			// 
 			// BooksControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.addButton1);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.yearFilter1);
-			this.Controls.Add(this.buttonUpdate);
 			this.Controls.Add(this.bookInfo1);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "BooksControl";
@@ -131,10 +128,10 @@ namespace MainApp.Books
 
 		private DataGridView dataGridViewAll;
 		private BookInfoControl bookInfo1;
-		private Button buttonUpdate;
 		private YearFilterControl yearFilter1;
 		private TabControl tabControl1;
 		private TabPage tabPageAll;
 		private TabPage tabPage2;
+		private CommonControls.AddButton addButton1;
 	}
 }

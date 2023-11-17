@@ -8,7 +8,8 @@ CREATE TABLE [dbo].[MyWorks] (
    [Type] [nvarchar](25) NULL,
    [Location] [nvarchar](255) NULL,
    [PublicLocation] [nvarchar](255) NULL,
-   [Finished] [bit] NULL
+   [Finished] [bit] NULL,
+   [Main] [bit] NULL
 
    ,CONSTRAINT [PK_My work] PRIMARY KEY CLUSTERED ([ID])
 )

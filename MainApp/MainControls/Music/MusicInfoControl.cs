@@ -15,7 +15,7 @@ namespace MainApp.Musics
 		public MusicInfoControl()
 		{
 			InitializeComponent();
-			eventControl1.DefaultInterval = EventControl.Interval.Years;
+			eventControl.SetEventListDefaultInterval(EventListControl.Interval.Years);
 		}
 
 		public delegate void ArtistTextChangedDelegate(string artist);
@@ -69,11 +69,12 @@ namespace MainApp.Musics
 			var events = musicEvents.Select(o => new Model.EventListItem
 			{
 				ID = o.ID,
-				Time = 1,
+				CountValue = 1,
 				Date = o.Date
 			}).ToList();
 
-			eventControl1.FIll(events);
+			var lastEvent = musicEvents.LastOrDefault();
+			eventControl.Fill(lastEvent, events, EventListControl.CountValue.None);
 		}
 
 		internal MusicEvent GetEvent()
@@ -81,9 +82,10 @@ namespace MainApp.Musics
 			return new MusicEvent
 			{
 				In = checkBoxIsIn.Checked,
-				Comment = null,
-				Rating = null,
-				ItemID = m_music.ItemID
+				Comment = eventControl.GetComment(),
+				Rating = eventControl.Rating,
+				ItemID = m_music.ItemID,
+				People = eventControl.GetPeople()
 			};
 		}
 

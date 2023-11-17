@@ -7,7 +7,6 @@ namespace Model
 		public List<string> Books { get; set; } = new List<string>();
 		public List<string> BooksCollection { get; set; } = new List<string>();
 		public List<string> Comics { get; set; } = new List<string>();
-		public List<string> ComicsCollection { get; set; } = new List<string>();
 		public List<string> ComicsOngoing { get; set; } = new List<string>();
 		public List<string> Games { get; set; } = new List<string>();
 		public List<string> Links { get; set; } = new List<string>();

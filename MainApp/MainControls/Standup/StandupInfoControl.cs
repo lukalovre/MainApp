@@ -1,6 +1,8 @@
 ﻿using Controller;
+using Model;
 using Model.dbo;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -28,15 +30,28 @@ namespace MainApp.Standups
 			labelTitle.Text = standup.Title;
 			labelYear.Text = standup.Year.ToString();
 			labelPerformer.Text = standup.Performer;
-			starRatingControl1.SelectedStar = standup.Rating;
-			labelRuntime.Text = Helper.GetFormatedTime(standup.Runtime);
+			labelRuntime.Text = TimeHelper.GetFormatedTime(standup.Runtime);
 
 			SetPoster(standup);
+
+			var eventItemList = new List<EventListItem>
+			{
+				new EventListItem
+				{
+					ID = standup.ID,
+					Date = standup.Date,
+					CountValue = 1
+				}
+			};
+
+			evenControl1.Fill(standup, eventItemList);
 		}
 
 		internal Standup GetStandup()
 		{
-			m_standup.Rating = starRatingControl1.SelectedStar;
+			m_standup.Rating = evenControl1.Rating;
+			m_standup.Comment = evenControl1.GetComment();
+			m_standup.People = evenControl1.GetPeople(); 
 			return m_standup;
 		}
 

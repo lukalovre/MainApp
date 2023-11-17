@@ -35,7 +35,6 @@ namespace MainApp.Games
 			this.dataGridViewPlaying = new System.Windows.Forms.DataGridView();
 			this.tabPageAll = new System.Windows.Forms.TabPage();
 			this.dataGridViewGames = new System.Windows.Forms.DataGridView();
-			this.buttonUpdate = new System.Windows.Forms.Button();
 			this.textBoxIgdb = new System.Windows.Forms.TextBox();
 			this.checkBoxTotalTime = new System.Windows.Forms.CheckBox();
 			this.numericUpDownHours = new System.Windows.Forms.NumericUpDown();
@@ -43,6 +42,7 @@ namespace MainApp.Games
 			this.labelAddingTime = new System.Windows.Forms.Label();
 			this.yearFilter1 = new MainApp.YearFilterControl();
 			this.gameInfo = new MainApp.Games.GameInfoControl();
+			this.addButton1 = new MainApp.CommonControls.AddButton();
 			this.tabControl1.SuspendLayout();
 			this.tabPagePlaying.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaying)).BeginInit();
@@ -110,21 +110,11 @@ namespace MainApp.Games
 			this.dataGridViewGames.TabIndex = 1;
 			this.dataGridViewGames.SelectionChanged += new System.EventHandler(this.DataGridViewGames_SelectionChanged);
 			// 
-			// buttonUpdate
-			// 
-			this.buttonUpdate.Location = new System.Drawing.Point(1042, 29);
-			this.buttonUpdate.Name = "buttonUpdate";
-			this.buttonUpdate.Size = new System.Drawing.Size(81, 36);
-			this.buttonUpdate.TabIndex = 11;
-			this.buttonUpdate.Text = "Update";
-			this.buttonUpdate.UseVisualStyleBackColor = true;
-			this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
-			// 
 			// textBoxIgdb
 			// 
 			this.textBoxIgdb.Location = new System.Drawing.Point(907, 34);
 			this.textBoxIgdb.Name = "textBoxIgdb";
-			this.textBoxIgdb.Size = new System.Drawing.Size(129, 26);
+			this.textBoxIgdb.Size = new System.Drawing.Size(111, 26);
 			this.textBoxIgdb.TabIndex = 14;
 			this.textBoxIgdb.TextChanged += new System.EventHandler(this.TextBoxIgdb_TextChanged);
 			// 
@@ -133,7 +123,7 @@ namespace MainApp.Games
 			this.checkBoxTotalTime.AutoSize = true;
 			this.checkBoxTotalTime.Checked = true;
 			this.checkBoxTotalTime.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxTotalTime.Location = new System.Drawing.Point(1140, 3);
+			this.checkBoxTotalTime.Location = new System.Drawing.Point(1368, 27);
 			this.checkBoxTotalTime.Name = "checkBoxTotalTime";
 			this.checkBoxTotalTime.Size = new System.Drawing.Size(104, 24);
 			this.checkBoxTotalTime.TabIndex = 24;
@@ -143,7 +133,7 @@ namespace MainApp.Games
 			// 
 			// numericUpDownHours
 			// 
-			this.numericUpDownHours.Location = new System.Drawing.Point(1140, 33);
+			this.numericUpDownHours.Location = new System.Drawing.Point(1368, 57);
 			this.numericUpDownHours.Maximum = new decimal(new int[] {
             999,
             0,
@@ -156,7 +146,7 @@ namespace MainApp.Games
 			// 
 			// numericUpDownMinutes
 			// 
-			this.numericUpDownMinutes.Location = new System.Drawing.Point(1197, 33);
+			this.numericUpDownMinutes.Location = new System.Drawing.Point(1425, 57);
 			this.numericUpDownMinutes.Maximum = new decimal(new int[] {
             59,
             0,
@@ -170,7 +160,7 @@ namespace MainApp.Games
 			// labelAddingTime
 			// 
 			this.labelAddingTime.AutoSize = true;
-			this.labelAddingTime.Location = new System.Drawing.Point(1257, 37);
+			this.labelAddingTime.Location = new System.Drawing.Point(1195, 69);
 			this.labelAddingTime.Name = "labelAddingTime";
 			this.labelAddingTime.Size = new System.Drawing.Size(144, 20);
 			this.labelAddingTime.TabIndex = 21;
@@ -190,17 +180,24 @@ namespace MainApp.Games
 			this.gameInfo.Size = new System.Drawing.Size(750, 896);
 			this.gameInfo.TabIndex = 10;
 			// 
+			// addButton1
+			// 
+			this.addButton1.Location = new System.Drawing.Point(1024, 23);
+			this.addButton1.Name = "addButton1";
+			this.addButton1.Size = new System.Drawing.Size(315, 43);
+			this.addButton1.TabIndex = 25;
+			// 
 			// GamesControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.addButton1);
 			this.Controls.Add(this.checkBoxTotalTime);
 			this.Controls.Add(this.numericUpDownHours);
 			this.Controls.Add(this.numericUpDownMinutes);
 			this.Controls.Add(this.labelAddingTime);
 			this.Controls.Add(this.textBoxIgdb);
 			this.Controls.Add(this.yearFilter1);
-			this.Controls.Add(this.buttonUpdate);
 			this.Controls.Add(this.gameInfo);
 			this.Controls.Add(this.tabControl1);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -226,12 +223,12 @@ namespace MainApp.Games
 		private System.Windows.Forms.TabPage tabPagePlaying;
 		internal DataGridView dataGridViewPlaying;
 		private GameInfoControl gameInfo;
-		private Button buttonUpdate;
 		private YearFilterControl yearFilter1;
 		private TextBox textBoxIgdb;
         private CheckBox checkBoxTotalTime;
         private NumericUpDown numericUpDownHours;
         private NumericUpDown numericUpDownMinutes;
         private Label labelAddingTime;
-    }
+		private CommonControls.AddButton addButton1;
+	}
 }

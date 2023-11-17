@@ -37,11 +37,12 @@ namespace MainApp.Comics
 					: Color.Empty;
 			}
 		}
+
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -64,6 +65,7 @@ namespace MainApp.Comics
 			SetGridReading(dataGridViewOngoing);
 
 			dataGridViewAll.SelectLastRow();
+			addButton1.SetAddButton(ButtonAdd_Click);
 		}
 
 		private void CellClick(object sender, DataGridViewCellEventArgs e)
@@ -125,7 +127,7 @@ namespace MainApp.Comics
 				_1001 = comic._1001,
 				LastReadDate = lastDate,
 				DaysAgo = daysAgo,
-				Time = Helper.GetFormatedTime((int)timeMinutes)
+				Time = TimeHelper.GetFormatedTime((int)timeMinutes)
 			};
 		}
 
@@ -166,7 +168,7 @@ namespace MainApp.Comics
 			dataGridViewAll.DataSource = new BindingSource(m_bindingList, null);
 		}
 
-		private void ButtonUpdate_Click(object sender, EventArgs e)
+		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
 			var comic = comicInfo1.GetItem();
 
@@ -181,7 +183,7 @@ namespace MainApp.Comics
 			}
 
 			var comicEvent = comicInfo1.GetEvent();
-			comicEvent.Date = DateTime.Now;
+			comicEvent.Date = addButton1.GetDate();
 
 			Datasource.Add(comicEvent);
 			m_comicEvents.Add(comicEvent);

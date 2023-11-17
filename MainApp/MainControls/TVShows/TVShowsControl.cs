@@ -44,7 +44,7 @@ namespace MainApp.TV_Shows
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -53,13 +53,14 @@ namespace MainApp.TV_Shows
 
 			LoadGridData();
 
-			SetGrid(dataGridViewTVShows);
+			SetGrid(dataGridViewAll);
 			SetGridWatching(dataGridViewWatching);
 			SetGridWatching(dataGridViewOngoing);
 			SetGridWatching(dataGridViewYouTube);
 			SetGridWatching(dataGridViewWaiting);
 
-			dataGridViewTVShows.SelectLastRow();
+			dataGridViewAll.SelectLastRow();
+			addButton1.SetAddButton(ButtonAdd_Click);
 		}
 
 		private void CellClick(object sender, DataGridViewCellEventArgs e)
@@ -117,15 +118,16 @@ namespace MainApp.TV_Shows
 				Title = item.Title,
 				Writer = item.Writer,
 				Year = item.Year,
-				Time = Helper.GetFormatedTime(events.Sum(o => o.Runtime)),
+				Time = TimeHelper.GetFormatedTime(events.Sum(o => o.Runtime)),
 				DaysAgo = (int)(DateTime.Now - lastDate).TotalDays
 			};
 		}
 
-		private void ButtonUpdate_Click(object sender, EventArgs e)
+		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
 			var tvShow = tvShowInfo1.GetTVShow();
 			var tvShowEvent = tvShowInfo1.GetEvent();
+			tvShowEvent.Date = addButton1.GetDate();
 
 			var events = m_tvShowEvents.Where(i => i.Imdb == tvShow.Imdb);
 
@@ -147,7 +149,7 @@ namespace MainApp.TV_Shows
 			checkBoxUpdateSeason.Checked = false;
 			tvShowInfo1.FillData(tvShow, m_tvShowEvents.Where(i => i.Imdb == tvShow.Imdb).ToList());
 
-			dataGridViewTVShows.SelectLastRow();
+			dataGridViewAll.SelectLastRow();
 			textBoxImdb.Clear();
 		}
 
@@ -177,7 +179,7 @@ namespace MainApp.TV_Shows
 
 			m_bindingList = new BindingList<TVShow>(bind.Distinct().ToList());
 
-			dataGridViewTVShows.DataSource = new BindingSource(m_bindingList, null);
+			dataGridViewAll.DataSource = new BindingSource(m_bindingList, null);
 		}
 
 		private void SetGrid(DataGridView dataGridView)
@@ -217,6 +219,14 @@ namespace MainApp.TV_Shows
 			var tvShow = Controller.TVShows.GetTVShow(text);
 
 			tvShowInfo1.FillData(tvShow, null);
+		}
+
+		private void TextBoxFilter_TextChanged(object sender, EventArgs e)
+		{
+			dataGridViewAll.SelectionChanged -= DataGridView_SelectionChanged;
+			m_tvShows = Datasource.GetList<TVShow>();
+			dataGridViewAll.DataSource = new SortableBindingList<TVShow>(m_tvShows.Where(o => o.Title.Contains(textBoxFilter.Text)).ToList());
+			dataGridViewAll.SelectionChanged += DataGridView_SelectionChanged;
 		}
 	}
 }

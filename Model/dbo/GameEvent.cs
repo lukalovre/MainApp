@@ -8,7 +8,6 @@ namespace Model.dbo
 		public bool Completed { get; set; }
 
 		public int Igdb { get; set; }
-		public string People { get; set; }
 		public int Time { get; set; }
 	}
 }

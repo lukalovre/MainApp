@@ -1,14 +1,16 @@
 CREATE TABLE [dbo].[Concerts] (
    [ID] [int] NOT NULL
       IDENTITY (1,1),
-   [Concert] [nvarchar](255) NULL,
+   [Title] [nvarchar](255) NULL,
    [Festival] [nvarchar](255) NULL,
    [Venue] [nvarchar](255) NULL,
    [City] [nvarchar](255) NULL,
    [Country] [nvarchar](255) NULL,
-   [Ticket price] [int] NULL,
+   [Price] [int] NULL,
    [Date] [date] NULL,
-   [People] [nvarchar](max) NULL
+   [People] [nvarchar](max) NULL,
+   [Comment] [nvarchar](max) NULL,
+   [Rating] [int] NOT NULL
 
    ,CONSTRAINT [PK__Concerts__3BD018485B7F5AE0] PRIMARY KEY CLUSTERED ([ID])
 )

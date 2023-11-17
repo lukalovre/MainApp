@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 using Model;
 using Model.dbo;
 using Model.Grid;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace Controller
 	{
 		public static LinkGrid Convert(Link link, List<LinkEvent> linkEvent)
 		{
+			var countLastYear = linkEvent.Count(o => o.Date >= DateTime.Today.AddYears(-1));
+
 			return new LinkGrid
 			{
 				ID = link.ID,
 				Title = link.Title,
-				Count = linkEvent.Count
+				Count = countLastYear
 			};
 		}
 
@@ -161,7 +164,7 @@ namespace Controller
 			}
 		}
 
-		public static YoutubeData GetYouTubeChannelNamData(string url)
+		public static YoutubeChannelData GetYouTubeChannelNameData(string url)
 		{
 			using (var client = new WebClient())
 			{
@@ -188,10 +191,69 @@ namespace Controller
 					var destinationFile = Path.Combine(Paths.Posters, $"{handle}");
 					Web.DownloadPNG(imageLink, destinationFile);
 
-					return new YoutubeData
+					return new YoutubeChannelData
 					{
 						Title = title,
 						ID = handle
+					};
+				}
+			}
+		}
+
+		public static YoutubeSongData GetYouTubeSongData(string url)
+		{
+			using (var client = new WebClient())
+			{
+				var content = client.DownloadData(url);
+				using (var stream = new MemoryStream(content))
+				{
+					string result = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+
+					var htmlDocument = new HtmlDocument();
+					htmlDocument.LoadHtml(result);
+					var node = htmlDocument.DocumentNode.SelectSingleNode("//title");
+
+					var videoTitle = node.InnerHtml.Trim();
+
+					var artist = videoTitle.Split('-')[0].Trim();
+					var title = videoTitle.Split('-')[1]
+						.Trim()
+						.TrimEndLegit("(Original Mix)")
+						.TrimEndLegit("(Music video)")
+						.TrimEndLegit("(Official Music Video)")
+						.Trim();
+
+					if (node == null || string.IsNullOrWhiteSpace(title))
+					{
+						return null;
+					}
+
+					var handle = url.TrimStartLegit("https://www.youtube.com/watch?v=").Split(new string[] { "&list=" }, StringSplitOptions.None).FirstOrDefault();
+
+					var posterNode = htmlDocument.DocumentNode.SelectSingleNode("//meta[contains(@property, 'og:image')]");
+					var imageLink = posterNode.GetAttributeValue("content", string.Empty).Trim();
+
+					var destinationFile = Path.Combine(Paths.SongCovers, $"{handle}");
+					Web.DownloadPNG(imageLink, destinationFile);
+
+					var yearNode = htmlDocument.DocumentNode.SelectSingleNode("//meta[contains(@itemprop, 'datePublished')]");
+					var yearText = yearNode.GetAttributeValue("content", string.Empty).Trim();
+					var year = int.Parse(yearText.Split('-').FirstOrDefault());
+
+					var runtimeNode = htmlDocument.DocumentNode.SelectSingleNode("//meta[contains(@itemprop, 'duration')]");
+					var runtimeText = runtimeNode.GetAttributeValue("content", string.Empty).Trim();
+					var runtimeSplit = runtimeText.TrimStartLegit("PT").TrimEndLegit("S").Split('M');
+					var runtimeMinutes = int.Parse(runtimeSplit.FirstOrDefault());
+					var runtimeSeconds = int.Parse(runtimeSplit.LastOrDefault());
+					var runtime = runtimeMinutes + (runtimeSeconds > 30 ? 1 : 0);
+
+					return new YoutubeSongData
+					{
+						Artist = WebUtility.HtmlDecode(artist),
+						Title = WebUtility.HtmlDecode(title),
+						Link = url,
+						Year = year,
+						Runtime = runtime
 					};
 				}
 			}

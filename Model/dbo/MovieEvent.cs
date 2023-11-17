@@ -6,8 +6,6 @@ namespace Model.dbo
 	public class MovieEvent : Event, IImdb
 	{
 		public string Imdb { get; set; }
-
-		public string People { get; set; }
 		public string Platform { get; set; }
 	}
 }

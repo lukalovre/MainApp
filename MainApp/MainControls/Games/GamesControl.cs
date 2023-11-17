@@ -57,7 +57,7 @@ namespace MainApp.Games
 				Year = game.Year,
 				DaysAgo = daysAgo,
 				LastPlayedDate = lastDate,
-				Time = Helper.GetFormatedTime(time)
+				Time = TimeHelper.GetFormatedTime(time)
 			};
 		}
 
@@ -75,7 +75,7 @@ namespace MainApp.Games
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -102,9 +102,10 @@ namespace MainApp.Games
 			SetGrid(dataGridViewGames);
 			SetGridPlaying(dataGridViewPlaying);
 			dataGridViewGames.SelectLastRow();
+			addButton1.SetAddButton(ButtonAdd_Click);
 		}
 
-		private void ButtonUpdate_Click(object sender, EventArgs e)
+		private void ButtonAdd_Click(object sender, EventArgs e)
 		{
 			var game = gameInfo.GetItem();
 
@@ -120,7 +121,7 @@ namespace MainApp.Games
 
 			var gameEvent = gameInfo.GetEvent();
 			gameEvent.Igdb = game.Igdb;
-			gameEvent.Date = DateTime.Now;
+			gameEvent.Date = addButton1.GetDate();
 			gameEvent.Time = m_addingTime;
 
 			Datasource.Add(gameEvent);

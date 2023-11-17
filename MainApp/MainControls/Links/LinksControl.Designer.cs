@@ -42,14 +42,25 @@
 			this.tabPageWeeklyMusic = new System.Windows.Forms.TabPage();
 			this.dataGridViewMusicWeekly = new System.Windows.Forms.DataGridView();
 			this.tabPageReadingList = new System.Windows.Forms.TabPage();
+			this.tabControl2 = new System.Windows.Forms.TabControl();
+			this.tabPageWeekly = new System.Windows.Forms.TabPage();
+			this.dataGridViewPaper = new System.Windows.Forms.DataGridView();
+			this.tabPageToRead = new System.Windows.Forms.TabPage();
+			this.dataGridViewToRead = new System.Windows.Forms.DataGridView();
+			this.tabPageWatchlist = new System.Windows.Forms.TabPage();
+			this.dataGridViewWatchlist = new System.Windows.Forms.DataGridView();
+			this.tabPageFuture = new System.Windows.Forms.TabPage();
+			this.dataGridViewFuture = new System.Windows.Forms.DataGridView();
+			this.tabPageAwards = new System.Windows.Forms.TabPage();
+			this.dataGridViewAwards = new System.Windows.Forms.DataGridView();
 			this.tabPageFollowing = new System.Windows.Forms.TabPage();
 			this.tabControl3 = new System.Windows.Forms.TabControl();
 			this.tabPageYouTube = new System.Windows.Forms.TabPage();
 			this.dataGridViewYouTube = new System.Windows.Forms.DataGridView();
 			this.tabPageYouTubeMusic = new System.Windows.Forms.TabPage();
 			this.dataGridViewYouTubeMusic = new System.Windows.Forms.DataGridView();
-			this.tabPageTwitter = new System.Windows.Forms.TabPage();
-			this.dataGridViewTwitter = new System.Windows.Forms.DataGridView();
+			this.tabPageDirectors = new System.Windows.Forms.TabPage();
+			this.dataGridViewDirectors = new System.Windows.Forms.DataGridView();
 			this.tabPageDucani = new System.Windows.Forms.TabPage();
 			this.dataGridViewDucani = new System.Windows.Forms.DataGridView();
 			this.tabPageOther = new System.Windows.Forms.TabPage();
@@ -58,19 +69,6 @@
 			this.buttonUpdate = new System.Windows.Forms.Button();
 			this.buttonUnfollow = new System.Windows.Forms.Button();
 			this.linkInfoControl1 = new MainApp.MainControls.LinkInfoControl();
-			this.tabPageAwards = new System.Windows.Forms.TabPage();
-			this.dataGridViewAwards = new System.Windows.Forms.DataGridView();
-			this.tabPageFuture = new System.Windows.Forms.TabPage();
-			this.dataGridViewFuture = new System.Windows.Forms.DataGridView();
-			this.tabPageWatchlist = new System.Windows.Forms.TabPage();
-			this.dataGridViewWatchlist = new System.Windows.Forms.DataGridView();
-			this.tabPageToRead = new System.Windows.Forms.TabPage();
-			this.dataGridViewToRead = new System.Windows.Forms.DataGridView();
-			this.tabPageWeekly = new System.Windows.Forms.TabPage();
-			this.dataGridViewPaper = new System.Windows.Forms.DataGridView();
-			this.tabControl2 = new System.Windows.Forms.TabControl();
-			this.tabPageDirectors = new System.Windows.Forms.TabPage();
-			this.dataGridViewDirectors = new System.Windows.Forms.DataGridView();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTools.SuspendLayout();
 			this.tabControl6.SuspendLayout();
@@ -85,31 +83,29 @@
 			this.tabPageWeeklyMusic.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewMusicWeekly)).BeginInit();
 			this.tabPageReadingList.SuspendLayout();
+			this.tabControl2.SuspendLayout();
+			this.tabPageWeekly.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaper)).BeginInit();
+			this.tabPageToRead.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewToRead)).BeginInit();
+			this.tabPageWatchlist.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewWatchlist)).BeginInit();
+			this.tabPageFuture.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuture)).BeginInit();
+			this.tabPageAwards.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAwards)).BeginInit();
 			this.tabPageFollowing.SuspendLayout();
 			this.tabControl3.SuspendLayout();
 			this.tabPageYouTube.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewYouTube)).BeginInit();
 			this.tabPageYouTubeMusic.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewYouTubeMusic)).BeginInit();
-			this.tabPageTwitter.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTwitter)).BeginInit();
+			this.tabPageDirectors.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirectors)).BeginInit();
 			this.tabPageDucani.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDucani)).BeginInit();
 			this.tabPageOther.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewOther)).BeginInit();
-			this.tabPageAwards.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAwards)).BeginInit();
-			this.tabPageFuture.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuture)).BeginInit();
-			this.tabPageWatchlist.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewWatchlist)).BeginInit();
-			this.tabPageToRead.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewToRead)).BeginInit();
-			this.tabPageWeekly.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaper)).BeginInit();
-			this.tabControl2.SuspendLayout();
-			this.tabPageDirectors.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirectors)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -262,6 +258,122 @@
 			this.tabPageReadingList.Text = "Reading List";
 			this.tabPageReadingList.UseVisualStyleBackColor = true;
 			// 
+			// tabControl2
+			// 
+			this.tabControl2.Controls.Add(this.tabPageWeekly);
+			this.tabControl2.Controls.Add(this.tabPageToRead);
+			this.tabControl2.Controls.Add(this.tabPageWatchlist);
+			this.tabControl2.Controls.Add(this.tabPageFuture);
+			this.tabControl2.Controls.Add(this.tabPageAwards);
+			this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl2.Location = new System.Drawing.Point(0, 0);
+			this.tabControl2.Name = "tabControl2";
+			this.tabControl2.SelectedIndex = 0;
+			this.tabControl2.Size = new System.Drawing.Size(770, 1029);
+			this.tabControl2.TabIndex = 1;
+			// 
+			// tabPageWeekly
+			// 
+			this.tabPageWeekly.Controls.Add(this.dataGridViewPaper);
+			this.tabPageWeekly.Location = new System.Drawing.Point(4, 29);
+			this.tabPageWeekly.Name = "tabPageWeekly";
+			this.tabPageWeekly.Size = new System.Drawing.Size(762, 996);
+			this.tabPageWeekly.TabIndex = 2;
+			this.tabPageWeekly.Text = "Weekly";
+			this.tabPageWeekly.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewPaper
+			// 
+			this.dataGridViewPaper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewPaper.Location = new System.Drawing.Point(173, 73);
+			this.dataGridViewPaper.Name = "dataGridViewPaper";
+			this.dataGridViewPaper.RowHeadersWidth = 62;
+			this.dataGridViewPaper.RowTemplate.Height = 28;
+			this.dataGridViewPaper.Size = new System.Drawing.Size(240, 150);
+			this.dataGridViewPaper.TabIndex = 0;
+			// 
+			// tabPageToRead
+			// 
+			this.tabPageToRead.Controls.Add(this.dataGridViewToRead);
+			this.tabPageToRead.Location = new System.Drawing.Point(4, 29);
+			this.tabPageToRead.Name = "tabPageToRead";
+			this.tabPageToRead.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageToRead.Size = new System.Drawing.Size(762, 996);
+			this.tabPageToRead.TabIndex = 0;
+			this.tabPageToRead.Text = "To Read";
+			this.tabPageToRead.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewToRead
+			// 
+			this.dataGridViewToRead.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewToRead.Location = new System.Drawing.Point(56, 96);
+			this.dataGridViewToRead.Name = "dataGridViewToRead";
+			this.dataGridViewToRead.RowHeadersWidth = 62;
+			this.dataGridViewToRead.RowTemplate.Height = 28;
+			this.dataGridViewToRead.Size = new System.Drawing.Size(240, 150);
+			this.dataGridViewToRead.TabIndex = 0;
+			// 
+			// tabPageWatchlist
+			// 
+			this.tabPageWatchlist.Controls.Add(this.dataGridViewWatchlist);
+			this.tabPageWatchlist.Location = new System.Drawing.Point(4, 29);
+			this.tabPageWatchlist.Name = "tabPageWatchlist";
+			this.tabPageWatchlist.Size = new System.Drawing.Size(762, 996);
+			this.tabPageWatchlist.TabIndex = 3;
+			this.tabPageWatchlist.Text = "Watchlist";
+			this.tabPageWatchlist.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewWatchlist
+			// 
+			this.dataGridViewWatchlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewWatchlist.Location = new System.Drawing.Point(213, 173);
+			this.dataGridViewWatchlist.Name = "dataGridViewWatchlist";
+			this.dataGridViewWatchlist.RowHeadersWidth = 62;
+			this.dataGridViewWatchlist.RowTemplate.Height = 28;
+			this.dataGridViewWatchlist.Size = new System.Drawing.Size(240, 150);
+			this.dataGridViewWatchlist.TabIndex = 0;
+			// 
+			// tabPageFuture
+			// 
+			this.tabPageFuture.Controls.Add(this.dataGridViewFuture);
+			this.tabPageFuture.Location = new System.Drawing.Point(4, 29);
+			this.tabPageFuture.Name = "tabPageFuture";
+			this.tabPageFuture.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageFuture.Size = new System.Drawing.Size(762, 996);
+			this.tabPageFuture.TabIndex = 1;
+			this.tabPageFuture.Text = "Future";
+			this.tabPageFuture.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewFuture
+			// 
+			this.dataGridViewFuture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewFuture.Location = new System.Drawing.Point(297, 217);
+			this.dataGridViewFuture.Name = "dataGridViewFuture";
+			this.dataGridViewFuture.RowHeadersWidth = 62;
+			this.dataGridViewFuture.RowTemplate.Height = 28;
+			this.dataGridViewFuture.Size = new System.Drawing.Size(240, 150);
+			this.dataGridViewFuture.TabIndex = 0;
+			// 
+			// tabPageAwards
+			// 
+			this.tabPageAwards.Controls.Add(this.dataGridViewAwards);
+			this.tabPageAwards.Location = new System.Drawing.Point(4, 29);
+			this.tabPageAwards.Name = "tabPageAwards";
+			this.tabPageAwards.Size = new System.Drawing.Size(762, 996);
+			this.tabPageAwards.TabIndex = 5;
+			this.tabPageAwards.Text = "Awards";
+			this.tabPageAwards.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewAwards
+			// 
+			this.dataGridViewAwards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewAwards.Location = new System.Drawing.Point(521, 647);
+			this.dataGridViewAwards.Name = "dataGridViewAwards";
+			this.dataGridViewAwards.RowHeadersWidth = 62;
+			this.dataGridViewAwards.RowTemplate.Height = 28;
+			this.dataGridViewAwards.Size = new System.Drawing.Size(240, 150);
+			this.dataGridViewAwards.TabIndex = 0;
+			// 
 			// tabPageFollowing
 			// 
 			this.tabPageFollowing.Controls.Add(this.tabControl3);
@@ -277,7 +389,6 @@
 			// 
 			this.tabControl3.Controls.Add(this.tabPageYouTube);
 			this.tabControl3.Controls.Add(this.tabPageYouTubeMusic);
-			this.tabControl3.Controls.Add(this.tabPageTwitter);
 			this.tabControl3.Controls.Add(this.tabPageDirectors);
 			this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl3.Location = new System.Drawing.Point(3, 3);
@@ -328,26 +439,26 @@
 			this.dataGridViewYouTubeMusic.Size = new System.Drawing.Size(240, 150);
 			this.dataGridViewYouTubeMusic.TabIndex = 2;
 			// 
-			// tabPageTwitter
+			// tabPageDirectors
 			// 
-			this.tabPageTwitter.Controls.Add(this.dataGridViewTwitter);
-			this.tabPageTwitter.Location = new System.Drawing.Point(4, 29);
-			this.tabPageTwitter.Name = "tabPageTwitter";
-			this.tabPageTwitter.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTwitter.Size = new System.Drawing.Size(756, 990);
-			this.tabPageTwitter.TabIndex = 2;
-			this.tabPageTwitter.Text = "Twitter";
-			this.tabPageTwitter.UseVisualStyleBackColor = true;
+			this.tabPageDirectors.Controls.Add(this.dataGridViewDirectors);
+			this.tabPageDirectors.Location = new System.Drawing.Point(4, 29);
+			this.tabPageDirectors.Name = "tabPageDirectors";
+			this.tabPageDirectors.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageDirectors.Size = new System.Drawing.Size(756, 990);
+			this.tabPageDirectors.TabIndex = 5;
+			this.tabPageDirectors.Text = "Directors";
+			this.tabPageDirectors.UseVisualStyleBackColor = true;
 			// 
-			// dataGridViewTwitter
+			// dataGridViewDirectors
 			// 
-			this.dataGridViewTwitter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewTwitter.Location = new System.Drawing.Point(65, 71);
-			this.dataGridViewTwitter.Name = "dataGridViewTwitter";
-			this.dataGridViewTwitter.RowHeadersWidth = 62;
-			this.dataGridViewTwitter.RowTemplate.Height = 28;
-			this.dataGridViewTwitter.Size = new System.Drawing.Size(240, 150);
-			this.dataGridViewTwitter.TabIndex = 1;
+			this.dataGridViewDirectors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewDirectors.Location = new System.Drawing.Point(418, 297);
+			this.dataGridViewDirectors.Name = "dataGridViewDirectors";
+			this.dataGridViewDirectors.RowHeadersWidth = 62;
+			this.dataGridViewDirectors.RowTemplate.Height = 28;
+			this.dataGridViewDirectors.Size = new System.Drawing.Size(240, 150);
+			this.dataGridViewDirectors.TabIndex = 0;
 			// 
 			// tabPageDucani
 			// 
@@ -391,7 +502,7 @@
 			// 
 			// buttonAdd
 			// 
-			this.buttonAdd.Location = new System.Drawing.Point(1031, 292);
+			this.buttonAdd.Location = new System.Drawing.Point(1047, 542);
 			this.buttonAdd.Name = "buttonAdd";
 			this.buttonAdd.Size = new System.Drawing.Size(91, 47);
 			this.buttonAdd.TabIndex = 1;
@@ -401,7 +512,7 @@
 			// 
 			// buttonUpdate
 			// 
-			this.buttonUpdate.Location = new System.Drawing.Point(1128, 292);
+			this.buttonUpdate.Location = new System.Drawing.Point(1144, 542);
 			this.buttonUpdate.Name = "buttonUpdate";
 			this.buttonUpdate.Size = new System.Drawing.Size(91, 47);
 			this.buttonUpdate.TabIndex = 4;
@@ -411,7 +522,7 @@
 			// 
 			// buttonUnfollow
 			// 
-			this.buttonUnfollow.Location = new System.Drawing.Point(1182, 448);
+			this.buttonUnfollow.Location = new System.Drawing.Point(1198, 698);
 			this.buttonUnfollow.Name = "buttonUnfollow";
 			this.buttonUnfollow.Size = new System.Drawing.Size(91, 29);
 			this.buttonUnfollow.TabIndex = 5;
@@ -423,145 +534,8 @@
 			// 
 			this.linkInfoControl1.Location = new System.Drawing.Point(788, 39);
 			this.linkInfoControl1.Name = "linkInfoControl1";
-			this.linkInfoControl1.Size = new System.Drawing.Size(485, 247);
+			this.linkInfoControl1.Size = new System.Drawing.Size(485, 497);
 			this.linkInfoControl1.TabIndex = 3;
-			// 
-			// tabPageAwards
-			// 
-			this.tabPageAwards.Controls.Add(this.dataGridViewAwards);
-			this.tabPageAwards.Location = new System.Drawing.Point(4, 29);
-			this.tabPageAwards.Name = "tabPageAwards";
-			this.tabPageAwards.Size = new System.Drawing.Size(762, 996);
-			this.tabPageAwards.TabIndex = 5;
-			this.tabPageAwards.Text = "Awards";
-			this.tabPageAwards.UseVisualStyleBackColor = true;
-			// 
-			// dataGridViewAwards
-			// 
-			this.dataGridViewAwards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewAwards.Location = new System.Drawing.Point(521, 647);
-			this.dataGridViewAwards.Name = "dataGridViewAwards";
-			this.dataGridViewAwards.RowHeadersWidth = 62;
-			this.dataGridViewAwards.RowTemplate.Height = 28;
-			this.dataGridViewAwards.Size = new System.Drawing.Size(240, 150);
-			this.dataGridViewAwards.TabIndex = 0;
-			// 
-			// tabPageFuture
-			// 
-			this.tabPageFuture.Controls.Add(this.dataGridViewFuture);
-			this.tabPageFuture.Location = new System.Drawing.Point(4, 29);
-			this.tabPageFuture.Name = "tabPageFuture";
-			this.tabPageFuture.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageFuture.Size = new System.Drawing.Size(762, 996);
-			this.tabPageFuture.TabIndex = 1;
-			this.tabPageFuture.Text = "Future";
-			this.tabPageFuture.UseVisualStyleBackColor = true;
-			// 
-			// dataGridViewFuture
-			// 
-			this.dataGridViewFuture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewFuture.Location = new System.Drawing.Point(297, 217);
-			this.dataGridViewFuture.Name = "dataGridViewFuture";
-			this.dataGridViewFuture.RowHeadersWidth = 62;
-			this.dataGridViewFuture.RowTemplate.Height = 28;
-			this.dataGridViewFuture.Size = new System.Drawing.Size(240, 150);
-			this.dataGridViewFuture.TabIndex = 0;
-			// 
-			// tabPageWatchlist
-			// 
-			this.tabPageWatchlist.Controls.Add(this.dataGridViewWatchlist);
-			this.tabPageWatchlist.Location = new System.Drawing.Point(4, 29);
-			this.tabPageWatchlist.Name = "tabPageWatchlist";
-			this.tabPageWatchlist.Size = new System.Drawing.Size(762, 996);
-			this.tabPageWatchlist.TabIndex = 3;
-			this.tabPageWatchlist.Text = "Watchlist";
-			this.tabPageWatchlist.UseVisualStyleBackColor = true;
-			// 
-			// dataGridViewWatchlist
-			// 
-			this.dataGridViewWatchlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewWatchlist.Location = new System.Drawing.Point(213, 173);
-			this.dataGridViewWatchlist.Name = "dataGridViewWatchlist";
-			this.dataGridViewWatchlist.RowHeadersWidth = 62;
-			this.dataGridViewWatchlist.RowTemplate.Height = 28;
-			this.dataGridViewWatchlist.Size = new System.Drawing.Size(240, 150);
-			this.dataGridViewWatchlist.TabIndex = 0;
-			// 
-			// tabPageToRead
-			// 
-			this.tabPageToRead.Controls.Add(this.dataGridViewToRead);
-			this.tabPageToRead.Location = new System.Drawing.Point(4, 29);
-			this.tabPageToRead.Name = "tabPageToRead";
-			this.tabPageToRead.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageToRead.Size = new System.Drawing.Size(762, 996);
-			this.tabPageToRead.TabIndex = 0;
-			this.tabPageToRead.Text = "To Read";
-			this.tabPageToRead.UseVisualStyleBackColor = true;
-			// 
-			// dataGridViewToRead
-			// 
-			this.dataGridViewToRead.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewToRead.Location = new System.Drawing.Point(56, 96);
-			this.dataGridViewToRead.Name = "dataGridViewToRead";
-			this.dataGridViewToRead.RowHeadersWidth = 62;
-			this.dataGridViewToRead.RowTemplate.Height = 28;
-			this.dataGridViewToRead.Size = new System.Drawing.Size(240, 150);
-			this.dataGridViewToRead.TabIndex = 0;
-			// 
-			// tabPageWeekly
-			// 
-			this.tabPageWeekly.Controls.Add(this.dataGridViewPaper);
-			this.tabPageWeekly.Location = new System.Drawing.Point(4, 29);
-			this.tabPageWeekly.Name = "tabPageWeekly";
-			this.tabPageWeekly.Size = new System.Drawing.Size(762, 996);
-			this.tabPageWeekly.TabIndex = 2;
-			this.tabPageWeekly.Text = "Weekly";
-			this.tabPageWeekly.UseVisualStyleBackColor = true;
-			// 
-			// dataGridViewPaper
-			// 
-			this.dataGridViewPaper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewPaper.Location = new System.Drawing.Point(173, 73);
-			this.dataGridViewPaper.Name = "dataGridViewPaper";
-			this.dataGridViewPaper.RowHeadersWidth = 62;
-			this.dataGridViewPaper.RowTemplate.Height = 28;
-			this.dataGridViewPaper.Size = new System.Drawing.Size(240, 150);
-			this.dataGridViewPaper.TabIndex = 0;
-			// 
-			// tabControl2
-			// 
-			this.tabControl2.Controls.Add(this.tabPageWeekly);
-			this.tabControl2.Controls.Add(this.tabPageToRead);
-			this.tabControl2.Controls.Add(this.tabPageWatchlist);
-			this.tabControl2.Controls.Add(this.tabPageFuture);
-			this.tabControl2.Controls.Add(this.tabPageAwards);
-			this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl2.Location = new System.Drawing.Point(0, 0);
-			this.tabControl2.Name = "tabControl2";
-			this.tabControl2.SelectedIndex = 0;
-			this.tabControl2.Size = new System.Drawing.Size(770, 1029);
-			this.tabControl2.TabIndex = 1;
-			// 
-			// tabPageDirectors
-			// 
-			this.tabPageDirectors.Controls.Add(this.dataGridViewDirectors);
-			this.tabPageDirectors.Location = new System.Drawing.Point(4, 29);
-			this.tabPageDirectors.Name = "tabPageDirectors";
-			this.tabPageDirectors.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageDirectors.Size = new System.Drawing.Size(756, 990);
-			this.tabPageDirectors.TabIndex = 5;
-			this.tabPageDirectors.Text = "Directors";
-			this.tabPageDirectors.UseVisualStyleBackColor = true;
-			// 
-			// dataGridViewDirectors
-			// 
-			this.dataGridViewDirectors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridViewDirectors.Location = new System.Drawing.Point(418, 297);
-			this.dataGridViewDirectors.Name = "dataGridViewDirectors";
-			this.dataGridViewDirectors.RowHeadersWidth = 62;
-			this.dataGridViewDirectors.RowTemplate.Height = 28;
-			this.dataGridViewDirectors.Size = new System.Drawing.Size(240, 150);
-			this.dataGridViewDirectors.TabIndex = 0;
 			// 
 			// LinksControl
 			// 
@@ -588,31 +562,29 @@
 			this.tabPageWeeklyMusic.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewMusicWeekly)).EndInit();
 			this.tabPageReadingList.ResumeLayout(false);
+			this.tabControl2.ResumeLayout(false);
+			this.tabPageWeekly.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaper)).EndInit();
+			this.tabPageToRead.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewToRead)).EndInit();
+			this.tabPageWatchlist.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewWatchlist)).EndInit();
+			this.tabPageFuture.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuture)).EndInit();
+			this.tabPageAwards.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAwards)).EndInit();
 			this.tabPageFollowing.ResumeLayout(false);
 			this.tabControl3.ResumeLayout(false);
 			this.tabPageYouTube.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewYouTube)).EndInit();
 			this.tabPageYouTubeMusic.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewYouTubeMusic)).EndInit();
-			this.tabPageTwitter.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTwitter)).EndInit();
+			this.tabPageDirectors.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirectors)).EndInit();
 			this.tabPageDucani.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDucani)).EndInit();
 			this.tabPageOther.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewOther)).EndInit();
-			this.tabPageAwards.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAwards)).EndInit();
-			this.tabPageFuture.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuture)).EndInit();
-			this.tabPageWatchlist.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewWatchlist)).EndInit();
-			this.tabPageToRead.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewToRead)).EndInit();
-			this.tabPageWeekly.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaper)).EndInit();
-			this.tabControl2.ResumeLayout(false);
-			this.tabPageDirectors.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirectors)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -635,8 +607,6 @@
         private System.Windows.Forms.Button buttonUnfollow;
         private System.Windows.Forms.TabPage tabPageFollowing;
         private System.Windows.Forms.TabControl tabControl3;
-        private System.Windows.Forms.TabPage tabPageTwitter;
-        private System.Windows.Forms.DataGridView dataGridViewTwitter;
         private System.Windows.Forms.TabControl tabControl4;
         private System.Windows.Forms.TabPage tabPageToReadMusic;
         private System.Windows.Forms.TabPage tabPageWeeklyMusic;

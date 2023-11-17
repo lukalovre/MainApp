@@ -34,10 +34,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBoxCountry = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.peopleListControl1 = new MainApp.CommonControls.PeopleListControl();
-			this.eventControl1 = new MainApp.EventControl();
-			this.starRatingControl1 = new MainApp.StarRatingControl();
-			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+			this.evenControl1 = new MainApp.CommonControls.EvenControl();
 			this.SuspendLayout();
 			// 
 			// textBoxName
@@ -56,10 +53,10 @@
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Name";
 			// 
-			// textBoxCIty
+			// textBoxCity
 			// 
 			this.textBoxCity.Location = new System.Drawing.Point(4, 36);
-			this.textBoxCity.Name = "textBoxCIty";
+			this.textBoxCity.Name = "textBoxCity";
 			this.textBoxCity.Size = new System.Drawing.Size(145, 26);
 			this.textBoxCity.TabIndex = 2;
 			// 
@@ -88,44 +85,18 @@
 			this.label3.TabIndex = 5;
 			this.label3.Text = "Country";
 			// 
-			// peopleListControl1
+			// evenControl1
 			// 
-			this.peopleListControl1.Location = new System.Drawing.Point(4, 123);
-			this.peopleListControl1.Name = "peopleListControl1";
-			this.peopleListControl1.Size = new System.Drawing.Size(195, 238);
-			this.peopleListControl1.TabIndex = 6;
-			// 
-			// eventControl1
-			// 
-			this.eventControl1.Location = new System.Drawing.Point(205, 123);
-			this.eventControl1.Name = "eventControl1";
-			this.eventControl1.Size = new System.Drawing.Size(301, 238);
-			this.eventControl1.TabIndex = 7;
-			// 
-			// starRatingControl1
-			// 
-			this.starRatingControl1.Location = new System.Drawing.Point(225, 4);
-			this.starRatingControl1.Name = "starRatingControl1";
-			this.starRatingControl1.SelectedStar = 1;
-			this.starRatingControl1.Size = new System.Drawing.Size(247, 103);
-			this.starRatingControl1.TabIndex = 8;
-			// 
-			// richTextBox1
-			// 
-			this.richTextBox1.Location = new System.Drawing.Point(4, 367);
-			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(502, 150);
-			this.richTextBox1.TabIndex = 9;
-			this.richTextBox1.Text = "";
+			this.evenControl1.Location = new System.Drawing.Point(4, 100);
+			this.evenControl1.Name = "evenControl1";
+			this.evenControl1.Size = new System.Drawing.Size(440, 425);
+			this.evenControl1.TabIndex = 6;
 			// 
 			// ZooInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.richTextBox1);
-			this.Controls.Add(this.starRatingControl1);
-			this.Controls.Add(this.eventControl1);
-			this.Controls.Add(this.peopleListControl1);
+			this.Controls.Add(this.evenControl1);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.textBoxCountry);
 			this.Controls.Add(this.label2);
@@ -147,9 +118,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBoxCountry;
 		private System.Windows.Forms.Label label3;
-		private CommonControls.PeopleListControl peopleListControl1;
-		private EventControl eventControl1;
-		private StarRatingControl starRatingControl1;
-		private System.Windows.Forms.RichTextBox richTextBox1;
+		private CommonControls.EvenControl evenControl1;
 	}
 }

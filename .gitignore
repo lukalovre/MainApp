@@ -267,3 +267,8 @@ __pycache__/
 /Resources/Albums
 /Resources/Posters
 /Resources/Stats
+/Database/data
+/Resources/GameCovers
+/Resources/People
+/Resources/SongCovers
+/Resources/Following.json

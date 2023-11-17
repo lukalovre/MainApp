@@ -6,6 +6,5 @@ namespace Model.dbo
 	public class ZooEvents : Event
 	{
 		public int ItemID { get; set; }
-		public string People { get; set; }
 	}
 }

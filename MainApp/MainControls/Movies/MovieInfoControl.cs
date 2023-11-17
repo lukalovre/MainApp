@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Model;
 using Model.dbo;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace MainApp.Movies
 	public partial class MovieInfoControl : UserControl
 	{
 		private Movie m_movie;
-		private string m_oldComment;
 
 		public MovieInfoControl()
 		{
@@ -35,40 +35,31 @@ namespace MainApp.Movies
 			labelStars.Text = movie.Actors.Replace(", ", ",").Replace(',', '\n');
 			richTextBoxPlot.Text = movie.Plot;
 
-			labelRuntime.Text = Helper.GetFormatedTime(movie.Runtime);
+			labelRuntime.Text = TimeHelper.GetFormatedTime(movie.Runtime);
+			SetPoster(movie);
 
 			if (!movieEventList.Any())
 			{
 				labelWatchedTimes.Text = $"First time watching";
-				starRatingControl1.SelectedStar = 0;
 				comboBoxPlatform.Text = string.Empty;
-				richTextBoxComment.Text = string.Empty;
+				evenControl1.Clear();
+				return;
 			}
-			else
+
+			var lastEvent = movieEventList.LastOrDefault();
+
+			labelWatchedTimes.Text = $"Watched {movieEventList.Count} times";
+			comboBoxPlatform.Text = lastEvent.Platform;
+
+			var eventItemList = movieEventList.Select(o =>
+			new EventListItem
 			{
-				var lastMovie = movieEventList.LastOrDefault();
+				ID = o.ID,
+				Date = o.Date,
+				CountValue = 1
+			}).ToList();
 
-				labelWatchedTimes.Text = $"Watched {movieEventList.Count} times";
-				starRatingControl1.SelectedStar = lastMovie.Rating.Value;
-				comboBoxPlatform.Text = lastMovie.Platform;
-				richTextBoxComment.Text = lastMovie.Comment;
-				m_oldComment = lastMovie.Comment ?? string.Empty;
-			}
-
-			var people = Datasource.GetList<Person>();
-			var lastPeople = movieEventList.LastOrDefault()?.People;
-
-			if (lastPeople != null)
-			{
-				var peopleList = CsvHelper.Get(lastPeople).Select(o => people.FirstOrDefault(p => p.ID == int.Parse(o)).ID);
-				peopleListControl1.SelectPeople(peopleList);
-			}
-			else
-			{
-				peopleListControl1.SelectPeople(null);
-			}
-
-			SetPoster(movie);
+			evenControl1.Fill(lastEvent, eventItemList);
 		}
 
 		internal Movie GetMovie()
@@ -78,18 +69,13 @@ namespace MainApp.Movies
 
 		internal MovieEvent GetMovieEvent()
 		{
-			var comment = m_oldComment.Trim() == richTextBoxComment.Text.Trim()
-				? null
-				: richTextBoxComment.Text;
-			comment = string.IsNullOrWhiteSpace(comment) ? null : comment;
-
 			return new MovieEvent
 			{
 				Imdb = m_movie.Imdb,
-				Rating = starRatingControl1.SelectedStar,
-				People = peopleListControl1.GetCheckedCSV(),
+				Rating = evenControl1.Rating,
+				People = evenControl1.GetPeople(),
 				Platform = string.IsNullOrWhiteSpace(comboBoxPlatform.Text) ? null : comboBoxPlatform.Text,
-				Comment = comment
+				Comment = evenControl1.GetComment()
 			};
 		}
 
@@ -97,7 +83,7 @@ namespace MainApp.Movies
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}

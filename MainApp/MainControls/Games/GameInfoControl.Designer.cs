@@ -34,17 +34,13 @@ namespace MainApp.Games
 			this.checkBoxPlaying = new System.Windows.Forms.CheckBox();
 			this.labelHours = new System.Windows.Forms.Label();
 			this.checkBoxCompleted = new System.Windows.Forms.CheckBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.richTextBoxComment = new System.Windows.Forms.RichTextBox();
 			this.textBoxTitle = new System.Windows.Forms.TextBox();
 			this.comboBoxPlatform = new System.Windows.Forms.ComboBox();
 			this.numericUpDownYear = new System.Windows.Forms.NumericUpDown();
 			this.checkBox1001 = new System.Windows.Forms.CheckBox();
 			this.labelLastPlayed = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.eventControl1 = new MainApp.EventControl();
-			this.starRatingControl1 = new MainApp.StarRatingControl();
-			this.peopleListControl1 = new MainApp.CommonControls.PeopleListControl();
+			this.evenControl1 = new MainApp.CommonControls.EvenControl();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
@@ -79,25 +75,6 @@ namespace MainApp.Games
 			this.checkBoxCompleted.Text = "Completed";
 			this.checkBoxCompleted.UseVisualStyleBackColor = true;
 			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(4, 324);
-			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(78, 20);
-			this.label3.TabIndex = 9;
-			this.label3.Text = "Comment";
-			// 
-			// richTextBoxReview
-			// 
-			this.richTextBoxComment.Location = new System.Drawing.Point(4, 349);
-			this.richTextBoxComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.richTextBoxComment.Name = "richTextBoxReview";
-			this.richTextBoxComment.Size = new System.Drawing.Size(310, 186);
-			this.richTextBoxComment.TabIndex = 8;
-			this.richTextBoxComment.Text = "";
-			// 
 			// textBoxTitle
 			// 
 			this.textBoxTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -131,7 +108,7 @@ namespace MainApp.Games
 			// checkBox1001
 			// 
 			this.checkBox1001.AutoSize = true;
-			this.checkBox1001.Location = new System.Drawing.Point(516, 570);
+			this.checkBox1001.Location = new System.Drawing.Point(134, 93);
 			this.checkBox1001.Name = "checkBox1001";
 			this.checkBox1001.Size = new System.Drawing.Size(71, 24);
 			this.checkBox1001.TabIndex = 15;
@@ -141,7 +118,7 @@ namespace MainApp.Games
 			// labelLastPlayed
 			// 
 			this.labelLastPlayed.AutoSize = true;
-			this.labelLastPlayed.Location = new System.Drawing.Point(334, 570);
+			this.labelLastPlayed.Location = new System.Drawing.Point(427, 491);
 			this.labelLastPlayed.Name = "labelLastPlayed";
 			this.labelLastPlayed.Size = new System.Drawing.Size(171, 20);
 			this.labelLastPlayed.TabIndex = 16;
@@ -149,55 +126,36 @@ namespace MainApp.Games
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Location = new System.Drawing.Point(338, 103);
+			this.pictureBox1.Location = new System.Drawing.Point(427, 54);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(328, 432);
+			this.pictureBox1.Size = new System.Drawing.Size(283, 434);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox1.TabIndex = 17;
 			this.pictureBox1.TabStop = false;
 			// 
-			// eventControl1
+			// evenControl1
 			// 
-			this.eventControl1.Location = new System.Drawing.Point(8, 544);
-			this.eventControl1.Name = "eventControl1";
-			this.eventControl1.Size = new System.Drawing.Size(306, 361);
-			this.eventControl1.TabIndex = 19;
-			// 
-			// starRatingControl1
-			// 
-			this.starRatingControl1.Location = new System.Drawing.Point(8, 195);
-			this.starRatingControl1.Name = "starRatingControl1";
-			this.starRatingControl1.SelectedStar = 1;
-			this.starRatingControl1.Size = new System.Drawing.Size(247, 103);
-			this.starRatingControl1.TabIndex = 10;
-			// 
-			// peopleListControl1
-			// 
-			this.peopleListControl1.Location = new System.Drawing.Point(338, 627);
-			this.peopleListControl1.Name = "peopleListControl1";
-			this.peopleListControl1.Size = new System.Drawing.Size(195, 238);
-			this.peopleListControl1.TabIndex = 20;
+			this.evenControl1.Location = new System.Drawing.Point(8, 184);
+			this.evenControl1.Name = "evenControl1";
+			this.evenControl1.Size = new System.Drawing.Size(413, 425);
+			this.evenControl1.TabIndex = 18;
 			// 
 			// GameInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.peopleListControl1);
-			this.Controls.Add(this.eventControl1);
+			this.Controls.Add(this.evenControl1);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.labelLastPlayed);
 			this.Controls.Add(this.checkBox1001);
 			this.Controls.Add(this.numericUpDownYear);
 			this.Controls.Add(this.comboBoxPlatform);
 			this.Controls.Add(this.textBoxTitle);
-			this.Controls.Add(this.starRatingControl1);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.richTextBoxComment);
 			this.Controls.Add(this.checkBoxCompleted);
 			this.Controls.Add(this.labelHours);
 			this.Controls.Add(this.checkBoxPlaying);
 			this.Name = "GameInfoControl";
-			this.Size = new System.Drawing.Size(726, 997);
+			this.Size = new System.Drawing.Size(726, 622);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
@@ -209,16 +167,12 @@ namespace MainApp.Games
 		private System.Windows.Forms.CheckBox checkBoxPlaying;
 		private System.Windows.Forms.Label labelHours;
 		private System.Windows.Forms.CheckBox checkBoxCompleted;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.RichTextBox richTextBoxComment;
-		private StarRatingControl starRatingControl1;
 		private System.Windows.Forms.TextBox textBoxTitle;
 		private System.Windows.Forms.ComboBox comboBoxPlatform;
 		private System.Windows.Forms.NumericUpDown numericUpDownYear;
 		private System.Windows.Forms.CheckBox checkBox1001;
 		private System.Windows.Forms.Label labelLastPlayed;
 		private System.Windows.Forms.PictureBox pictureBox1;
-        private EventControl eventControl1;
-        private CommonControls.PeopleListControl peopleListControl1;
-    }
+		private CommonControls.EvenControl evenControl1;
+	}
 }

@@ -21,7 +21,7 @@ namespace MainApp.StatsControls
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}

@@ -39,9 +39,8 @@ namespace MainApp.Comics
 				numericUpDownChapters.Value = 1;
 				numericUpDownPages.Value = 1;
 				checkBoxRead.Checked = false;
-				starRatingControl1.SelectedStar = 1;
 				listBoxChapters.Items.Clear();
-				eventControl1.Clear();
+				evenControl1.Clear();
 
 				return;
 			}
@@ -51,7 +50,6 @@ namespace MainApp.Comics
 				.Where(o => o.Chapter == numericUpDownChapters.Value)
 				.Sum(o => o.Pages);
 			checkBoxRead.Checked = comicEvents.Any(o => o.Read);
-			starRatingControl1.SelectedStar = comicEvents.LastOrDefault().Rating.Value;
 
 			var chapters = comicEvents.DistinctBy(o => o.Chapter).OrderBy(o => o.Chapter);
 			listBoxChapters.Items.Clear();
@@ -69,11 +67,12 @@ namespace MainApp.Comics
 			var events = comicEvents.Select(o => new Model.EventListItem
 			{
 				ID = o.ID,
-				Time = (int)(o.Pages * minuterPerPageBooks),
+				CountValue = (int)(o.Pages * minuterPerPageBooks),
 				Date = o.Date
 			}).ToList();
 
-			eventControl1.FIll(events);
+			var lastEvent = comicEvents.LastOrDefault();
+			evenControl1.Fill(lastEvent, events, EventListControl.CountValue.Pages);
 		}
 
 		internal ComicEvent GetEvent()
@@ -83,8 +82,10 @@ namespace MainApp.Comics
 				GoodreadsID = int.Parse(textBoxGoodreadsID.Text),
 				Chapter = (int)numericUpDownChapters.Value,
 				Pages = m_addedPages,
-				Rating = starRatingControl1.SelectedStar,
-				Read = checkBoxRead.Checked
+				Rating = evenControl1.Rating,
+				Read = checkBoxRead.Checked,
+				People = evenControl1.GetPeople(),
+				Comment = evenControl1.GetComment()
 			};
 		}
 

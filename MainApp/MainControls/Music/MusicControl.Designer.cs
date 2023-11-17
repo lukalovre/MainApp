@@ -33,25 +33,29 @@ namespace MainApp.Musics
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageAll = new System.Windows.Forms.TabPage();
 			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
-			this.tabPageToDo = new System.Windows.Forms.TabPage();
-			this.dataGridViewTodo = new System.Windows.Forms.DataGridView();
+			this.tabPageToDo2 = new System.Windows.Forms.TabPage();
+			this.dataGridViewTodo2 = new System.Windows.Forms.DataGridView();
+			this.tabPageToDo1 = new System.Windows.Forms.TabPage();
+			this.dataGridViewTodo1 = new System.Windows.Forms.DataGridView();
 			this.tabPageYearList = new System.Windows.Forms.TabPage();
 			this.dataGridViewYearList = new System.Windows.Forms.DataGridView();
 			this.tabPageIn = new System.Windows.Forms.TabPage();
 			this.dataGridViewIn = new System.Windows.Forms.DataGridView();
 			this.label5 = new System.Windows.Forms.Label();
 			this.textBoxAutofill = new System.Windows.Forms.TextBox();
-			this.buttonAdd = new System.Windows.Forms.Button();
-			this.musicInfo1 = new MainApp.Musics.MusicInfoControl();
 			this.buttonListenAgain = new System.Windows.Forms.Button();
 			this.checkBoxNew = new System.Windows.Forms.CheckBox();
 			this.buttonLoad = new System.Windows.Forms.Button();
 			this.buttonSave = new System.Windows.Forms.Button();
+			this.addButton1 = new MainApp.CommonControls.AddButton();
+			this.musicInfo1 = new MainApp.Musics.MusicInfoControl();
 			this.tabControl1.SuspendLayout();
 			this.tabPageAll.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).BeginInit();
-			this.tabPageToDo.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodo)).BeginInit();
+			this.tabPageToDo2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodo2)).BeginInit();
+			this.tabPageToDo1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodo1)).BeginInit();
 			this.tabPageYearList.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearList)).BeginInit();
 			this.tabPageIn.SuspendLayout();
@@ -61,7 +65,8 @@ namespace MainApp.Musics
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPageAll);
-			this.tabControl1.Controls.Add(this.tabPageToDo);
+			this.tabControl1.Controls.Add(this.tabPageToDo2);
+			this.tabControl1.Controls.Add(this.tabPageToDo1);
 			this.tabControl1.Controls.Add(this.tabPageYearList);
 			this.tabControl1.Controls.Add(this.tabPageIn);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -95,28 +100,49 @@ namespace MainApp.Musics
 			this.dataGridViewAll.TabIndex = 22;
 			this.dataGridViewAll.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
-			// tabPageToDo
+			// tabPageToDo2
 			// 
-			this.tabPageToDo.Controls.Add(this.dataGridViewTodo);
-			this.tabPageToDo.Location = new System.Drawing.Point(4, 29);
-			this.tabPageToDo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPageToDo.Name = "tabPageToDo";
-			this.tabPageToDo.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPageToDo.Size = new System.Drawing.Size(802, 1132);
-			this.tabPageToDo.TabIndex = 1;
-			this.tabPageToDo.Text = "To do";
-			this.tabPageToDo.UseVisualStyleBackColor = true;
+			this.tabPageToDo2.Controls.Add(this.dataGridViewTodo2);
+			this.tabPageToDo2.Location = new System.Drawing.Point(4, 29);
+			this.tabPageToDo2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tabPageToDo2.Name = "tabPageToDo2";
+			this.tabPageToDo2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.tabPageToDo2.Size = new System.Drawing.Size(802, 1132);
+			this.tabPageToDo2.TabIndex = 1;
+			this.tabPageToDo2.Text = "To do (2)";
+			this.tabPageToDo2.UseVisualStyleBackColor = true;
 			// 
-			// dataGridViewTodo
+			// dataGridViewTodo2
 			// 
-			this.dataGridViewTodo.ColumnHeadersHeight = 34;
-			this.dataGridViewTodo.Location = new System.Drawing.Point(4, 5);
-			this.dataGridViewTodo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.dataGridViewTodo.Name = "dataGridViewTodo";
-			this.dataGridViewTodo.RowHeadersWidth = 62;
-			this.dataGridViewTodo.Size = new System.Drawing.Size(1014, 803);
-			this.dataGridViewTodo.TabIndex = 0;
-			this.dataGridViewTodo.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			this.dataGridViewTodo2.ColumnHeadersHeight = 34;
+			this.dataGridViewTodo2.Location = new System.Drawing.Point(4, 5);
+			this.dataGridViewTodo2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.dataGridViewTodo2.Name = "dataGridViewTodo2";
+			this.dataGridViewTodo2.RowHeadersWidth = 62;
+			this.dataGridViewTodo2.Size = new System.Drawing.Size(1014, 803);
+			this.dataGridViewTodo2.TabIndex = 0;
+			this.dataGridViewTodo2.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
+			// 
+			// tabPageToDo1
+			// 
+			this.tabPageToDo1.Controls.Add(this.dataGridViewTodo1);
+			this.tabPageToDo1.Location = new System.Drawing.Point(4, 29);
+			this.tabPageToDo1.Name = "tabPageToDo1";
+			this.tabPageToDo1.Size = new System.Drawing.Size(802, 1132);
+			this.tabPageToDo1.TabIndex = 4;
+			this.tabPageToDo1.Text = "To do (1)";
+			this.tabPageToDo1.UseVisualStyleBackColor = true;
+			// 
+			// dataGridViewTodo1
+			// 
+			this.dataGridViewTodo1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewTodo1.Location = new System.Drawing.Point(287, 303);
+			this.dataGridViewTodo1.Name = "dataGridViewTodo1";
+			this.dataGridViewTodo1.RowHeadersWidth = 62;
+			this.dataGridViewTodo1.RowTemplate.Height = 28;
+			this.dataGridViewTodo1.Size = new System.Drawing.Size(240, 150);
+			this.dataGridViewTodo1.TabIndex = 0;
+			this.dataGridViewTodo1.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
 			// 
 			// tabPageYearList
 			// 
@@ -185,27 +211,9 @@ namespace MainApp.Musics
 			this.textBoxAutofill.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextBoxAutofill_DragDrop);
 			this.textBoxAutofill.DragOver += new System.Windows.Forms.DragEventHandler(this.TextBoxAutofill_DragOver);
 			// 
-			// buttonAdd
-			// 
-			this.buttonAdd.Location = new System.Drawing.Point(817, 9);
-			this.buttonAdd.Name = "buttonAdd";
-			this.buttonAdd.Size = new System.Drawing.Size(86, 34);
-			this.buttonAdd.TabIndex = 33;
-			this.buttonAdd.Text = "Add";
-			this.buttonAdd.UseVisualStyleBackColor = true;
-			this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
-			// 
-			// musicInfo1
-			// 
-			this.musicInfo1.Location = new System.Drawing.Point(813, 103);
-			this.musicInfo1.Margin = new System.Windows.Forms.Padding(6);
-			this.musicInfo1.Name = "musicInfo1";
-			this.musicInfo1.Size = new System.Drawing.Size(764, 962);
-			this.musicInfo1.TabIndex = 26;
-			// 
 			// buttonListenAgain
 			// 
-			this.buttonListenAgain.Location = new System.Drawing.Point(935, 5);
+			this.buttonListenAgain.Location = new System.Drawing.Point(1126, 10);
 			this.buttonListenAgain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonListenAgain.Name = "buttonListenAgain";
 			this.buttonListenAgain.Size = new System.Drawing.Size(112, 35);
@@ -226,7 +234,7 @@ namespace MainApp.Musics
 			// 
 			// buttonLoad
 			// 
-			this.buttonLoad.Location = new System.Drawing.Point(1245, 2);
+			this.buttonLoad.Location = new System.Drawing.Point(1267, 7);
 			this.buttonLoad.Name = "buttonLoad";
 			this.buttonLoad.Size = new System.Drawing.Size(96, 41);
 			this.buttonLoad.TabIndex = 36;
@@ -236,7 +244,7 @@ namespace MainApp.Musics
 			// 
 			// buttonSave
 			// 
-			this.buttonSave.Location = new System.Drawing.Point(1347, 3);
+			this.buttonSave.Location = new System.Drawing.Point(1369, 8);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(101, 40);
 			this.buttonSave.TabIndex = 37;
@@ -244,15 +252,30 @@ namespace MainApp.Musics
 			this.buttonSave.UseVisualStyleBackColor = true;
 			this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
 			// 
+			// addButton1
+			// 
+			this.addButton1.Location = new System.Drawing.Point(813, 10);
+			this.addButton1.Name = "addButton1";
+			this.addButton1.Size = new System.Drawing.Size(315, 43);
+			this.addButton1.TabIndex = 38;
+			// 
+			// musicInfo1
+			// 
+			this.musicInfo1.Location = new System.Drawing.Point(813, 103);
+			this.musicInfo1.Margin = new System.Windows.Forms.Padding(6);
+			this.musicInfo1.Name = "musicInfo1";
+			this.musicInfo1.Size = new System.Drawing.Size(764, 962);
+			this.musicInfo1.TabIndex = 26;
+			// 
 			// MusicControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.addButton1);
 			this.Controls.Add(this.buttonSave);
 			this.Controls.Add(this.buttonLoad);
 			this.Controls.Add(this.checkBoxNew);
 			this.Controls.Add(this.buttonListenAgain);
-			this.Controls.Add(this.buttonAdd);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.textBoxAutofill);
 			this.Controls.Add(this.tabControl1);
@@ -263,8 +286,10 @@ namespace MainApp.Musics
 			this.tabControl1.ResumeLayout(false);
 			this.tabPageAll.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewAll)).EndInit();
-			this.tabPageToDo.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodo)).EndInit();
+			this.tabPageToDo2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodo2)).EndInit();
+			this.tabPageToDo1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodo1)).EndInit();
 			this.tabPageYearList.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearList)).EndInit();
 			this.tabPageIn.ResumeLayout(false);
@@ -279,18 +304,20 @@ namespace MainApp.Musics
 		private MusicInfoControl musicInfo1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageAll;
-        private System.Windows.Forms.TabPage tabPageToDo;
-        private DataGridView dataGridViewTodo;
+        private System.Windows.Forms.TabPage tabPageToDo2;
+        private DataGridView dataGridViewTodo2;
 		private System.Windows.Forms.TabPage tabPageYearList;
 		private DataGridView dataGridViewYearList;
 		private System.Windows.Forms.TabPage tabPageIn;
 		private DataGridView dataGridViewIn;
 		private Label label5;
 		private TextBox textBoxAutofill;
-		private Button buttonAdd;
 		private Button buttonListenAgain;
 		private CheckBox checkBoxNew;
 		private Button buttonLoad;
 		private Button buttonSave;
+		private TabPage tabPageToDo1;
+		private DataGridView dataGridViewTodo1;
+		private CommonControls.AddButton addButton1;
 	}
 }

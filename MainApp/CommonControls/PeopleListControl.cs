@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Model;
 using Model.dbo;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace MainApp.CommonControls
 {
 	public partial class PeopleListControl : UserControl
 	{
+		private List<Person> _people;
+
 		public PeopleListControl()
 		{
 			InitializeComponent();
@@ -18,10 +21,10 @@ namespace MainApp.CommonControls
 		{
 			var checkedIndices = new List<int>();
 
-			foreach (int index in checkedListBox1.CheckedIndices)
+			foreach (string value in checkedListBox1.CheckedItems)
 			{
-				// Adding +1 since the index goes from 0 and the db index from 1
-				checkedIndices.Add(index + 1);
+				var person = _people.FirstOrDefault(o => GetDisplayName(o) == value);
+				checkedIndices.Add(person.ID);
 			}
 
 			return checkedIndices.Any()
@@ -29,41 +32,80 @@ namespace MainApp.CommonControls
 				: null;
 		}
 
-		internal void SelectPeople(IEnumerable<int> peopleList)
+		internal void SelectPeople(IEnumerable<int> peopleIDList)
 		{
-			for (int i = 0; i < checkedListBox1.Items.Count; i++)
+			if (peopleIDList == null)
 			{
-				checkedListBox1.SetItemChecked(i, false);
-			}
-
-			if (peopleList == null)
-			{
+				LoadPeople();
 				return;
 			}
 
-			foreach (var person in peopleList)
+			_people = Datasource.GetList<Person>();
+			_people = _people.OrderByDescending(o => peopleIDList.Contains(o.ID)).ThenBy(o => o.ID).ToList();
+
+			checkedListBox1.Items.Clear();
+			checkedListBox1.Items.AddRange(_people.Select(o => GetDisplayName(o)).ToArray());
+
+			foreach (var personID in peopleIDList)
 			{
-				// Adding +1 since the index goes from 0 and the db index from 1
-				checkedListBox1.SetItemChecked(person - 1, true);
+				var person = _people.FirstOrDefault(o => o.ID == personID);
+				var index = checkedListBox1.Items.IndexOf(GetDisplayName(person));
+				checkedListBox1.SetItemChecked(index, true);
 			}
+		}
+
+		internal void FillPeople(Event eventItem)
+		{
+			var people = Datasource.GetList<Person>();
+			var lastPeople = eventItem?.People;
+
+			if (lastPeople != null)
+			{
+				var peopleList = CsvHelper.Get(lastPeople).Select(o => people.FirstOrDefault(p => p.ID == int.Parse(o)).ID);
+				SelectPeople(peopleList);
+			}
+			else
+			{
+				SelectPeople(null);
+			}
+		}
+
+		internal void FillPeople(IEnumerable<Event> eventList)
+		{
+			FillPeople(eventList.LastOrDefault());
+		}
+
+		private void LoadPeople()
+		{
+			_people = Datasource.GetList<Person>();
+			_people = _people.OrderBy(o => o.ID).ToList();
+
+			checkedListBox1.Items.Clear();
+			checkedListBox1.Items.AddRange(_people.Select(o => GetDisplayName(o)).ToArray());
 		}
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
 
 			checkedListBox1.CheckOnClick = true;
 
-			checkedListBox1.Items.Clear();
+			LoadPeople();
+		}
 
-			var people = Datasource.GetList<Person>();
+		private string GetDisplayName(Person person)
+		{
+			if (!string.IsNullOrWhiteSpace(person.Nickname))
+			{
+				return person.Nickname;
+			}
 
-			checkedListBox1.Items.AddRange(people.Select(o => o.FirstName).ToArray());
+			return $"{person.FirstName} {person.LastName}";
 		}
 	}
 }

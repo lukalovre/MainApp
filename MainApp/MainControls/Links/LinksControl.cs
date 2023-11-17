@@ -24,7 +24,7 @@ namespace MainApp.MainControls
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}
@@ -38,7 +38,6 @@ namespace MainApp.MainControls
 
 			var dictGrids = new Dictionary<DataGridView, IEnumerable<Link>>
 			{
-				{ dataGridViewTwitter, m_links.Where(o => o.Category == "Twitter") },
 				{ dataGridViewYouTube, m_links.Where(o => o.Category == "YouTube" && o.SubCategory != "Music") },
 				{ dataGridViewYouTubeMusic, m_links.Where(o => o.Category == "YouTube" && o.SubCategory == "Music") },
 				{ dataGridViewToRead, m_links.Where(o => o.Category == "ReadingList" && o.SubCategory == "ToRead") },

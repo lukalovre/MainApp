@@ -55,18 +55,14 @@ namespace MainApp
 			this.tabPageMusic = new System.Windows.Forms.TabPage();
 			this.musicControl1 = new MainApp.Musics.MusicControl();
 			this.tabControlMain = new System.Windows.Forms.TabControl();
+			this.tabPageSongs = new System.Windows.Forms.TabPage();
+			this.songsControl1 = new MainApp.MainControls.Zoo.SongsControl();
 			this.tabPageStandup = new System.Windows.Forms.TabPage();
 			this.standup1 = new MainApp.Standups.StandupsControl();
-			this.tabPageDnD = new System.Windows.Forms.TabPage();
-			this.dnDControl1 = new MainApp.MainControls.DnDControl();
-			this.tabPagePeople = new System.Windows.Forms.TabPage();
-			this.peopleControl1 = new MainApp.MainControls.PeopleControl();
-			this.tabPageMyWork = new System.Windows.Forms.TabPage();
-			this.myWork1 = new MainApp.My_work.MyWorkControl();
-			this.tabPageMyWorkProgress = new System.Windows.Forms.TabPage();
-			this.myWorkProgress1 = new MainApp.My_work_progress.MyWorkProgressControl();
 			this.tabPageZoo = new System.Windows.Forms.TabPage();
 			this.zooControl1 = new MainApp.MainControls.Zoo.ZooControl();
+			this.tabPageConcerts = new System.Windows.Forms.TabPage();
+			this.concertsControl1 = new MainApp.MainControls.Concerts.ConcertsControl();
 			this.tabPageMonthyReports = new System.Windows.Forms.TabPage();
 			this.weeklyReports1 = new MainApp.Reports.MontlyReportsControl();
 			this.tabPageYearProgress = new System.Windows.Forms.TabPage();
@@ -77,6 +73,16 @@ namespace MainApp
 			this.library1 = new MainApp.Collection.LibraryControl();
 			this.tabControlAll = new System.Windows.Forms.TabControl();
 			this.tabPageMain = new System.Windows.Forms.TabPage();
+			this.tabPageMy = new System.Windows.Forms.TabPage();
+			this.tabControl2 = new System.Windows.Forms.TabControl();
+			this.tabPageProgress = new System.Windows.Forms.TabPage();
+			this.myWorkProgress1 = new MainApp.My_work_progress.MyWorkProgressControl();
+			this.tabPageWorks = new System.Windows.Forms.TabPage();
+			this.myWork1 = new MainApp.My_work.MyWorkControl();
+			this.tabPageDnD = new System.Windows.Forms.TabPage();
+			this.dnDControl1 = new MainApp.MainControls.DnDControl();
+			this.tabPagePeople = new System.Windows.Forms.TabPage();
+			this.peopleControl1 = new MainApp.MainControls.PeopleControl();
 			this.tabPageCollection = new System.Windows.Forms.TabPage();
 			this.tabControlCollection = new System.Windows.Forms.TabControl();
 			this.tabPageCollectionMovies = new System.Windows.Forms.TabPage();
@@ -112,18 +118,22 @@ namespace MainApp
 			this.tabPageMovies.SuspendLayout();
 			this.tabPageMusic.SuspendLayout();
 			this.tabControlMain.SuspendLayout();
+			this.tabPageSongs.SuspendLayout();
 			this.tabPageStandup.SuspendLayout();
-			this.tabPageDnD.SuspendLayout();
-			this.tabPagePeople.SuspendLayout();
-			this.tabPageMyWork.SuspendLayout();
-			this.tabPageMyWorkProgress.SuspendLayout();
 			this.tabPageZoo.SuspendLayout();
+			this.tabPageConcerts.SuspendLayout();
 			this.tabPageMonthyReports.SuspendLayout();
 			this.tabPageYearProgress.SuspendLayout();
 			this.tabPage1001.SuspendLayout();
 			this.tabPageLibrary.SuspendLayout();
 			this.tabControlAll.SuspendLayout();
 			this.tabPageMain.SuspendLayout();
+			this.tabPageMy.SuspendLayout();
+			this.tabControl2.SuspendLayout();
+			this.tabPageProgress.SuspendLayout();
+			this.tabPageWorks.SuspendLayout();
+			this.tabPageDnD.SuspendLayout();
+			this.tabPagePeople.SuspendLayout();
 			this.tabPageCollection.SuspendLayout();
 			this.tabControlCollection.SuspendLayout();
 			this.tabPageCollectionMovies.SuspendLayout();
@@ -354,17 +364,15 @@ namespace MainApp
 			// tabControlMain
 			// 
 			this.tabControlMain.Controls.Add(this.tabPageMusic);
+			this.tabControlMain.Controls.Add(this.tabPageSongs);
 			this.tabControlMain.Controls.Add(this.tabPageGames);
 			this.tabControlMain.Controls.Add(this.tabPageTVShows);
 			this.tabControlMain.Controls.Add(this.tabPageMovies);
 			this.tabControlMain.Controls.Add(this.tabPageComics);
 			this.tabControlMain.Controls.Add(this.tabPageBooks);
 			this.tabControlMain.Controls.Add(this.tabPageStandup);
-			this.tabControlMain.Controls.Add(this.tabPageDnD);
-			this.tabControlMain.Controls.Add(this.tabPagePeople);
 			this.tabControlMain.Controls.Add(this.tabPageZoo);
-			this.tabControlMain.Controls.Add(this.tabPageMyWork);
-			this.tabControlMain.Controls.Add(this.tabPageMyWorkProgress);
+			this.tabControlMain.Controls.Add(this.tabPageConcerts);
 			this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControlMain.Location = new System.Drawing.Point(3, 3);
 			this.tabControlMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -373,6 +381,24 @@ namespace MainApp
 			this.tabControlMain.SelectedIndex = 0;
 			this.tabControlMain.Size = new System.Drawing.Size(1402, 1501);
 			this.tabControlMain.TabIndex = 28;
+			// 
+			// tabPageSongs
+			// 
+			this.tabPageSongs.Controls.Add(this.songsControl1);
+			this.tabPageSongs.Location = new System.Drawing.Point(4, 29);
+			this.tabPageSongs.Name = "tabPageSongs";
+			this.tabPageSongs.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPageSongs.TabIndex = 18;
+			this.tabPageSongs.Text = "Songs";
+			this.tabPageSongs.UseVisualStyleBackColor = true;
+			// 
+			// songsControl1
+			// 
+			this.songsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.songsControl1.Location = new System.Drawing.Point(0, 0);
+			this.songsControl1.Name = "songsControl1";
+			this.songsControl1.Size = new System.Drawing.Size(1394, 1468);
+			this.songsControl1.TabIndex = 0;
 			// 
 			// tabPageStandup
 			// 
@@ -395,85 +421,6 @@ namespace MainApp
 			this.standup1.Size = new System.Drawing.Size(1386, 1458);
 			this.standup1.TabIndex = 0;
 			// 
-			// tabPageDnD
-			// 
-			this.tabPageDnD.Controls.Add(this.dnDControl1);
-			this.tabPageDnD.Location = new System.Drawing.Point(4, 29);
-			this.tabPageDnD.Name = "tabPageDnD";
-			this.tabPageDnD.Size = new System.Drawing.Size(1394, 1468);
-			this.tabPageDnD.TabIndex = 14;
-			this.tabPageDnD.Text = "D&D";
-			this.tabPageDnD.UseVisualStyleBackColor = true;
-			// 
-			// dnDControl1
-			// 
-			this.dnDControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dnDControl1.Location = new System.Drawing.Point(0, 0);
-			this.dnDControl1.Name = "dnDControl1";
-			this.dnDControl1.Size = new System.Drawing.Size(1394, 1468);
-			this.dnDControl1.TabIndex = 0;
-			// 
-			// tabPagePeople
-			// 
-			this.tabPagePeople.Controls.Add(this.peopleControl1);
-			this.tabPagePeople.Location = new System.Drawing.Point(4, 29);
-			this.tabPagePeople.Name = "tabPagePeople";
-			this.tabPagePeople.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPagePeople.Size = new System.Drawing.Size(1394, 1468);
-			this.tabPagePeople.TabIndex = 15;
-			this.tabPagePeople.Text = "People";
-			this.tabPagePeople.UseVisualStyleBackColor = true;
-			// 
-			// peopleControl1
-			// 
-			this.peopleControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.peopleControl1.Location = new System.Drawing.Point(3, 3);
-			this.peopleControl1.Name = "peopleControl1";
-			this.peopleControl1.Size = new System.Drawing.Size(1388, 1462);
-			this.peopleControl1.TabIndex = 0;
-			// 
-			// tabPageMyWork
-			// 
-			this.tabPageMyWork.Controls.Add(this.myWork1);
-			this.tabPageMyWork.Location = new System.Drawing.Point(4, 29);
-			this.tabPageMyWork.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPageMyWork.Name = "tabPageMyWork";
-			this.tabPageMyWork.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tabPageMyWork.Size = new System.Drawing.Size(1394, 1468);
-			this.tabPageMyWork.TabIndex = 11;
-			this.tabPageMyWork.Text = "My work";
-			this.tabPageMyWork.UseVisualStyleBackColor = true;
-			// 
-			// myWork1
-			// 
-			this.myWork1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.myWork1.Location = new System.Drawing.Point(4, 5);
-			this.myWork1.Margin = new System.Windows.Forms.Padding(6);
-			this.myWork1.Name = "myWork1";
-			this.myWork1.Size = new System.Drawing.Size(1386, 1458);
-			this.myWork1.TabIndex = 0;
-			// 
-			// tabPageMyWorkProgress
-			// 
-			this.tabPageMyWorkProgress.Controls.Add(this.myWorkProgress1);
-			this.tabPageMyWorkProgress.Location = new System.Drawing.Point(4, 29);
-			this.tabPageMyWorkProgress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.tabPageMyWorkProgress.Name = "tabPageMyWorkProgress";
-			this.tabPageMyWorkProgress.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.tabPageMyWorkProgress.Size = new System.Drawing.Size(1394, 1468);
-			this.tabPageMyWorkProgress.TabIndex = 13;
-			this.tabPageMyWorkProgress.Text = "My work progress";
-			this.tabPageMyWorkProgress.UseVisualStyleBackColor = true;
-			// 
-			// myWorkProgress1
-			// 
-			this.myWorkProgress1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.myWorkProgress1.Location = new System.Drawing.Point(3, 4);
-			this.myWorkProgress1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-			this.myWorkProgress1.Name = "myWorkProgress1";
-			this.myWorkProgress1.Size = new System.Drawing.Size(1388, 1460);
-			this.myWorkProgress1.TabIndex = 0;
-			// 
 			// tabPageZoo
 			// 
 			this.tabPageZoo.Controls.Add(this.zooControl1);
@@ -492,6 +439,24 @@ namespace MainApp
 			this.zooControl1.Name = "zooControl1";
 			this.zooControl1.Size = new System.Drawing.Size(1388, 1462);
 			this.zooControl1.TabIndex = 0;
+			// 
+			// tabPageConcerts
+			// 
+			this.tabPageConcerts.Controls.Add(this.concertsControl1);
+			this.tabPageConcerts.Location = new System.Drawing.Point(4, 29);
+			this.tabPageConcerts.Name = "tabPageConcerts";
+			this.tabPageConcerts.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPageConcerts.TabIndex = 17;
+			this.tabPageConcerts.Text = "Concerts";
+			this.tabPageConcerts.UseVisualStyleBackColor = true;
+			// 
+			// concertsControl1
+			// 
+			this.concertsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.concertsControl1.Location = new System.Drawing.Point(0, 0);
+			this.concertsControl1.Name = "concertsControl1";
+			this.concertsControl1.Size = new System.Drawing.Size(1394, 1468);
+			this.concertsControl1.TabIndex = 0;
 			// 
 			// tabPageMonthyReports
 			// 
@@ -570,12 +535,13 @@ namespace MainApp
 			this.library1.Location = new System.Drawing.Point(3, 4);
 			this.library1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
 			this.library1.Name = "library1";
-			this.library1.Size = new System.Drawing.Size(1388, 1460);
+			this.library1.Size = new System.Drawing.Size(172, 20);
 			this.library1.TabIndex = 0;
 			// 
 			// tabControlAll
 			// 
 			this.tabControlAll.Controls.Add(this.tabPageMain);
+			this.tabControlAll.Controls.Add(this.tabPageMy);
 			this.tabControlAll.Controls.Add(this.tabPageCollection);
 			this.tabControlAll.Controls.Add(this.tabPageStats);
 			this.tabControlAll.Controls.Add(this.tabPageLists);
@@ -597,6 +563,106 @@ namespace MainApp
 			this.tabPageMain.TabIndex = 0;
 			this.tabPageMain.Text = "Main";
 			this.tabPageMain.UseVisualStyleBackColor = true;
+			// 
+			// tabPageMy
+			// 
+			this.tabPageMy.Controls.Add(this.tabControl2);
+			this.tabPageMy.Location = new System.Drawing.Point(4, 29);
+			this.tabPageMy.Name = "tabPageMy";
+			this.tabPageMy.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageMy.Size = new System.Drawing.Size(1408, 1507);
+			this.tabPageMy.TabIndex = 5;
+			this.tabPageMy.Text = "My";
+			this.tabPageMy.UseVisualStyleBackColor = true;
+			// 
+			// tabControl2
+			// 
+			this.tabControl2.Controls.Add(this.tabPageProgress);
+			this.tabControl2.Controls.Add(this.tabPageWorks);
+			this.tabControl2.Controls.Add(this.tabPageDnD);
+			this.tabControl2.Controls.Add(this.tabPagePeople);
+			this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl2.Location = new System.Drawing.Point(3, 3);
+			this.tabControl2.Name = "tabControl2";
+			this.tabControl2.SelectedIndex = 0;
+			this.tabControl2.Size = new System.Drawing.Size(1402, 1501);
+			this.tabControl2.TabIndex = 0;
+			// 
+			// tabPageProgress
+			// 
+			this.tabPageProgress.Controls.Add(this.myWorkProgress1);
+			this.tabPageProgress.Location = new System.Drawing.Point(4, 29);
+			this.tabPageProgress.Name = "tabPageProgress";
+			this.tabPageProgress.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageProgress.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPageProgress.TabIndex = 0;
+			this.tabPageProgress.Text = "Progress";
+			this.tabPageProgress.UseVisualStyleBackColor = true;
+			// 
+			// myWorkProgress1
+			// 
+			this.myWorkProgress1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myWorkProgress1.Location = new System.Drawing.Point(3, 3);
+			this.myWorkProgress1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+			this.myWorkProgress1.Name = "myWorkProgress1";
+			this.myWorkProgress1.Size = new System.Drawing.Size(1388, 1462);
+			this.myWorkProgress1.TabIndex = 1;
+			// 
+			// tabPageWorks
+			// 
+			this.tabPageWorks.Controls.Add(this.myWork1);
+			this.tabPageWorks.Location = new System.Drawing.Point(4, 29);
+			this.tabPageWorks.Name = "tabPageWorks";
+			this.tabPageWorks.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPageWorks.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPageWorks.TabIndex = 1;
+			this.tabPageWorks.Text = "Works";
+			this.tabPageWorks.UseVisualStyleBackColor = true;
+			// 
+			// myWork1
+			// 
+			this.myWork1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myWork1.Location = new System.Drawing.Point(3, 3);
+			this.myWork1.Margin = new System.Windows.Forms.Padding(6);
+			this.myWork1.Name = "myWork1";
+			this.myWork1.Size = new System.Drawing.Size(1388, 1462);
+			this.myWork1.TabIndex = 1;
+			// 
+			// tabPageDnD
+			// 
+			this.tabPageDnD.Controls.Add(this.dnDControl1);
+			this.tabPageDnD.Location = new System.Drawing.Point(4, 29);
+			this.tabPageDnD.Name = "tabPageDnD";
+			this.tabPageDnD.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPageDnD.TabIndex = 2;
+			this.tabPageDnD.Text = "D&D";
+			this.tabPageDnD.UseVisualStyleBackColor = true;
+			// 
+			// dnDControl1
+			// 
+			this.dnDControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dnDControl1.Location = new System.Drawing.Point(0, 0);
+			this.dnDControl1.Name = "dnDControl1";
+			this.dnDControl1.Size = new System.Drawing.Size(1394, 1468);
+			this.dnDControl1.TabIndex = 1;
+			// 
+			// tabPagePeople
+			// 
+			this.tabPagePeople.Controls.Add(this.peopleControl1);
+			this.tabPagePeople.Location = new System.Drawing.Point(4, 29);
+			this.tabPagePeople.Name = "tabPagePeople";
+			this.tabPagePeople.Size = new System.Drawing.Size(1394, 1468);
+			this.tabPagePeople.TabIndex = 3;
+			this.tabPagePeople.Text = "People";
+			this.tabPagePeople.UseVisualStyleBackColor = true;
+			// 
+			// peopleControl1
+			// 
+			this.peopleControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.peopleControl1.Location = new System.Drawing.Point(0, 0);
+			this.peopleControl1.Name = "peopleControl1";
+			this.peopleControl1.Size = new System.Drawing.Size(1394, 1468);
+			this.peopleControl1.TabIndex = 1;
 			// 
 			// tabPageCollection
 			// 
@@ -640,7 +706,7 @@ namespace MainApp
 			this.moviesControl2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.moviesControl2.Location = new System.Drawing.Point(3, 3);
 			this.moviesControl2.Name = "moviesControl2";
-			this.moviesControl2.Size = new System.Drawing.Size(1388, 1462);
+			this.moviesControl2.Size = new System.Drawing.Size(172, 22);
 			this.moviesControl2.TabIndex = 0;
 			// 
 			// tabPageStats
@@ -862,18 +928,22 @@ namespace MainApp
 			this.tabPageMovies.ResumeLayout(false);
 			this.tabPageMusic.ResumeLayout(false);
 			this.tabControlMain.ResumeLayout(false);
+			this.tabPageSongs.ResumeLayout(false);
 			this.tabPageStandup.ResumeLayout(false);
-			this.tabPageDnD.ResumeLayout(false);
-			this.tabPagePeople.ResumeLayout(false);
-			this.tabPageMyWork.ResumeLayout(false);
-			this.tabPageMyWorkProgress.ResumeLayout(false);
 			this.tabPageZoo.ResumeLayout(false);
+			this.tabPageConcerts.ResumeLayout(false);
 			this.tabPageMonthyReports.ResumeLayout(false);
 			this.tabPageYearProgress.ResumeLayout(false);
 			this.tabPage1001.ResumeLayout(false);
 			this.tabPageLibrary.ResumeLayout(false);
 			this.tabControlAll.ResumeLayout(false);
 			this.tabPageMain.ResumeLayout(false);
+			this.tabPageMy.ResumeLayout(false);
+			this.tabControl2.ResumeLayout(false);
+			this.tabPageProgress.ResumeLayout(false);
+			this.tabPageWorks.ResumeLayout(false);
+			this.tabPageDnD.ResumeLayout(false);
+			this.tabPagePeople.ResumeLayout(false);
 			this.tabPageCollection.ResumeLayout(false);
 			this.tabControlCollection.ResumeLayout(false);
 			this.tabPageCollectionMovies.ResumeLayout(false);
@@ -918,12 +988,8 @@ namespace MainApp
         private TabControl tabControlMain;
 		private TabPage tabPageStandup;
 		private Standups.StandupsControl standup1;
-		private TabPage tabPageMyWork;
-		private My_work.MyWorkControl myWork1;
 		private TabPage tabPageMonthyReports;
 		private Reports.MontlyReportsControl weeklyReports1;
-		private TabPage tabPageMyWorkProgress;
-		private My_work_progress.MyWorkProgressControl myWorkProgress1;
 		private TabPage tabPageLibrary;
 		private Collection.LibraryControl library1;
 		private TabPage tabPageYearProgress;
@@ -946,10 +1012,6 @@ namespace MainApp
         private MainControls.LinksControl linksControl1;
         private TabPage tabPageYearCollectionStats;
         private Reports.YearStatsCollectionControl yearStatsCollectionControl1;
-        private TabPage tabPageDnD;
-        private TabPage tabPagePeople;
-        private MainControls.PeopleControl peopleControl1;
-        private MainControls.DnDControl dnDControl1;
         private TabPage tabPageLists;
         private TabControl tabControl1;
         private TabPage tabPageGameLists;
@@ -962,6 +1024,20 @@ namespace MainApp
         private StatsControls.YearSummary yearSummary1;
 		private TabPage tabPageZoo;
 		private MainControls.Zoo.ZooControl zooControl1;
+		private MainControls.Concerts.ConcertsControl concertsControl1;
+		private TabPage tabPageConcerts;
+		private TabPage tabPageSongs;
+		private MainControls.Zoo.SongsControl songsControl1;
+		private TabPage tabPageMy;
+		private TabControl tabControl2;
+		private TabPage tabPageProgress;
+		private TabPage tabPageWorks;
+		private TabPage tabPageDnD;
+		private TabPage tabPagePeople;
+		private MainControls.PeopleControl peopleControl1;
+		private My_work.MyWorkControl myWork1;
+		private My_work_progress.MyWorkProgressControl myWorkProgress1;
+		private MainControls.DnDControl dnDControl1;
 	}
 }
 

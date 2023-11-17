@@ -5,7 +5,8 @@ CREATE TABLE [dbo].[MyWorkProgressEvents] (
    [Date] [datetime] NOT NULL,
    [Time] [int] NULL,
    [Comment] [nvarchar](max) NULL,
-   [Rating] [int] NULL
+   [Rating] [int] NULL,
+   [People] [nvarchar](max) NULL
 
    ,CONSTRAINT [PK_MyWorkProgressEvents] PRIMARY KEY CLUSTERED ([ID])
 )

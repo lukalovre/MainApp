@@ -88,6 +88,9 @@ namespace Controller
 					var title = htmlDocument.DocumentNode.SelectSingleNode("//meta[@property='og:title']").Attributes["content"].Value.Split(new string[] { ", by" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault().Trim();
 					var artist = htmlDocument.DocumentNode.SelectSingleNode("//meta[@property='og:title']").Attributes["content"].Value.Split(new string[] { ", by" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault().Trim();
 
+					title = WebUtility.HtmlDecode(title);
+					artist = WebUtility.HtmlDecode(artist);
+
 					var year = Convert.ToInt32(Igdb.GetYear(htmlDocument.DocumentNode.SelectSingleNode("//div[@class='tralbumData tralbum-credits']").InnerText.Trim()));
 					var bandcampLink = htmlDocument.DocumentNode.SelectSingleNode("//meta[@property='og:url']").Attributes["content"].Value.Trim();
 

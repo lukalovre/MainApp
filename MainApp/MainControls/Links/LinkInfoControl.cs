@@ -31,6 +31,15 @@ namespace MainApp.MainControls
 			textBoxUrl.TextChanged += new EventHandler(TextBoxUrl_TextChanged);
 
 			labelCreatedAt.Text = $"Created at: {createdAt:Y}";
+
+			var events = linkEvents.Select(o => new Model.EventListItem
+			{
+				ID = o.ID,
+				CountValue = 1,
+				Date = o.Date
+			}).ToList();
+
+			eventControl1.Fill(events, EventListControl.CountValue.None);
 		}
 
 		internal Link GetItem()
@@ -51,14 +60,10 @@ namespace MainApp.MainControls
 
 			var categories = new List<string>
 			  { "ReadingList",
-				"Projects",
 				"Ducani",
-				"Comics",
 				"Music",
 				"Tools",
-				"YouTube",
-				"Twitter",
-				"Instagram"
+				"YouTube"
 			};
 
 			comboBoxCategory.Items.AddRange(categories.OrderBy(o => o).ToArray());

@@ -16,7 +16,7 @@ namespace MainApp.StatsControls.SummaryControls
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
+			if (Helper.IsInDesignMode)
 			{
 				return;
 			}

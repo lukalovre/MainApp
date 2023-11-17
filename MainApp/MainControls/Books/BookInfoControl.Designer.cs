@@ -36,17 +36,14 @@
 			this.numericUpDownYear = new System.Windows.Forms.NumericUpDown();
 			this.checkBox1001 = new System.Windows.Forms.CheckBox();
 			this.labelAddingPages = new System.Windows.Forms.Label();
-			this.starRating1 = new MainApp.StarRatingControl();
-			this.eventControl1 = new MainApp.EventControl();
-			this.richTextBoxComment = new System.Windows.Forms.RichTextBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.evenControl1 = new MainApp.CommonControls.EvenControl();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownPages)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// numericUpDownPages
 			// 
-			this.numericUpDownPages.Location = new System.Drawing.Point(4, 208);
+			this.numericUpDownPages.Location = new System.Drawing.Point(6, 96);
 			this.numericUpDownPages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.numericUpDownPages.Maximum = new decimal(new int[] {
             9999,
@@ -61,7 +58,7 @@
 			// checkBoxRead
 			// 
 			this.checkBoxRead.AutoSize = true;
-			this.checkBoxRead.Location = new System.Drawing.Point(3, 244);
+			this.checkBoxRead.Location = new System.Drawing.Point(5, 132);
 			this.checkBoxRead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.checkBoxRead.Name = "checkBoxRead";
 			this.checkBoxRead.Size = new System.Drawing.Size(74, 24);
@@ -72,7 +69,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(78, 210);
+			this.label2.Location = new System.Drawing.Point(80, 98);
 			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(54, 20);
@@ -99,7 +96,7 @@
 			// 
 			// numericUpDownYear
 			// 
-			this.numericUpDownYear.Location = new System.Drawing.Point(175, 208);
+			this.numericUpDownYear.Location = new System.Drawing.Point(177, 96);
 			this.numericUpDownYear.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -112,7 +109,7 @@
 			// checkBox1001
 			// 
 			this.checkBox1001.AutoSize = true;
-			this.checkBox1001.Location = new System.Drawing.Point(175, 244);
+			this.checkBox1001.Location = new System.Drawing.Point(177, 132);
 			this.checkBox1001.Name = "checkBox1001";
 			this.checkBox1001.Size = new System.Drawing.Size(71, 24);
 			this.checkBox1001.TabIndex = 12;
@@ -122,52 +119,24 @@
 			// labelAddingPages
 			// 
 			this.labelAddingPages.AutoSize = true;
-			this.labelAddingPages.Location = new System.Drawing.Point(278, 210);
+			this.labelAddingPages.Location = new System.Drawing.Point(280, 98);
 			this.labelAddingPages.Name = "labelAddingPages";
 			this.labelAddingPages.Size = new System.Drawing.Size(126, 20);
 			this.labelAddingPages.TabIndex = 13;
 			this.labelAddingPages.Text = "Added 15 pages";
 			// 
-			// starRating1
+			// evenControl1
 			// 
-			this.starRating1.Location = new System.Drawing.Point(4, 96);
-			this.starRating1.Name = "starRating1";
-			this.starRating1.SelectedStar = 1;
-			this.starRating1.Size = new System.Drawing.Size(249, 92);
-			this.starRating1.TabIndex = 14;
-			// 
-			// eventControl1
-			// 
-			this.eventControl1.Location = new System.Drawing.Point(4, 303);
-			this.eventControl1.Name = "eventControl1";
-			this.eventControl1.Size = new System.Drawing.Size(208, 292);
-			this.eventControl1.TabIndex = 15;
-			// 
-			// richTextBox1
-			// 
-			this.richTextBoxComment.Location = new System.Drawing.Point(245, 303);
-			this.richTextBoxComment.Name = "richTextBox1";
-			this.richTextBoxComment.Size = new System.Drawing.Size(388, 292);
-			this.richTextBoxComment.TabIndex = 16;
-			this.richTextBoxComment.Text = "";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(241, 280);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(78, 20);
-			this.label1.TabIndex = 17;
-			this.label1.Text = "Comment";
+			this.evenControl1.Location = new System.Drawing.Point(6, 164);
+			this.evenControl1.Name = "evenControl1";
+			this.evenControl1.Size = new System.Drawing.Size(440, 425);
+			this.evenControl1.TabIndex = 14;
 			// 
 			// BookInfoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.richTextBoxComment);
-			this.Controls.Add(this.eventControl1);
-			this.Controls.Add(this.starRating1);
+			this.Controls.Add(this.evenControl1);
 			this.Controls.Add(this.labelAddingPages);
 			this.Controls.Add(this.checkBox1001);
 			this.Controls.Add(this.numericUpDownYear);
@@ -178,7 +147,7 @@
 			this.Controls.Add(this.numericUpDownPages);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "BookInfoControl";
-			this.Size = new System.Drawing.Size(656, 644);
+			this.Size = new System.Drawing.Size(610, 628);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownPages)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYear)).EndInit();
 			this.ResumeLayout(false);
@@ -195,9 +164,6 @@
 		private System.Windows.Forms.NumericUpDown numericUpDownYear;
 		private System.Windows.Forms.CheckBox checkBox1001;
 		private System.Windows.Forms.Label labelAddingPages;
-		private StarRatingControl starRating1;
-        private EventControl eventControl1;
-		private System.Windows.Forms.RichTextBox richTextBoxComment;
-		private System.Windows.Forms.Label label1;
+		private CommonControls.EvenControl evenControl1;
 	}
 }

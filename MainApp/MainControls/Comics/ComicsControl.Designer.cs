@@ -38,9 +38,9 @@ namespace MainApp.Comics
 			this.tabPageAll = new System.Windows.Forms.TabPage();
 			this.dataGridViewAll = new System.Windows.Forms.DataGridView();
 			this.numericUpDownYear = new System.Windows.Forms.NumericUpDown();
-			this.buttonUpdate = new System.Windows.Forms.Button();
 			this.textBoxUrl = new System.Windows.Forms.TextBox();
 			this.comicInfo1 = new MainApp.Comics.ComicInfoControl();
+			this.addButton1 = new MainApp.CommonControls.AddButton();
 			this.tabControl1.SuspendLayout();
 			this.tabPageReading.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewReading)).BeginInit();
@@ -145,19 +145,9 @@ namespace MainApp.Comics
 			this.numericUpDownYear.TabIndex = 20;
 			this.numericUpDownYear.ValueChanged += new System.EventHandler(this.NumericUpDownYear_ValueChanged);
 			// 
-			// buttonUpdate
-			// 
-			this.buttonUpdate.Location = new System.Drawing.Point(862, 871);
-			this.buttonUpdate.Name = "buttonUpdate";
-			this.buttonUpdate.Size = new System.Drawing.Size(93, 32);
-			this.buttonUpdate.TabIndex = 21;
-			this.buttonUpdate.Text = "Update";
-			this.buttonUpdate.UseVisualStyleBackColor = true;
-			this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
-			// 
 			// textBoxUrl
 			// 
-			this.textBoxUrl.Location = new System.Drawing.Point(962, 876);
+			this.textBoxUrl.Location = new System.Drawing.Point(863, 920);
 			this.textBoxUrl.Name = "textBoxUrl";
 			this.textBoxUrl.Size = new System.Drawing.Size(163, 26);
 			this.textBoxUrl.TabIndex = 22;
@@ -171,12 +161,19 @@ namespace MainApp.Comics
 			this.comicInfo1.Size = new System.Drawing.Size(564, 798);
 			this.comicInfo1.TabIndex = 16;
 			// 
+			// addButton1
+			// 
+			this.addButton1.Location = new System.Drawing.Point(864, 872);
+			this.addButton1.Name = "addButton1";
+			this.addButton1.Size = new System.Drawing.Size(315, 43);
+			this.addButton1.TabIndex = 23;
+			// 
 			// ComicsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.addButton1);
 			this.Controls.Add(this.textBoxUrl);
-			this.Controls.Add(this.buttonUpdate);
 			this.Controls.Add(this.numericUpDownYear);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.comicInfo1);
@@ -207,7 +204,7 @@ namespace MainApp.Comics
 		private NumericUpDown numericUpDownYear;
 		private TabPage tabPageOngoing;
 		private DataGridView dataGridViewOngoing;
-		private Button buttonUpdate;
 		private TextBox textBoxUrl;
+		private CommonControls.AddButton addButton1;
 	}
 }
