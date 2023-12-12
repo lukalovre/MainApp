@@ -1,5 +1,7 @@
 # MainApp
 
+Ground up rebuilding of this app here: https://github.com/lukalovre/personal-event-tracker
+
 The app made and use to store all my data.
 
 ### Tracking of games played data.
